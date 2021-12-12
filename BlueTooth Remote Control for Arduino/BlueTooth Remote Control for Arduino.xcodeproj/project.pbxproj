@@ -1,0 +1,665 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACD276671D80025F84A /* AppDelegate.swift */; };
+		04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACF276671D80025F84A /* SceneDelegate.swift */; };
+		04D75AD2276671D80025F84A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AD1276671D80025F84A /* MainViewController.swift */; };
+		04D75AD5276671D80025F84A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D75AD3276671D80025F84A /* Main.storyboard */; };
+		04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */; };
+		04D75ADA276671E50025F84A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D75AD9276671E50025F84A /* Assets.xcassets */; };
+		04D75ADD276671E50025F84A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D75ADB276671E50025F84A /* LaunchScreen.storyboard */; };
+		04D75AE8276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AE7276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift */; };
+		04D75AF3276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AF2276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift */; };
+		04D75B0C2766A1670025F84A /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */; };
+		04D75B142766A1B10025F84A /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B132766A1B10025F84A /* InstructionsViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04D75AE4276671E60025F84A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04D75AC2276671D80025F84A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04D75AC9276671D80025F84A;
+			remoteInfo = "BlueTooth Remote Control for Arduino";
+		};
+		04D75AEF276671E60025F84A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04D75AC2276671D80025F84A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04D75AC9276671D80025F84A;
+			remoteInfo = "BlueTooth Remote Control for Arduino";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04D75ACA276671D80025F84A /* BlueTooth Remote Control for Arduino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BlueTooth Remote Control for Arduino.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		04D75ACD276671D80025F84A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		04D75ACF276671D80025F84A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		04D75AD1276671D80025F84A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		04D75AD4276671D80025F84A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		04D75AD7276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BlueTooth_Remote_Control_for_Arduino.xcdatamodel; sourceTree = "<group>"; };
+		04D75AD9276671E50025F84A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04D75ADC276671E50025F84A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		04D75ADE276671E50025F84A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04D75AE3276671E60025F84A /* BlueTooth Remote Control for ArduinoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BlueTooth Remote Control for ArduinoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		04D75AE7276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTooth_Remote_Control_for_ArduinoTests.swift; sourceTree = "<group>"; };
+		04D75AE9276671E60025F84A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04D75AEE276671E60025F84A /* BlueTooth Remote Control for ArduinoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BlueTooth Remote Control for ArduinoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		04D75AF2276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTooth_Remote_Control_for_ArduinoUITests.swift; sourceTree = "<group>"; };
+		04D75AF4276671E60025F84A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
+		04D75B132766A1B10025F84A /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		04D75AC7276671D80025F84A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D75AE0276671E60025F84A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D75AEB276671E60025F84A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		04D75AC1276671D80025F84A = {
+			isa = PBXGroup;
+			children = (
+				04D75ACC276671D80025F84A /* BlueTooth Remote Control for Arduino */,
+				04D75AE6276671E60025F84A /* BlueTooth Remote Control for ArduinoTests */,
+				04D75AF1276671E60025F84A /* BlueTooth Remote Control for ArduinoUITests */,
+				04D75ACB276671D80025F84A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		04D75ACB276671D80025F84A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04D75ACA276671D80025F84A /* BlueTooth Remote Control for Arduino.app */,
+				04D75AE3276671E60025F84A /* BlueTooth Remote Control for ArduinoTests.xctest */,
+				04D75AEE276671E60025F84A /* BlueTooth Remote Control for ArduinoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		04D75ACC276671D80025F84A /* BlueTooth Remote Control for Arduino */ = {
+			isa = PBXGroup;
+			children = (
+				04D75B07276672AB0025F84A /* Services */,
+				04D75B062766724D0025F84A /* Other Files */,
+				04D75B032766721E0025F84A /* Model */,
+				04D75B052766722C0025F84A /* Controller */,
+				04D75B04276672250025F84A /* View */,
+				04D75ADE276671E50025F84A /* Info.plist */,
+			);
+			path = "BlueTooth Remote Control for Arduino";
+			sourceTree = "<group>";
+		};
+		04D75AE6276671E60025F84A /* BlueTooth Remote Control for ArduinoTests */ = {
+			isa = PBXGroup;
+			children = (
+				04D75AE7276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift */,
+				04D75AE9276671E60025F84A /* Info.plist */,
+			);
+			path = "BlueTooth Remote Control for ArduinoTests";
+			sourceTree = "<group>";
+		};
+		04D75AF1276671E60025F84A /* BlueTooth Remote Control for ArduinoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				04D75AF2276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift */,
+				04D75AF4276671E60025F84A /* Info.plist */,
+			);
+			path = "BlueTooth Remote Control for ArduinoUITests";
+			sourceTree = "<group>";
+		};
+		04D75B032766721E0025F84A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04D75B04276672250025F84A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04D75AD3276671D80025F84A /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04D75B052766722C0025F84A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04D75AD1276671D80025F84A /* MainViewController.swift */,
+				04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */,
+				04D75B132766A1B10025F84A /* InstructionsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		04D75B062766724D0025F84A /* Other Files */ = {
+			isa = PBXGroup;
+			children = (
+				04D75AD9276671E50025F84A /* Assets.xcassets */,
+				04D75ADB276671E50025F84A /* LaunchScreen.storyboard */,
+				04D75ACD276671D80025F84A /* AppDelegate.swift */,
+				04D75ACF276671D80025F84A /* SceneDelegate.swift */,
+			);
+			path = "Other Files";
+			sourceTree = "<group>";
+		};
+		04D75B07276672AB0025F84A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		04D75AC9276671D80025F84A /* BlueTooth Remote Control for Arduino */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04D75AF7276671E60025F84A /* Build configuration list for PBXNativeTarget "BlueTooth Remote Control for Arduino" */;
+			buildPhases = (
+				04D75AC6276671D80025F84A /* Sources */,
+				04D75AC7276671D80025F84A /* Frameworks */,
+				04D75AC8276671D80025F84A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BlueTooth Remote Control for Arduino";
+			productName = "BlueTooth Remote Control for Arduino";
+			productReference = 04D75ACA276671D80025F84A /* BlueTooth Remote Control for Arduino.app */;
+			productType = "com.apple.product-type.application";
+		};
+		04D75AE2276671E60025F84A /* BlueTooth Remote Control for ArduinoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04D75AFA276671E60025F84A /* Build configuration list for PBXNativeTarget "BlueTooth Remote Control for ArduinoTests" */;
+			buildPhases = (
+				04D75ADF276671E60025F84A /* Sources */,
+				04D75AE0276671E60025F84A /* Frameworks */,
+				04D75AE1276671E60025F84A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04D75AE5276671E60025F84A /* PBXTargetDependency */,
+			);
+			name = "BlueTooth Remote Control for ArduinoTests";
+			productName = "BlueTooth Remote Control for ArduinoTests";
+			productReference = 04D75AE3276671E60025F84A /* BlueTooth Remote Control for ArduinoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		04D75AED276671E60025F84A /* BlueTooth Remote Control for ArduinoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04D75AFD276671E60025F84A /* Build configuration list for PBXNativeTarget "BlueTooth Remote Control for ArduinoUITests" */;
+			buildPhases = (
+				04D75AEA276671E60025F84A /* Sources */,
+				04D75AEB276671E60025F84A /* Frameworks */,
+				04D75AEC276671E60025F84A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04D75AF0276671E60025F84A /* PBXTargetDependency */,
+			);
+			name = "BlueTooth Remote Control for ArduinoUITests";
+			productName = "BlueTooth Remote Control for ArduinoUITests";
+			productReference = 04D75AEE276671E60025F84A /* BlueTooth Remote Control for ArduinoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		04D75AC2276671D80025F84A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					04D75AC9276671D80025F84A = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					04D75AE2276671E60025F84A = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 04D75AC9276671D80025F84A;
+					};
+					04D75AED276671E60025F84A = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 04D75AC9276671D80025F84A;
+					};
+				};
+			};
+			buildConfigurationList = 04D75AC5276671D80025F84A /* Build configuration list for PBXProject "BlueTooth Remote Control for Arduino" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 04D75AC1276671D80025F84A;
+			productRefGroup = 04D75ACB276671D80025F84A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				04D75AC9276671D80025F84A /* BlueTooth Remote Control for Arduino */,
+				04D75AE2276671E60025F84A /* BlueTooth Remote Control for ArduinoTests */,
+				04D75AED276671E60025F84A /* BlueTooth Remote Control for ArduinoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		04D75AC8276671D80025F84A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D75ADD276671E50025F84A /* LaunchScreen.storyboard in Resources */,
+				04D75ADA276671E50025F84A /* Assets.xcassets in Resources */,
+				04D75AD5276671D80025F84A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D75AE1276671E60025F84A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D75AEC276671E60025F84A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		04D75AC6276671D80025F84A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D75B142766A1B10025F84A /* InstructionsViewController.swift in Sources */,
+				04D75AD2276671D80025F84A /* MainViewController.swift in Sources */,
+				04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */,
+				04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */,
+				04D75B0C2766A1670025F84A /* ConfigurationViewController.swift in Sources */,
+				04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D75ADF276671E60025F84A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D75AE8276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D75AEA276671E60025F84A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D75AF3276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		04D75AE5276671E60025F84A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04D75AC9276671D80025F84A /* BlueTooth Remote Control for Arduino */;
+			targetProxy = 04D75AE4276671E60025F84A /* PBXContainerItemProxy */;
+		};
+		04D75AF0276671E60025F84A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04D75AC9276671D80025F84A /* BlueTooth Remote Control for Arduino */;
+			targetProxy = 04D75AEF276671E60025F84A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		04D75AD3276671D80025F84A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04D75AD4276671D80025F84A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		04D75ADB276671E50025F84A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04D75ADC276671E50025F84A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		04D75AF5276671E60025F84A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		04D75AF6276671E60025F84A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		04D75AF8276671E60025F84A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8453MU78WA;
+				INFOPLIST_FILE = "BlueTooth Remote Control for Arduino/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.gdtr.BlueTooth-Remote-Control-for-Arduino";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		04D75AF9276671E60025F84A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8453MU78WA;
+				INFOPLIST_FILE = "BlueTooth Remote Control for Arduino/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.gdtr.BlueTooth-Remote-Control-for-Arduino";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		04D75AFB276671E60025F84A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8453MU78WA;
+				INFOPLIST_FILE = "BlueTooth Remote Control for ArduinoTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.gdtr.BlueTooth-Remote-Control-for-ArduinoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlueTooth Remote Control for Arduino.app/BlueTooth Remote Control for Arduino";
+			};
+			name = Debug;
+		};
+		04D75AFC276671E60025F84A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8453MU78WA;
+				INFOPLIST_FILE = "BlueTooth Remote Control for ArduinoTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.gdtr.BlueTooth-Remote-Control-for-ArduinoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BlueTooth Remote Control for Arduino.app/BlueTooth Remote Control for Arduino";
+			};
+			name = Release;
+		};
+		04D75AFE276671E60025F84A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8453MU78WA;
+				INFOPLIST_FILE = "BlueTooth Remote Control for ArduinoUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.gdtr.BlueTooth-Remote-Control-for-ArduinoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "BlueTooth Remote Control for Arduino";
+			};
+			name = Debug;
+		};
+		04D75AFF276671E60025F84A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8453MU78WA;
+				INFOPLIST_FILE = "BlueTooth Remote Control for ArduinoUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.gdtr.BlueTooth-Remote-Control-for-ArduinoUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "BlueTooth Remote Control for Arduino";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		04D75AC5276671D80025F84A /* Build configuration list for PBXProject "BlueTooth Remote Control for Arduino" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04D75AF5276671E60025F84A /* Debug */,
+				04D75AF6276671E60025F84A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04D75AF7276671E60025F84A /* Build configuration list for PBXNativeTarget "BlueTooth Remote Control for Arduino" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04D75AF8276671E60025F84A /* Debug */,
+				04D75AF9276671E60025F84A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04D75AFA276671E60025F84A /* Build configuration list for PBXNativeTarget "BlueTooth Remote Control for ArduinoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04D75AFB276671E60025F84A /* Debug */,
+				04D75AFC276671E60025F84A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04D75AFD276671E60025F84A /* Build configuration list for PBXNativeTarget "BlueTooth Remote Control for ArduinoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04D75AFE276671E60025F84A /* Debug */,
+				04D75AFF276671E60025F84A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				04D75AD7276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodel */,
+			);
+			currentVersion = 04D75AD7276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodel */;
+			path = BlueTooth_Remote_Control_for_Arduino.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 04D75AC2276671D80025F84A /* Project object */;
+}
