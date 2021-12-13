@@ -38,7 +38,7 @@
                         <viewLayoutGuide key="safeArea" id="6PC-7d-mh7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Configuration" image="gearshape" catalog="system" id="iNE-H3-ER8"/>
+                    <tabBarItem key="tabBarItem" title="Configuration" image="gear" catalog="system" id="iNE-H3-ER8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B0K-HS-7Iv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,7 +70,7 @@
                         <viewLayoutGuide key="safeArea" id="8Xs-eQ-CXU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Remote" image="square.grid.3x3.topleft.fill" catalog="system" id="H03-xx-AfI"/>
+                    <tabBarItem key="tabBarItem" title="Remote" image="keyboard" catalog="system" id="H03-xx-AfI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4L9-Te-Gwm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -79,8 +79,8 @@
     </scenes>
     <resources>
         <image name="book" catalog="system" width="128" height="102"/>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="square.grid.3x3.topleft.fill" catalog="system" width="128" height="112"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="keyboard" catalog="system" width="128" height="79"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -18,6 +18,10 @@
 		04D75AF3276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AF2276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift */; };
 		04D75B0C2766A1670025F84A /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */; };
 		04D75B142766A1B10025F84A /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B132766A1B10025F84A /* InstructionsViewController.swift */; };
+		04D75B19276767B20025F84A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B18276767B20025F84A /* Button.swift */; };
+		04D75B262767F21D0025F84A /* HorizontalViewWithButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B252767F21D0025F84A /* HorizontalViewWithButtons.swift */; };
+		04D75B2B2767F66B0025F84A /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B2A2767F66B0025F84A /* VerticalStackView.swift */; };
+		04D75B4127680A620025F84A /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B4027680A620025F84A /* Orders.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		04D75AF4276671E60025F84A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		04D75B132766A1B10025F84A /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
+		04D75B18276767B20025F84A /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		04D75B252767F21D0025F84A /* HorizontalViewWithButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalViewWithButtons.swift; sourceTree = "<group>"; };
+		04D75B2A2767F66B0025F84A /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
+		04D75B4027680A620025F84A /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */,
+				04D75B4027680A620025F84A /* Orders.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -145,6 +154,9 @@
 			isa = PBXGroup;
 			children = (
 				04D75AD3276671D80025F84A /* Main.storyboard */,
+				04D75B18276767B20025F84A /* Button.swift */,
+				04D75B252767F21D0025F84A /* HorizontalViewWithButtons.swift */,
+				04D75B2A2767F66B0025F84A /* VerticalStackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -307,7 +319,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D75B19276767B20025F84A /* Button.swift in Sources */,
+				04D75B2B2767F66B0025F84A /* VerticalStackView.swift in Sources */,
 				04D75B142766A1B10025F84A /* InstructionsViewController.swift in Sources */,
+				04D75B262767F21D0025F84A /* HorizontalViewWithButtons.swift in Sources */,
+				04D75B4127680A620025F84A /* Orders.swift in Sources */,
 				04D75AD2276671D80025F84A /* MainViewController.swift in Sources */,
 				04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */,
 				04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */,
@@ -491,7 +507,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8453MU78WA;
 				INFOPLIST_FILE = "BlueTooth Remote Control for Arduino/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -511,7 +527,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8453MU78WA;
 				INFOPLIST_FILE = "BlueTooth Remote Control for Arduino/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
