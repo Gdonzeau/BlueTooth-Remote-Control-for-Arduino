@@ -8,10 +8,12 @@
 import UIKit
 
 class VerticalStackView: UIStackView {
-
+    
     let rankButtons01 = HorizontalViewWithButtons()
     let rankButtons02 = HorizontalViewWithButtons()
     let rankButtons03 = HorizontalViewWithButtons()
+    let connection = Connection()
+    let datas = DatasReceived()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,9 +32,11 @@ class VerticalStackView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
         spacing = 5
         
+        addArrangedSubview(connection)
         addArrangedSubview(rankButtons01)
         addArrangedSubview(rankButtons02)
         addArrangedSubview(rankButtons03)
+        addArrangedSubview(datas)
         
     }
 }

@@ -17,11 +17,17 @@
 		04D75AE8276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AE7276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift */; };
 		04D75AF3276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AF2276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift */; };
 		04D75B0C2766A1670025F84A /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */; };
-		04D75B142766A1B10025F84A /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B132766A1B10025F84A /* InstructionsViewController.swift */; };
-		04D75B19276767B20025F84A /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B18276767B20025F84A /* Button.swift */; };
 		04D75B262767F21D0025F84A /* HorizontalViewWithButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B252767F21D0025F84A /* HorizontalViewWithButtons.swift */; };
 		04D75B2B2767F66B0025F84A /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B2A2767F66B0025F84A /* VerticalStackView.swift */; };
-		04D75B4127680A620025F84A /* Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B4027680A620025F84A /* Orders.swift */; };
+		04D75B4127680A620025F84A /* InfoButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B4027680A620025F84A /* InfoButtons.swift */; };
+		04D75B51276899CA0025F84A /* Connecting_Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B50276899CA0025F84A /* Connecting_Module.swift */; };
+		04D75B5627689D520025F84A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B5527689D520025F84A /* TableViewController.swift */; };
+		04D75B632768A1730025F84A /* PickerViewBluetoothAvailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B622768A1730025F84A /* PickerViewBluetoothAvailableViewController.swift */; };
+		04D75B712768F36E0025F84A /* FirstChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B702768F36D0025F84A /* FirstChildViewController.swift */; };
+		04D75B762768F3880025F84A /* SecondChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B752768F3880025F84A /* SecondChildViewController.swift */; };
+		04D75B7B27691CFF0025F84A /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B7A27691CFF0025F84A /* Connection.swift */; };
+		04D75B80276953500025F84A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B7F276953500025F84A /* Status.swift */; };
+		04D75B8527695B7A0025F84A /* DatasReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B8427695B7A0025F84A /* DatasReceived.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,11 +64,17 @@
 		04D75AF2276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTooth_Remote_Control_for_ArduinoUITests.swift; sourceTree = "<group>"; };
 		04D75AF4276671E60025F84A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
-		04D75B132766A1B10025F84A /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
-		04D75B18276767B20025F84A /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		04D75B252767F21D0025F84A /* HorizontalViewWithButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalViewWithButtons.swift; sourceTree = "<group>"; };
 		04D75B2A2767F66B0025F84A /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
-		04D75B4027680A620025F84A /* Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orders.swift; sourceTree = "<group>"; };
+		04D75B4027680A620025F84A /* InfoButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButtons.swift; sourceTree = "<group>"; };
+		04D75B50276899CA0025F84A /* Connecting_Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connecting_Module.swift; sourceTree = "<group>"; };
+		04D75B5527689D520025F84A /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		04D75B622768A1730025F84A /* PickerViewBluetoothAvailableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewBluetoothAvailableViewController.swift; sourceTree = "<group>"; };
+		04D75B702768F36D0025F84A /* FirstChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstChildViewController.swift; sourceTree = "<group>"; };
+		04D75B752768F3880025F84A /* SecondChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondChildViewController.swift; sourceTree = "<group>"; };
+		04D75B7A27691CFF0025F84A /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		04D75B7F276953500025F84A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		04D75B8427695B7A0025F84A /* DatasReceived.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasReceived.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */,
-				04D75B4027680A620025F84A /* Orders.swift */,
+				04D75B4027680A620025F84A /* InfoButtons.swift */,
+				04D75B7F276953500025F84A /* Status.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -154,9 +167,11 @@
 			isa = PBXGroup;
 			children = (
 				04D75AD3276671D80025F84A /* Main.storyboard */,
-				04D75B18276767B20025F84A /* Button.swift */,
 				04D75B252767F21D0025F84A /* HorizontalViewWithButtons.swift */,
+				04D75B7A27691CFF0025F84A /* Connection.swift */,
 				04D75B2A2767F66B0025F84A /* VerticalStackView.swift */,
+				04D75B50276899CA0025F84A /* Connecting_Module.swift */,
+				04D75B8427695B7A0025F84A /* DatasReceived.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -166,7 +181,10 @@
 			children = (
 				04D75AD1276671D80025F84A /* MainViewController.swift */,
 				04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */,
-				04D75B132766A1B10025F84A /* InstructionsViewController.swift */,
+				04D75B5527689D520025F84A /* TableViewController.swift */,
+				04D75B702768F36D0025F84A /* FirstChildViewController.swift */,
+				04D75B752768F3880025F84A /* SecondChildViewController.swift */,
+				04D75B622768A1730025F84A /* PickerViewBluetoothAvailableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -319,16 +337,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04D75B19276767B20025F84A /* Button.swift in Sources */,
 				04D75B2B2767F66B0025F84A /* VerticalStackView.swift in Sources */,
-				04D75B142766A1B10025F84A /* InstructionsViewController.swift in Sources */,
 				04D75B262767F21D0025F84A /* HorizontalViewWithButtons.swift in Sources */,
-				04D75B4127680A620025F84A /* Orders.swift in Sources */,
+				04D75B712768F36E0025F84A /* FirstChildViewController.swift in Sources */,
+				04D75B4127680A620025F84A /* InfoButtons.swift in Sources */,
+				04D75B8527695B7A0025F84A /* DatasReceived.swift in Sources */,
 				04D75AD2276671D80025F84A /* MainViewController.swift in Sources */,
 				04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */,
+				04D75B7B27691CFF0025F84A /* Connection.swift in Sources */,
+				04D75B632768A1730025F84A /* PickerViewBluetoothAvailableViewController.swift in Sources */,
+				04D75B5627689D520025F84A /* TableViewController.swift in Sources */,
 				04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */,
+				04D75B80276953500025F84A /* Status.swift in Sources */,
 				04D75B0C2766A1670025F84A /* ConfigurationViewController.swift in Sources */,
 				04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */,
+				04D75B51276899CA0025F84A /* Connecting_Module.swift in Sources */,
+				04D75B762768F3880025F84A /* SecondChildViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
