@@ -12,6 +12,7 @@ class MainViewController: UIViewController {
     let infosButtons = InfoButtons()
     let secondView = UIViewController()
     let saves = TableViewController()
+    var bottomContainer = UIStackView()
     // Test insertion
     
     var controller = PickerViewBluetoothAvailableViewController()
@@ -22,10 +23,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addChild(saves)
-        self.view.addSubview(saves.view)
-        saves.didMove(toParent: self)
-        saves.view.translatesAutoresizingMaskIntoConstraints = false
         
         coordinateActions()
         setupView()
@@ -34,6 +31,18 @@ class MainViewController: UIViewController {
     
     func setupView() {
         self.view.addSubview(verticalStackView)
+        self.view.addSubview(bottomContainer)
+        addChild(saves)
+        bottomContainer = UIStackView(arrangedSubviews: [saves.view])
+        self.addChild(saves)
+        self.view.addSubview(saves.view)
+        saves.didMove(toParent: self)
+        bottomContainer.translatesAutoresizingMaskIntoConstraints = false
+        //saves.view.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        verticalStackView.rankButtons01.remoteButton01.isHidden = false
         
     }
     
@@ -41,13 +50,22 @@ class MainViewController: UIViewController {
         let margins = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
             verticalStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
+            //verticalStackView.bottomAnchor.constraint(equalTo: bottomContainer.topAnchor),
             verticalStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             verticalStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             verticalStackView.topAnchor.constraint(equalTo: margins.topAnchor),
+            /*
             saves.view.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
             saves.view.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             saves.view.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             saves.view.heightAnchor.constraint(equalToConstant: 200)
+ */
+            /*
+            bottomContainer.topAnchor.constraint(equalTo: verticalStackView.bottomAnchor),
+            bottomContainer.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            bottomContainer.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            bottomContainer.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
+            */
         ])
         
     }

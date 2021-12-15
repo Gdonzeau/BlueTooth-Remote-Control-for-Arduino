@@ -9,14 +9,19 @@ import UIKit
 
 class ConfigurationViewController: UIViewController {
     let first = FirstChildViewController()
-    //let first = PickerViewBluetoothAvailableViewController()
+    //var firstStackView = UIStackView()
+    let secondStackView = UIStackView()
+    let finalStackView = UIStackView()
+    let second = PickerViewBluetoothAvailableViewController()
     //let second = SecondChildViewController()
-    let second = TableViewController()
+    //let second = TableViewController()
     
     override func viewDidLoad() {
         view.backgroundColor = .lightGray
         super.viewDidLoad()
         
+
+        /*
         self.addChild(first)
         self.addChild(second)
         
@@ -25,14 +30,35 @@ class ConfigurationViewController: UIViewController {
         
         first.didMove(toParent: self)
         second.didMove(toParent: self)
+        */
         
         
+        /*
         first.view.translatesAutoresizingMaskIntoConstraints = false
         second.view.translatesAutoresizingMaskIntoConstraints = false
+        */
+        //self.view.addSubview(firstStackView)
+        let firstStackView = UIStackView(arrangedSubviews: [second.view])
+        firstStackView.backgroundColor = .red
+        firstStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        self.addChild(second)
+        second.view.translatesAutoresizingMaskIntoConstraints = false
+        //firstStackView.addSubview(second.view)
+        second.didMove(toParent: self)
+        
+        firstStackView.axis = .vertical
+        firstStackView.alignment = .fill
+        firstStackView.distribution = .fillEqually
+        firstStackView.spacing = 5
+        self.view.addSubview(firstStackView)
+        //firstStackView = UIStackView(arrangedSubviews: [first.view])
         
         let margins = view.layoutMarginsGuide
         
         NSLayoutConstraint.activate([
+            /*
             first.view.topAnchor.constraint(equalTo: margins.topAnchor),
             first.view.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             first.view.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
@@ -43,6 +69,12 @@ class ConfigurationViewController: UIViewController {
             second.view.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             second.view.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             second.view.heightAnchor.constraint(equalToConstant: 200)
+            */
+            firstStackView.topAnchor.constraint(equalTo: margins.topAnchor),
+            firstStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            firstStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            //first.view.bottomAnchor.constraint(equalTo: second.view.topAnchor),
+            firstStackView.heightAnchor.constraint(equalToConstant: 200),
             
             
         ])
