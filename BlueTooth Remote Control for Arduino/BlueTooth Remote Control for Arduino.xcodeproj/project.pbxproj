@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04B5656A276C86EE006CEE37 /* ThreeTextFieldsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */; };
+		04B5657B276C8B1D006CEE37 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5657A276C8B1D006CEE37 /* ConfigView.swift */; };
+		04B56580276C8C1A006CEE37 /* TwoTextFieldsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5657F276C8C1A006CEE37 /* TwoTextFieldsLine.swift */; };
+		04B56588276CA507006CEE37 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56587276CA507006CEE37 /* Colors.swift */; };
+		04B5658D276CDE09006CEE37 /* OneTextFieldLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5658C276CDE09006CEE37 /* OneTextFieldLine.swift */; };
+		04B56592276CDE92006CEE37 /* TwoButtonsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56591276CDE92006CEE37 /* TwoButtonsLine.swift */; };
 		04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACD276671D80025F84A /* AppDelegate.swift */; };
 		04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACF276671D80025F84A /* SceneDelegate.swift */; };
 		04D75AD2276671D80025F84A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AD1276671D80025F84A /* MainViewController.swift */; };
@@ -17,8 +23,8 @@
 		04D75AE8276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AE7276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift */; };
 		04D75AF3276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AF2276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift */; };
 		04D75B0C2766A1670025F84A /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */; };
-		04D75B262767F21D0025F84A /* HorizontalViewWithButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B252767F21D0025F84A /* HorizontalViewWithButtons.swift */; };
-		04D75B2B2767F66B0025F84A /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B2A2767F66B0025F84A /* VerticalStackView.swift */; };
+		04D75B262767F21D0025F84A /* ThreeButtonsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B252767F21D0025F84A /* ThreeButtonsLine.swift */; };
+		04D75B2B2767F66B0025F84A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B2A2767F66B0025F84A /* MainView.swift */; };
 		04D75B4127680A620025F84A /* InfoButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B4027680A620025F84A /* InfoButtons.swift */; };
 		04D75B51276899CA0025F84A /* Connecting_Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B50276899CA0025F84A /* Connecting_Module.swift */; };
 		04D75B5627689D520025F84A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B5527689D520025F84A /* TableViewController.swift */; };
@@ -48,6 +54,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeTextFieldsLine.swift; sourceTree = "<group>"; };
+		04B5657A276C8B1D006CEE37 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
+		04B5657F276C8C1A006CEE37 /* TwoTextFieldsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoTextFieldsLine.swift; sourceTree = "<group>"; };
+		04B56587276CA507006CEE37 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		04B5658C276CDE09006CEE37 /* OneTextFieldLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneTextFieldLine.swift; sourceTree = "<group>"; };
+		04B56591276CDE92006CEE37 /* TwoButtonsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoButtonsLine.swift; sourceTree = "<group>"; };
 		04D75ACA276671D80025F84A /* BlueTooth Remote Control for Arduino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BlueTooth Remote Control for Arduino.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D75ACD276671D80025F84A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04D75ACF276671D80025F84A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,8 +76,8 @@
 		04D75AF2276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTooth_Remote_Control_for_ArduinoUITests.swift; sourceTree = "<group>"; };
 		04D75AF4276671E60025F84A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
-		04D75B252767F21D0025F84A /* HorizontalViewWithButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalViewWithButtons.swift; sourceTree = "<group>"; };
-		04D75B2A2767F66B0025F84A /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
+		04D75B252767F21D0025F84A /* ThreeButtonsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeButtonsLine.swift; sourceTree = "<group>"; };
+		04D75B2A2767F66B0025F84A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		04D75B4027680A620025F84A /* InfoButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButtons.swift; sourceTree = "<group>"; };
 		04D75B50276899CA0025F84A /* Connecting_Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connecting_Module.swift; sourceTree = "<group>"; };
 		04D75B5527689D520025F84A /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +171,7 @@
 				04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */,
 				04D75B4027680A620025F84A /* InfoButtons.swift */,
 				04D75B7F276953500025F84A /* Status.swift */,
+				04B56587276CA507006CEE37 /* Colors.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,9 +180,14 @@
 			isa = PBXGroup;
 			children = (
 				04D75AD3276671D80025F84A /* Main.storyboard */,
-				04D75B252767F21D0025F84A /* HorizontalViewWithButtons.swift */,
+				04D75B252767F21D0025F84A /* ThreeButtonsLine.swift */,
+				04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */,
+				04B5657F276C8C1A006CEE37 /* TwoTextFieldsLine.swift */,
+				04B5658C276CDE09006CEE37 /* OneTextFieldLine.swift */,
+				04B56591276CDE92006CEE37 /* TwoButtonsLine.swift */,
 				04D75B7A27691CFF0025F84A /* Connection.swift */,
-				04D75B2A2767F66B0025F84A /* VerticalStackView.swift */,
+				04D75B2A2767F66B0025F84A /* MainView.swift */,
+				04B5657A276C8B1D006CEE37 /* ConfigView.swift */,
 				04D75B50276899CA0025F84A /* Connecting_Module.swift */,
 				04D75B8427695B7A0025F84A /* DatasReceived.swift */,
 			);
@@ -337,17 +355,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04D75B2B2767F66B0025F84A /* VerticalStackView.swift in Sources */,
-				04D75B262767F21D0025F84A /* HorizontalViewWithButtons.swift in Sources */,
+				04D75B2B2767F66B0025F84A /* MainView.swift in Sources */,
+				04B56588276CA507006CEE37 /* Colors.swift in Sources */,
+				04D75B262767F21D0025F84A /* ThreeButtonsLine.swift in Sources */,
+				04B56580276C8C1A006CEE37 /* TwoTextFieldsLine.swift in Sources */,
+				04B5657B276C8B1D006CEE37 /* ConfigView.swift in Sources */,
 				04D75B712768F36E0025F84A /* FirstChildViewController.swift in Sources */,
 				04D75B4127680A620025F84A /* InfoButtons.swift in Sources */,
 				04D75B8527695B7A0025F84A /* DatasReceived.swift in Sources */,
 				04D75AD2276671D80025F84A /* MainViewController.swift in Sources */,
 				04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */,
 				04D75B7B27691CFF0025F84A /* Connection.swift in Sources */,
+				04B5656A276C86EE006CEE37 /* ThreeTextFieldsLine.swift in Sources */,
 				04D75B632768A1730025F84A /* PickerViewBluetoothAvailableViewController.swift in Sources */,
 				04D75B5627689D520025F84A /* TableViewController.swift in Sources */,
 				04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */,
+				04B5658D276CDE09006CEE37 /* OneTextFieldLine.swift in Sources */,
+				04B56592276CDE92006CEE37 /* TwoButtonsLine.swift in Sources */,
 				04D75B80276953500025F84A /* Status.swift in Sources */,
 				04D75B0C2766A1670025F84A /* ConfigurationViewController.swift in Sources */,
 				04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */,

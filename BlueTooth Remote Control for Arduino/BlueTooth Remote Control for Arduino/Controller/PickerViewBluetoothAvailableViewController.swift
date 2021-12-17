@@ -14,6 +14,7 @@ class PickerViewBluetoothAvailableViewController: UIViewController, UIPickerView
         let UIPicker: UIPickerView = UIPickerView()
         UIPicker.delegate = self as UIPickerViewDelegate
         UIPicker.dataSource = self as UIPickerViewDataSource
+        UIPicker.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(UIPicker)
         UIPicker.center = self.view.center
     }

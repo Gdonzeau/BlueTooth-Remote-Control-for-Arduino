@@ -11,18 +11,22 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     private let myArray: NSArray = ["First","Second","Third"]
     private var myTableView: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+/*
+         
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let displayWidth: CGFloat = self.view.frame.width
-        let displayHeight: CGFloat = self.view.frame.height
-
-        myTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
+        let displayHeight: CGFloat = super.view.frame.height
+*/
+        //myTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
+        //let margins = view.layoutMarginsGuide
+        myTableView = UITableView(frame: CGRect(x: 0, y: 0, width: 340, height: 160))
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         myTableView.dataSource = self
         myTableView.delegate = self
+        myTableView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(myTableView)
     }
 

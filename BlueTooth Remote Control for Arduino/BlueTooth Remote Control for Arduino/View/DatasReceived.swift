@@ -8,7 +8,7 @@
 import UIKit
 
 class DatasReceived: UIView {
-    
+    var appColors = AppColors.shared
     var titleData01 = UILabel()
     var contentData01 = UILabel()
     var titleData02 = UILabel()
@@ -26,7 +26,7 @@ class DatasReceived: UIView {
     }
     
     func setupView() {
-        backgroundColor = .lightGray
+        backgroundColor = appColors.backgroundColor
         titleData01.text = "Data01 :"
         titleData02.text = "Data02 :"
         contentData01.text = "0,23"

@@ -8,7 +8,7 @@
 import UIKit
 
 class Connecting_Module: UIView {
-
+    var appColors = AppColors.shared
     var pickerView = PickerViewBluetoothAvailableViewController()
     
     override init(frame: CGRect) {
@@ -23,7 +23,7 @@ class Connecting_Module: UIView {
     }
     
     func setupView() {
-        
+        backgroundColor = appColors.backgroundColor
     }
     
 }

@@ -7,13 +7,14 @@
 
 import UIKit
 
-class VerticalStackView: UIStackView {
-    
-    let rankButtons01 = HorizontalViewWithButtons()
-    let rankButtons02 = HorizontalViewWithButtons()
-    let rankButtons03 = HorizontalViewWithButtons()
+class MainView: UIStackView {
+    var appColors = AppColors.shared
+    let rankButtons01 = ThreeButtonsLine()
+    let rankButtons02 = ThreeButtonsLine()
+    let rankButtons03 = ThreeButtonsLine()
     let connection = Connection()
     let datas = DatasReceived()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +27,8 @@ class VerticalStackView: UIStackView {
     }
     
     func setupView() {
+        backgroundColor = appColors.backgroundColor
+        //backgroundColor = UIColor(displayP3Red: 7/255, green: 171/255, blue: 128/255, alpha: 1)
         alignment = .fill
         axis = .vertical
         distribution = .fill

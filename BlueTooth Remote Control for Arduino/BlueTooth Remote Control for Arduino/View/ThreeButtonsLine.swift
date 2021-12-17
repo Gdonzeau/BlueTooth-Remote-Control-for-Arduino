@@ -7,8 +7,9 @@
 
 import UIKit
 
-class HorizontalViewWithButtons: UIView {
-
+class ThreeButtonsLine: UIView {
+    let appColors = AppColors.shared
+    
     var remoteButton01 = UIButton()
     var remoteButton02 = UIButton()
     var remoteButton03 = UIButton()
@@ -24,21 +25,18 @@ class HorizontalViewWithButtons: UIView {
     }
     
     func setupView() {
-        remoteButton01.setTitle("Button 01", for: .normal)
-        remoteButton02.setTitle("Button 02", for: .normal)
-        remoteButton03.setTitle("Button 03", for: .normal)
+        backgroundColor = appColors.backgroundColor
         
-        remoteButton01.backgroundColor = .darkGray
-        remoteButton02.backgroundColor = .darkGray
-        remoteButton03.backgroundColor = .darkGray
+        let buttons = [remoteButton01,remoteButton02,remoteButton03]
         
-        remoteButton01.addConstraint(NSLayoutConstraint(item: remoteButton01, attribute: .height, relatedBy: .equal, toItem: remoteButton01, attribute: .width, multiplier: 1, constant: 0))
-        remoteButton02.addConstraint(NSLayoutConstraint(item: remoteButton02, attribute: .height, relatedBy: .equal, toItem: remoteButton02, attribute: .width, multiplier: 1, constant: 0))
-        remoteButton03.addConstraint(NSLayoutConstraint(item: remoteButton03, attribute: .height, relatedBy: .equal, toItem: remoteButton03, attribute: .width, multiplier: 1, constant: 0))
-        
-        remoteButton01.contentMode = .scaleAspectFit
-        remoteButton02.contentMode = .scaleAspectFit
-        remoteButton03.contentMode = .scaleAspectFit
+        for button in buttons {
+            
+            button.backgroundColor = appColors.buttonColor
+            button.setTitle("X", for: .normal)
+            button.contentMode = .scaleAspectFit
+            button.layer.cornerRadius = 4
+            button.layer.masksToBounds = true
+        }
         
         let horizontalStackView = UIStackView(arrangedSubviews: [remoteButton01,remoteButton02,remoteButton03])
         horizontalStackView.axis = .horizontal
@@ -53,7 +51,10 @@ class HorizontalViewWithButtons: UIView {
             horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             horizontalStackView.topAnchor.constraint(equalTo: topAnchor),
-            horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            remoteButton01.heightAnchor.constraint(equalToConstant: 80),
+            remoteButton02.heightAnchor.constraint(equalToConstant: 80),
+            remoteButton03.heightAnchor.constraint(equalToConstant: 80)
         ])
         
     }

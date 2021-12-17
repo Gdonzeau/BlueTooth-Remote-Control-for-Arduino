@@ -8,7 +8,7 @@
 import UIKit
 
 class Connection: UIView {
-    
+    var appColors = AppColors.shared
     var connect = UIButton() // Press this button to connect to BT
     var disconnect = UIButton() // Press this button to disconnect from BT
     var activityIndicator = UIActivityIndicatorView()
@@ -28,17 +28,17 @@ class Connection: UIView {
     }
     
     func setupView() {
-        backgroundColor = .lightGray
+        backgroundColor = appColors.backgroundColor
         
         nameBTModule.backgroundColor = .white
         nameBTModule.placeholder = "BT module's name"
         
         connect.setTitle("Connect", for: .normal)
-        connect.backgroundColor = .darkGray
+        connect.backgroundColor = appColors.buttonColor
         connect.tintColor = .black
         
         disconnect.setTitle("Disconnect", for: .normal)
-        disconnect.backgroundColor = .darkGray
+        disconnect.backgroundColor = appColors.buttonColor
         disconnect.tintColor = .black
         
         activityIndicator.startAnimating()
