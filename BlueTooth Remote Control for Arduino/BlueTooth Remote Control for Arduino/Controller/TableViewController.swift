@@ -23,6 +23,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         //myTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
         //let margins = view.layoutMarginsGuide
         myTableView = UITableView(frame: CGRect(x: 0, y: 0, width: 340, height: 160))
+        //myTableView = UITableView()
         myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         myTableView.dataSource = self
         myTableView.delegate = self

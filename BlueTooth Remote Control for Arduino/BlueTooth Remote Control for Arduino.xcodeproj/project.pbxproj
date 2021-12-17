@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048E0535276CF8DE003A1CD0 /* ButtonForConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */; };
+		048E053A276D0186003A1CD0 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0539276D0186003A1CD0 /* InstructionsViewController.swift */; };
 		04B5656A276C86EE006CEE37 /* ThreeTextFieldsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */; };
 		04B5657B276C8B1D006CEE37 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5657A276C8B1D006CEE37 /* ConfigView.swift */; };
 		04B56580276C8C1A006CEE37 /* TwoTextFieldsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5657F276C8C1A006CEE37 /* TwoTextFieldsLine.swift */; };
@@ -54,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonForConfiguration.swift; sourceTree = "<group>"; };
+		048E0539276D0186003A1CD0 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeTextFieldsLine.swift; sourceTree = "<group>"; };
 		04B5657A276C8B1D006CEE37 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		04B5657F276C8C1A006CEE37 /* TwoTextFieldsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoTextFieldsLine.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 				04B5657A276C8B1D006CEE37 /* ConfigView.swift */,
 				04D75B50276899CA0025F84A /* Connecting_Module.swift */,
 				04D75B8427695B7A0025F84A /* DatasReceived.swift */,
+				048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 				04D75B702768F36D0025F84A /* FirstChildViewController.swift */,
 				04D75B752768F3880025F84A /* SecondChildViewController.swift */,
 				04D75B622768A1730025F84A /* PickerViewBluetoothAvailableViewController.swift */,
+				048E0539276D0186003A1CD0 /* InstructionsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 				04B56580276C8C1A006CEE37 /* TwoTextFieldsLine.swift in Sources */,
 				04B5657B276C8B1D006CEE37 /* ConfigView.swift in Sources */,
 				04D75B712768F36E0025F84A /* FirstChildViewController.swift in Sources */,
+				048E053A276D0186003A1CD0 /* InstructionsViewController.swift in Sources */,
 				04D75B4127680A620025F84A /* InfoButtons.swift in Sources */,
 				04D75B8527695B7A0025F84A /* DatasReceived.swift in Sources */,
 				04D75AD2276671D80025F84A /* MainViewController.swift in Sources */,
@@ -371,6 +378,7 @@
 				04D75B5627689D520025F84A /* TableViewController.swift in Sources */,
 				04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */,
 				04B5658D276CDE09006CEE37 /* OneTextFieldLine.swift in Sources */,
+				048E0535276CF8DE003A1CD0 /* ButtonForConfiguration.swift in Sources */,
 				04B56592276CDE92006CEE37 /* TwoButtonsLine.swift in Sources */,
 				04D75B80276953500025F84A /* Status.swift in Sources */,
 				04D75B0C2766A1670025F84A /* ConfigurationViewController.swift in Sources */,

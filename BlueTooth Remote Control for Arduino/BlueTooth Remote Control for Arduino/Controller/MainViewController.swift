@@ -11,9 +11,8 @@ class MainViewController: UIViewController {
     let appColors = AppColors.shared
     var mainView = MainView()
     let infosButtons = InfoButtons()
-    let secondView = UIViewController()
-    let saves = TableViewController()
-    var bottomContainer = UIStackView()
+    let tableOfSaves = TableViewController()
+    //var bottomContainer = UIStackView()
     // Test insertion
     
     var controller = PickerViewBluetoothAvailableViewController()
@@ -28,50 +27,64 @@ class MainViewController: UIViewController {
         
         coordinateActions()
         setupView()
-        setConstraints()
+     //   setConstraints()
     }
     
     func setupView() {
         view.backgroundColor = appColors.backgroundColor
-        self.view.addSubview(mainView)
-        self.view.addSubview(bottomContainer)
-        addChild(saves)
-        bottomContainer = UIStackView(arrangedSubviews: [saves.view])
-        self.addChild(saves)
-        self.view.addSubview(saves.view)
-        saves.didMove(toParent: self)
-        saves.view.contentMode = .scaleAspectFit
-        bottomContainer.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(mainView)
+        //view.addSubview(bottomContainer)
+        //addChild(tableOfSaves)
+        let bottomContainer = UIStackView(arrangedSubviews: [tableOfSaves.view])
+        //addChild(tableOfSaves)
+        //view.addSubview(tableOfSaves.view)
+        //tableOfSaves.didMove(toParent: self)
+        tableOfSaves.view.contentMode = .scaleAspectFit
+        
+        bottomContainer.axis = .vertical
         bottomContainer.alignment = .fill
         bottomContainer.distribution = .fillEqually
-        saves.view.translatesAutoresizingMaskIntoConstraints = false
+        bottomContainer.translatesAutoresizingMaskIntoConstraints = false
+        bottomContainer.addArrangedSubview(tableOfSaves.view)
+        view.addSubview(bottomContainer)
+        tableOfSaves.view.translatesAutoresizingMaskIntoConstraints = false
         mainView.translatesAutoresizingMaskIntoConstraints = false
         
         
         //verticalStackView.rankButtons01.remoteButton02.isHidden = true
-        
+        /*
     }
     
     func setConstraints() {
+        */
         let margins = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
             mainView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
-            //verticalStackView.bottomAnchor.constraint(equalTo: bottomContainer.topAnchor),
             mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             mainView.topAnchor.constraint(equalTo: margins.topAnchor),
             
-            saves.view.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
-            saves.view.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            saves.view.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            saves.view.heightAnchor.constraint(equalToConstant: 200)
- 
+            
             /*
-            bottomContainer.topAnchor.constraint(equalTo: verticalStackView.bottomAnchor),
-            bottomContainer.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            tableOfSaves.view.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            tableOfSaves.view.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            tableOfSaves.view.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            
+            tableOfSaves.view.heightAnchor.constraint(equalToConstant: 200),
+ */
+            
+            bottomContainer.topAnchor.constraint(equalTo: mainView.bottomAnchor),
+            //bottomContainer.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
             bottomContainer.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            bottomContainer.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
-            */
+            bottomContainer.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            bottomContainer.heightAnchor.constraint(equalToConstant: 160),
+            
+            tableOfSaves.view.heightAnchor.constraint(equalToConstant: 160),
+            tableOfSaves.view.topAnchor.constraint(equalTo: bottomContainer.bottomAnchor),
+            tableOfSaves.view.trailingAnchor.constraint(equalTo: bottomContainer.trailingAnchor),
+            tableOfSaves.view.leadingAnchor.constraint(equalTo: bottomContainer.leadingAnchor)
+            
         ])
         
     }
@@ -103,6 +116,7 @@ class MainViewController: UIViewController {
                 buttons[index].isHidden = false
             }
         }
+        
     }
     
     @objc func buttonAction(sender: UIButton!) {
@@ -115,16 +129,16 @@ class MainViewController: UIViewController {
         print(infosButtons.order[sender.tag])
         print("Le bouton \(infosButtons.name[sender.tag]) a été pressé.")
         if title == "04" {
-        saves.willMove(toParent: nil)
-        saves.removeFromParent()
-        saves.view.removeFromSuperview()
+        tableOfSaves.willMove(toParent: nil)
+        tableOfSaves.removeFromParent()
+        tableOfSaves.view.removeFromSuperview()
         }
         if title == "05" {
-            bottomContainer.addSubview(saves.view)
-            addChild(saves)
-            saves.didMove(toParent: self)
+          //  bottomContainer.addSubview(tableOfSaves.view)
+          //  addChild(tableOfSaves)
+            tableOfSaves.didMove(toParent: self)
             setupView()
-            setConstraints()
+          //  setConstraints()
         }
     }
 }

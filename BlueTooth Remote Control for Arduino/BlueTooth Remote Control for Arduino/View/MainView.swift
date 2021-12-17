@@ -14,6 +14,7 @@ class MainView: UIStackView {
     let rankButtons03 = ThreeButtonsLine()
     let connection = Connection()
     let datas = DatasReceived()
+    let bouton = ButtonForConfiguration()
     
     
     override init(frame: CGRect) {
