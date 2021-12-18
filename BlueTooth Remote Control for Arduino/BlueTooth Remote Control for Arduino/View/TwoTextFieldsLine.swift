@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+/*
 class TwoTextFieldsLine: UIView {
     var appColors = AppColors.shared
     var dataName01 = UITextField()
@@ -57,3 +57,4 @@ class TwoTextFieldsLine: UIView {
         
     }
 }
+*/

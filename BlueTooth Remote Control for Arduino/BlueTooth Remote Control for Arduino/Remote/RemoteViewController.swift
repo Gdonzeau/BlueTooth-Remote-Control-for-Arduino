@@ -8,11 +8,17 @@
 import UIKit
 import CoreData
 
-class MainViewController: UIViewController {
+class RemoteViewController: UIViewController {
     let appColors = AppColors.shared
+    private let profileStorageManager = ProfileStorageManager.shared
+    
     var mainView = MainView()
     let infosButtons = InfoButtons()
     let tableOfSaves = TableViewController()
+    var profiles : [Profile] = []
+    var profilesName = [String]()
+    
+    
     //var bottomContainer = UIStackView()
     // Test insertion
     
@@ -24,6 +30,11 @@ class MainViewController: UIViewController {
         
         coordinateActions()
         setupView()
+        getProfilessFromDatabase()
+        for profile in profiles {
+            profilesName.append(profile.name)
+        }
+        tableOfSaves.myArray = profilesName 
      //   setConstraints()
     }
     
@@ -139,6 +150,44 @@ class MainViewController: UIViewController {
         }
     }
     
+    private func getProfilessFromDatabase() {
+        do {
+            profiles = try profileStorageManager.loadProfiles()
+            if profiles.isEmpty {
+                print("Vide")
+                //viewState = .empty
+            } else {
+                print("\(profiles[0].name)")
+                //viewState = .showData
+                
+            }
+        } catch let error {
+            print("Error loading recipes from database \(error.localizedDescription)")
+            //viewState = .error
+        }
+    }
     
 }
-
+extension RemoteViewController: UITableViewDataSource {
+    
+    // func numberOfSection not necessary as 1 by default
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        profiles.count
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120.0//Choose your custom row height
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
+        cell.textLabel!.text = "\(profiles[indexPath.row].name)"
+        return cell
+        /*
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as IndexPath)
+        
+        cell.textLabel!.text = "\(profiles[indexPath.row])"
+        return cell
+        */
+    }
+}

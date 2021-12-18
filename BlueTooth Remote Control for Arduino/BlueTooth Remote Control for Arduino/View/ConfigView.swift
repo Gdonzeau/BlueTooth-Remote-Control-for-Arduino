@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+/*
 class ConfigView: UIStackView {
     var appColors = AppColors.shared
     var infoButtons = InfoButtons()
@@ -60,3 +60,4 @@ class ConfigView: UIStackView {
         
     }
 }
+*/

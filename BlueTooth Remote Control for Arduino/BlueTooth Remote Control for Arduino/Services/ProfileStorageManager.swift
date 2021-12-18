@@ -12,11 +12,13 @@ class ProfileStorageManager {
 
     private let viewContext: NSManagedObjectContext
     static let shared = ProfileStorageManager()
+    
     init(persistentContainer: NSPersistentContainer = (UIApplication.shared.delegate as! AppDelegate).persistentContainer) {
         self.viewContext = persistentContainer.viewContext
     }
     
     func loadProfiles() throws -> [Profile] {
+        print("Loading")
         let request: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
         var profilesStored: [ProfileEntity]
         do {
@@ -28,10 +30,7 @@ class ProfileStorageManager {
     func saveProfile(profile: Profile) throws { // ajouter throws
         let profileToSave = ProfileEntity(context: viewContext)
         profileToSave.name = profile.name
-        profileToSave.firstDataName = profile.firstDataName
-        profileToSave.secondDataName = profile.secondDataName
-        profileToSave.buttonsName = try? JSONEncoder().encode(profile.buttonsName)
-        profileToSave.buttonsOrder = try? JSONEncoder().encode(profile.buttonsOrder)
+        profileToSave.datas = try? JSONEncoder().encode(profile.datas)
         
         do {
             try viewContext.save()

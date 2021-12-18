@@ -8,23 +8,18 @@
 import Foundation
 
 struct Profile {
-    let name: String
-    let firstDataName: String
-    let secondDataName: String
-    var buttonsName: [String]
-    let buttonsOrder: [String]
+    var name: String
+    var datas: [String]
+    
     
     init(from profileEntity : ProfileEntity) {
-        self.name = profileEntity.name ?? ""
-        self.firstDataName = profileEntity.firstDataName ?? "Data 01"
-        self.secondDataName = profileEntity.secondDataName ?? "Data02"
-        self.buttonsName = ["","",""]
-        self.buttonsName = convertDatasToStringArray(buttonsData: profileEntity.buttonsName)
-        self.buttonsOrder = ["","",""]
-        //self.buttonsOrder = convertDatasToStringArray(buttonsData: profileEntity.buttonsOrder)
+        self.name = profileEntity.name ?? "Save"
+        self.datas = []
+        self.datas = convertDatasToStringArray(buttonsName: profileEntity.datas)
     }
-    private func convertDatasToStringArray(buttonsData: Data?) -> [String] {
-        guard let datas = buttonsData else { return [] }
+    
+    private func convertDatasToStringArray(buttonsName: Data?) -> [String] {
+        guard let datas = buttonsName else { return [] }
             
         let data = Data(datas)
         return (try? JSONDecoder().decode([String].self, from: data)) ?? []

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+/*
 class TwoButtonsLine: UIView {
     let appColors = AppColors.shared
     
@@ -58,3 +58,4 @@ class TwoButtonsLine: UIView {
     }
 
 }
+*/

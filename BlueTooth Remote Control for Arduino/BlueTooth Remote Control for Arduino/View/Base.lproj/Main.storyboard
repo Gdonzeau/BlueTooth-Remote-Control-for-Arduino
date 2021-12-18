@@ -62,7 +62,7 @@
         <!--Remote-->
         <scene sceneID="ADX-kD-LPH">
             <objects>
-                <viewController id="5IX-ZM-ZfH" customClass="MainViewController" customModule="BlueTooth_Remote_Control_for_Arduino" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5IX-ZM-ZfH" customClass="RemoteViewController" customModule="BlueTooth_Remote_Control_for_Arduino" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sev-ag-gqn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

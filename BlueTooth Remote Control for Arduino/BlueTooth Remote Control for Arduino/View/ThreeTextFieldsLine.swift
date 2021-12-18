@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+/*
 class ThreeTextFieldsLine: UIView {
     var appColors = AppColors.shared
     var orderForButton01 = UITextField()
@@ -56,3 +56,4 @@ class ThreeTextFieldsLine: UIView {
         
     }
 }
+*/

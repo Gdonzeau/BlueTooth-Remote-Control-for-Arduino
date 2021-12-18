@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+/*
 class Connecting_Module: UIView {
     var appColors = AppColors.shared
     var pickerView = PickerViewBluetoothAvailableViewController()
@@ -27,3 +27,4 @@ class Connecting_Module: UIView {
     }
     
 }
+*/

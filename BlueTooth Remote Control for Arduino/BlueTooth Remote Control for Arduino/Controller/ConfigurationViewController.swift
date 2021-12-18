@@ -7,14 +7,19 @@
 
 import UIKit
 
-class ConfigurationViewController: UIViewController {
+class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     let appColors = AppColors.shared
+    let profileStorageManager = ProfileStorageManager.shared
+    
     var infosButtons = InfoButtons()
     let buttonsForConfiguration = [ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration()]
+    var nameProfile = UITextField()
     var dataName01 = UITextField()
     var dataName02 = UITextField()
     var line = UIView()
+    var dataProfile = [String]()
+    let saveButton = UIButton()
     
     override func viewDidLoad() {
         //tryWithTableView()
@@ -27,21 +32,38 @@ class ConfigurationViewController: UIViewController {
         for index in 0 ..< buttonsForConfiguration.count {
             buttonsForConfiguration[index].nameTextField.delegate = self
             buttonsForConfiguration[index].orderTextField.delegate = self
-            dataName02.delegate = self
-            dataName01.delegate = self
         }
+        
+        
+        nameProfile.delegate = self
+        dataName02.delegate = self
+        dataName01.delegate = self
     }
     
     func setView() {
-        //self.view.endEditing(true)
+        
+        saveButton.backgroundColor = appColors.buttonColor
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.contentMode = .scaleAspectFit
+        saveButton.layer.cornerRadius = 4
+        saveButton.layer.masksToBounds = true
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.heightAnchor.constraint(equalToConstant: 60) //???
+        saveButton.widthAnchor.constraint(equalToConstant: 60)
+        
         view.backgroundColor = appColors.backgroundColor
         line.backgroundColor = .green
         dataName01.backgroundColor = .white
         dataName01.placeholder = "First data's name"
         dataName02.backgroundColor = .white
         dataName02.placeholder = "Second data's name"
+        nameProfile.backgroundColor = .white
+        nameProfile.placeholder = "Save's name"
+        
         
     }
+    
+    // MARK: - Constraints
     
     func setConstraints() {
         let margins = view.layoutMarginsGuide
@@ -101,10 +123,22 @@ class ConfigurationViewController: UIViewController {
         fithStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(fithStackView)
         
+        let sixthStackView = UIStackView(arrangedSubviews: [nameProfile,saveButton])
+        nameProfile.layer.cornerRadius = 2
+        nameProfile.layer.masksToBounds = true
+        
+        
+        sixthStackView.axis = .horizontal
+        sixthStackView.alignment = .fill
+        //sixthStackView.distribution = .fill
+        sixthStackView.spacing = 5
+        sixthStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(sixthStackView)
+        
         let globalStackView = UIStackView(arrangedSubviews: [firstStackView,secondStackView,thirdStackView])
         globalStackView.axis = .vertical
         globalStackView.alignment = .fill
-        //globalStackView.distribution = .fillEqually
+        globalStackView.distribution = .fillProportionally
         globalStackView.spacing = 5
         globalStackView.translatesAutoresizingMaskIntoConstraints = false
         globalStackView.addArrangedSubview(firstStackView)
@@ -112,6 +146,7 @@ class ConfigurationViewController: UIViewController {
         globalStackView.addArrangedSubview(thirdStackView)
         globalStackView.addArrangedSubview(fourthStackView)
         globalStackView.addArrangedSubview(fithStackView)
+        globalStackView.addArrangedSubview(sixthStackView)
         view.addSubview(globalStackView)
         
         NSLayoutConstraint.activate([
@@ -121,9 +156,8 @@ class ConfigurationViewController: UIViewController {
             globalStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
             
             fourthStackView.heightAnchor.constraint(equalToConstant: 10),
-            
-            fithStackView.heightAnchor.constraint(equalToConstant: 30)
-            
+            fithStackView.heightAnchor.constraint(equalToConstant: 30),
+            sixthStackView.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
     
@@ -132,6 +166,7 @@ class ConfigurationViewController: UIViewController {
             buttonsForConfiguration[index].tag = index + 1
             buttonsForConfiguration[index].button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         }
+        saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
     }
     
     func setting() {
@@ -159,6 +194,44 @@ class ConfigurationViewController: UIViewController {
         resigningFirstResponder()
     }
     
+    @objc func save(sender: UIButton!) {
+        groupDatasInArray()
+        var profilePreparedToSave: Profile? {
+            didSet {
+                if let nameToSave = nameProfile.text {
+                    profilePreparedToSave?.name = nameToSave
+                }
+                
+                profilePreparedToSave?.datas = dataProfile
+            }
+        }
+        guard let profileToSave = profilePreparedToSave else {
+            return
+        }
+        do {
+            try profileStorageManager.saveProfile(profile: profileToSave)
+        } catch {
+            print("Error while saving")
+            /*
+             let error = AppError.errorSaving
+             if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+             allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+             }
+             */
+        }
+    }
+    
+    func groupDatasInArray() {
+        //dataProfile.append(nameProfile.text ?? "Save")
+        dataProfile.append(dataName01.text ?? "Data01")
+        dataProfile.append(dataName02.text ?? "Data02")
+        
+        for button in buttonsForConfiguration {
+            dataProfile.append(button.nameTextField.text ?? "_")
+            dataProfile.append(button.orderTextField.text ?? "_")
+        }
+    }
+    
     func initializeButtons() {
         for index in 0 ..< buttonsForConfiguration.count {
             buttonsForConfiguration[index].button.backgroundColor = appColors.buttonColor
@@ -166,12 +239,6 @@ class ConfigurationViewController: UIViewController {
         
     }
     func resigningFirstResponder() {
-        /*
-        for index in 0 ..< buttonsForConfiguration.count {
-            buttonsForConfiguration[index].resignFirstResponder()
-            buttonsForConfiguration[index].resignFirstResponder()
-        }
- */
         UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil);
     }
 }

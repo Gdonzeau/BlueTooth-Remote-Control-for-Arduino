@@ -11,7 +11,7 @@ class MainView: UIStackView {
     var appColors = AppColors.shared
     let rankButtons01 = ThreeButtonsLine()
     let rankButtons02 = ThreeButtonsLine()
-    let rankButtons03 = ThreeButtonsLine()
+    let rankButtons03 = ThreeButtonsLine() 
     let connection = Connection()
     let datas = DatasReceived()
     let bouton = ButtonForConfiguration()
@@ -44,3 +44,4 @@ class MainView: UIStackView {
         
     }
 }
+

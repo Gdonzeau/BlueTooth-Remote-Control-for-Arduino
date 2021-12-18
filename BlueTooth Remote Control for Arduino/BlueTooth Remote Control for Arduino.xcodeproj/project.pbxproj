@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		048E0535276CF8DE003A1CD0 /* ButtonForConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */; };
 		048E053A276D0186003A1CD0 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0539276D0186003A1CD0 /* InstructionsViewController.swift */; };
-		048E0541276E2775003A1CD0 /* ProfileStorageManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0540276E2775003A1CD0 /* ProfileStorageManagerViewController.swift */; };
+		048E0541276E2775003A1CD0 /* ProfileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0540276E2775003A1CD0 /* ProfileStorageManager.swift */; };
 		048E0546276E2899003A1CD0 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0545276E2899003A1CD0 /* Profile.swift */; };
 		04B5656A276C86EE006CEE37 /* ThreeTextFieldsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */; };
 		04B5657B276C8B1D006CEE37 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5657A276C8B1D006CEE37 /* ConfigView.swift */; };
@@ -19,7 +19,7 @@
 		04B56592276CDE92006CEE37 /* TwoButtonsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56591276CDE92006CEE37 /* TwoButtonsLine.swift */; };
 		04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACD276671D80025F84A /* AppDelegate.swift */; };
 		04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACF276671D80025F84A /* SceneDelegate.swift */; };
-		04D75AD2276671D80025F84A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AD1276671D80025F84A /* MainViewController.swift */; };
+		04D75AD2276671D80025F84A /* RemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AD1276671D80025F84A /* RemoteViewController.swift */; };
 		04D75AD5276671D80025F84A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D75AD3276671D80025F84A /* Main.storyboard */; };
 		04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */; };
 		04D75ADA276671E50025F84A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D75AD9276671E50025F84A /* Assets.xcassets */; };
@@ -60,7 +60,7 @@
 /* Begin PBXFileReference section */
 		048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonForConfiguration.swift; sourceTree = "<group>"; };
 		048E0539276D0186003A1CD0 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
-		048E0540276E2775003A1CD0 /* ProfileStorageManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageManagerViewController.swift; sourceTree = "<group>"; };
+		048E0540276E2775003A1CD0 /* ProfileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageManager.swift; sourceTree = "<group>"; };
 		048E0545276E2899003A1CD0 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeTextFieldsLine.swift; sourceTree = "<group>"; };
 		04B5657A276C8B1D006CEE37 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		04D75ACA276671D80025F84A /* BlueTooth Remote Control for Arduino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BlueTooth Remote Control for Arduino.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D75ACD276671D80025F84A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04D75ACF276671D80025F84A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		04D75AD1276671D80025F84A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		04D75AD1276671D80025F84A /* RemoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteViewController.swift; sourceTree = "<group>"; };
 		04D75AD4276671D80025F84A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04D75AD7276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BlueTooth_Remote_Control_for_Arduino.xcdatamodel; sourceTree = "<group>"; };
 		04D75AD9276671E50025F84A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +122,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		046B7FAE276EA415006718E0 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				04D75B4027680A620025F84A /* InfoButtons.swift */,
+				04D75B7F276953500025F84A /* Status.swift */,
+				04D75AD1276671D80025F84A /* RemoteViewController.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		046B7FB2276EA440006718E0 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		046B7FB3276EA44E006718E0 /* Instruction */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Instruction;
+			sourceTree = "<group>";
+		};
 		04D75AC1276671D80025F84A = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +169,9 @@
 		04D75ACC276671D80025F84A /* BlueTooth Remote Control for Arduino */ = {
 			isa = PBXGroup;
 			children = (
+				046B7FAE276EA415006718E0 /* Remote */,
+				046B7FB2276EA440006718E0 /* Configuration */,
+				046B7FB3276EA44E006718E0 /* Instruction */,
 				04D75B07276672AB0025F84A /* Services */,
 				04D75B062766724D0025F84A /* Other Files */,
 				04D75B032766721E0025F84A /* Model */,
@@ -176,8 +203,6 @@
 		04D75B032766721E0025F84A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				04D75B4027680A620025F84A /* InfoButtons.swift */,
-				04D75B7F276953500025F84A /* Status.swift */,
 				04B56587276CA507006CEE37 /* Colors.swift */,
 				048E0545276E2899003A1CD0 /* Profile.swift */,
 			);
@@ -206,7 +231,6 @@
 		04D75B052766722C0025F84A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				04D75AD1276671D80025F84A /* MainViewController.swift */,
 				04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */,
 				04D75B5527689D520025F84A /* TableViewController.swift */,
 				04D75B702768F36D0025F84A /* FirstChildViewController.swift */,
@@ -232,7 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */,
-				048E0540276E2775003A1CD0 /* ProfileStorageManagerViewController.swift */,
+				048E0540276E2775003A1CD0 /* ProfileStorageManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -374,11 +398,11 @@
 				04B56580276C8C1A006CEE37 /* TwoTextFieldsLine.swift in Sources */,
 				04B5657B276C8B1D006CEE37 /* ConfigView.swift in Sources */,
 				04D75B712768F36E0025F84A /* FirstChildViewController.swift in Sources */,
-				048E0541276E2775003A1CD0 /* ProfileStorageManagerViewController.swift in Sources */,
+				048E0541276E2775003A1CD0 /* ProfileStorageManager.swift in Sources */,
 				048E053A276D0186003A1CD0 /* InstructionsViewController.swift in Sources */,
 				04D75B4127680A620025F84A /* InfoButtons.swift in Sources */,
 				04D75B8527695B7A0025F84A /* DatasReceived.swift in Sources */,
-				04D75AD2276671D80025F84A /* MainViewController.swift in Sources */,
+				04D75AD2276671D80025F84A /* RemoteViewController.swift in Sources */,
 				04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */,
 				04D75B7B27691CFF0025F84A /* Connection.swift in Sources */,
 				04B5656A276C86EE006CEE37 /* ThreeTextFieldsLine.swift in Sources */,

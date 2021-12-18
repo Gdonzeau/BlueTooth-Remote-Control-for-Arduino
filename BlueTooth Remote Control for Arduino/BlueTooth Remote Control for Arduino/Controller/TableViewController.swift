@@ -9,7 +9,7 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    private let myArray: NSArray = ["First","Second","Third"]
+    var myArray = ["First","Second","Third"]
     private var myTableView: UITableView!
     
     override func viewDidLoad() {

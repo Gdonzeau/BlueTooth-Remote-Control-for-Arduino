@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+/*
 class OneTextFieldLine: UIView {
     var appColors = AppColors.shared
     var dataName01 = UITextField()
@@ -49,3 +49,4 @@ class OneTextFieldLine: UIView {
         
     }
 }
+*/
