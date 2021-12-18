@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		048E0535276CF8DE003A1CD0 /* ButtonForConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */; };
 		048E053A276D0186003A1CD0 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0539276D0186003A1CD0 /* InstructionsViewController.swift */; };
+		048E0541276E2775003A1CD0 /* ProfileStorageManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0540276E2775003A1CD0 /* ProfileStorageManagerViewController.swift */; };
+		048E0546276E2899003A1CD0 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0545276E2899003A1CD0 /* Profile.swift */; };
 		04B5656A276C86EE006CEE37 /* ThreeTextFieldsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */; };
 		04B5657B276C8B1D006CEE37 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5657A276C8B1D006CEE37 /* ConfigView.swift */; };
 		04B56580276C8C1A006CEE37 /* TwoTextFieldsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5657F276C8C1A006CEE37 /* TwoTextFieldsLine.swift */; };
@@ -58,6 +60,8 @@
 /* Begin PBXFileReference section */
 		048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonForConfiguration.swift; sourceTree = "<group>"; };
 		048E0539276D0186003A1CD0 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
+		048E0540276E2775003A1CD0 /* ProfileStorageManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageManagerViewController.swift; sourceTree = "<group>"; };
+		048E0545276E2899003A1CD0 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeTextFieldsLine.swift; sourceTree = "<group>"; };
 		04B5657A276C8B1D006CEE37 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		04B5657F276C8C1A006CEE37 /* TwoTextFieldsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoTextFieldsLine.swift; sourceTree = "<group>"; };
@@ -172,10 +176,10 @@
 		04D75B032766721E0025F84A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */,
 				04D75B4027680A620025F84A /* InfoButtons.swift */,
 				04D75B7F276953500025F84A /* Status.swift */,
 				04B56587276CA507006CEE37 /* Colors.swift */,
+				048E0545276E2899003A1CD0 /* Profile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,6 +231,8 @@
 		04D75B07276672AB0025F84A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */,
+				048E0540276E2775003A1CD0 /* ProfileStorageManagerViewController.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -364,9 +370,11 @@
 				04D75B2B2767F66B0025F84A /* MainView.swift in Sources */,
 				04B56588276CA507006CEE37 /* Colors.swift in Sources */,
 				04D75B262767F21D0025F84A /* ThreeButtonsLine.swift in Sources */,
+				048E0546276E2899003A1CD0 /* Profile.swift in Sources */,
 				04B56580276C8C1A006CEE37 /* TwoTextFieldsLine.swift in Sources */,
 				04B5657B276C8B1D006CEE37 /* ConfigView.swift in Sources */,
 				04D75B712768F36E0025F84A /* FirstChildViewController.swift in Sources */,
+				048E0541276E2775003A1CD0 /* ProfileStorageManagerViewController.swift in Sources */,
 				048E053A276D0186003A1CD0 /* InstructionsViewController.swift in Sources */,
 				04D75B4127680A620025F84A /* InfoButtons.swift in Sources */,
 				04D75B8527695B7A0025F84A /* DatasReceived.swift in Sources */,

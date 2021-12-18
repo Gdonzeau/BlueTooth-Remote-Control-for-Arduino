@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MainViewController: UIViewController {
     let appColors = AppColors.shared
@@ -17,10 +18,6 @@ class MainViewController: UIViewController {
     
     var controller = PickerViewBluetoothAvailableViewController()
     var autoadjust = true
-    
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -141,5 +138,7 @@ class MainViewController: UIViewController {
           //  setConstraints()
         }
     }
+    
+    
 }
 
