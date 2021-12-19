@@ -9,6 +9,7 @@ import UIKit
 
 class MainView: UIStackView {
     var appColors = AppColors.shared
+    let title = Title()
     let rankButtons01 = ThreeButtonsLine()
     let rankButtons02 = ThreeButtonsLine()
     let rankButtons03 = ThreeButtonsLine() 
@@ -28,6 +29,8 @@ class MainView: UIStackView {
     }
     
     func setupView() {
+        title.title.text = "Titre"
+        
         backgroundColor = appColors.backgroundColor
         //backgroundColor = UIColor(displayP3Red: 7/255, green: 171/255, blue: 128/255, alpha: 1)
         alignment = .fill
@@ -36,6 +39,7 @@ class MainView: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
         spacing = 5
         
+        addArrangedSubview(title)
         addArrangedSubview(connection)
         addArrangedSubview(rankButtons01)
         addArrangedSubview(rankButtons02)

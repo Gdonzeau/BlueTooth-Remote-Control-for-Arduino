@@ -20,14 +20,6 @@ struct Profile {
         self.name = name
         self.datas = datas
     }
-    /*
-    private func convertDatasToStringArray(buttonsName: Data?) -> [String] {
-        guard let datas = buttonsName else { return [] }
-            
-        let data = Data(datas)
-        return (try? JSONDecoder().decode([String].self, from: data)) ?? []
-    }
- */
 }
 
 extension Profile: Equatable {

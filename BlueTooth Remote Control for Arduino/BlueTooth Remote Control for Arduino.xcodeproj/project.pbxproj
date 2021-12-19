@@ -11,6 +11,7 @@
 		048E053A276D0186003A1CD0 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0539276D0186003A1CD0 /* InstructionsViewController.swift */; };
 		048E0541276E2775003A1CD0 /* ProfileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0540276E2775003A1CD0 /* ProfileStorageManager.swift */; };
 		048E0546276E2899003A1CD0 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0545276E2899003A1CD0 /* Profile.swift */; };
+		04921B49276F82C700431F40 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B48276F82C700431F40 /* Title.swift */; };
 		04B5656A276C86EE006CEE37 /* ThreeTextFieldsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */; };
 		04B5657B276C8B1D006CEE37 /* ConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5657A276C8B1D006CEE37 /* ConfigView.swift */; };
 		04B56580276C8C1A006CEE37 /* TwoTextFieldsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B5657F276C8C1A006CEE37 /* TwoTextFieldsLine.swift */; };
@@ -62,6 +63,7 @@
 		048E0539276D0186003A1CD0 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		048E0540276E2775003A1CD0 /* ProfileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageManager.swift; sourceTree = "<group>"; };
 		048E0545276E2899003A1CD0 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		04921B48276F82C700431F40 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeTextFieldsLine.swift; sourceTree = "<group>"; };
 		04B5657A276C8B1D006CEE37 /* ConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigView.swift; sourceTree = "<group>"; };
 		04B5657F276C8C1A006CEE37 /* TwoTextFieldsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoTextFieldsLine.swift; sourceTree = "<group>"; };
@@ -125,9 +127,10 @@
 		046B7FAE276EA415006718E0 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				04D75B4027680A620025F84A /* InfoButtons.swift */,
-				04D75B7F276953500025F84A /* Status.swift */,
+				046B7FC2276F681B006718E0 /* View */,
+				046B7FC0276F67DD006718E0 /* Model */,
 				04D75AD1276671D80025F84A /* RemoteViewController.swift */,
+				04D75B5527689D520025F84A /* TableViewController.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -135,8 +138,9 @@
 		046B7FB2276EA440006718E0 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				046B7FC1276F680C006718E0 /* View */,
+				046B7FC3276F6876006718E0 /* Model */,
 				04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */,
-				048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -147,6 +151,41 @@
 				048E0539276D0186003A1CD0 /* InstructionsViewController.swift */,
 			);
 			path = Instruction;
+			sourceTree = "<group>";
+		};
+		046B7FC0276F67DD006718E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04D75B4027680A620025F84A /* InfoButtons.swift */,
+				04D75B7F276953500025F84A /* Status.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		046B7FC1276F680C006718E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		046B7FC2276F681B006718E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04D75B252767F21D0025F84A /* ThreeButtonsLine.swift */,
+				04D75B7A27691CFF0025F84A /* Connection.swift */,
+				04D75B2A2767F66B0025F84A /* MainView.swift */,
+				04921B48276F82C700431F40 /* Title.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		046B7FC3276F6876006718E0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		04D75AC1276671D80025F84A = {
@@ -177,7 +216,7 @@
 				046B7FB3276EA44E006718E0 /* Instruction */,
 				04D75B07276672AB0025F84A /* Services */,
 				04D75B062766724D0025F84A /* Other Files */,
-				04D75B032766721E0025F84A /* Model */,
+				04D75B032766721E0025F84A /* General Models */,
 				04D75B052766722C0025F84A /* Controller */,
 				04D75B04276672250025F84A /* View */,
 				04D75ADE276671E50025F84A /* Info.plist */,
@@ -203,26 +242,23 @@
 			path = "BlueTooth Remote Control for ArduinoUITests";
 			sourceTree = "<group>";
 		};
-		04D75B032766721E0025F84A /* Model */ = {
+		04D75B032766721E0025F84A /* General Models */ = {
 			isa = PBXGroup;
 			children = (
 				04B56587276CA507006CEE37 /* Colors.swift */,
 				048E0545276E2899003A1CD0 /* Profile.swift */,
 			);
-			path = Model;
+			path = "General Models";
 			sourceTree = "<group>";
 		};
 		04D75B04276672250025F84A /* View */ = {
 			isa = PBXGroup;
 			children = (
 				04D75AD3276671D80025F84A /* Main.storyboard */,
-				04D75B252767F21D0025F84A /* ThreeButtonsLine.swift */,
 				04B56569276C86EE006CEE37 /* ThreeTextFieldsLine.swift */,
 				04B5657F276C8C1A006CEE37 /* TwoTextFieldsLine.swift */,
 				04B5658C276CDE09006CEE37 /* OneTextFieldLine.swift */,
 				04B56591276CDE92006CEE37 /* TwoButtonsLine.swift */,
-				04D75B7A27691CFF0025F84A /* Connection.swift */,
-				04D75B2A2767F66B0025F84A /* MainView.swift */,
 				04B5657A276C8B1D006CEE37 /* ConfigView.swift */,
 				04D75B50276899CA0025F84A /* Connecting_Module.swift */,
 				04D75B8427695B7A0025F84A /* DatasReceived.swift */,
@@ -233,7 +269,6 @@
 		04D75B052766722C0025F84A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				04D75B5527689D520025F84A /* TableViewController.swift */,
 				04D75B702768F36D0025F84A /* FirstChildViewController.swift */,
 				04D75B752768F3880025F84A /* SecondChildViewController.swift */,
 				04D75B622768A1730025F84A /* PickerViewBluetoothAvailableViewController.swift */,
@@ -392,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D75B2B2767F66B0025F84A /* MainView.swift in Sources */,
+				04921B49276F82C700431F40 /* Title.swift in Sources */,
 				04B56588276CA507006CEE37 /* Colors.swift in Sources */,
 				04D75B262767F21D0025F84A /* ThreeButtonsLine.swift in Sources */,
 				048E0546276E2899003A1CD0 /* Profile.swift in Sources */,

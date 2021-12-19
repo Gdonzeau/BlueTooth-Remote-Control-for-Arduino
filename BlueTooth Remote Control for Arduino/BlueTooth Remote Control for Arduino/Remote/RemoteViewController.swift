@@ -14,9 +14,10 @@ class RemoteViewController: UIViewController {
     
     var mainView = MainView()
     let infosButtons = InfoButtons()
+    let tableOfProfiles = UITableView()
     let tableOfSaves = TableViewController()
     var profiles : [Profile] = []
-    var profilesName = [String]()
+    var profilesName: [String] = ["01","02","03"]
     
     
     //var bottomContainer = UIStackView()
@@ -28,27 +29,37 @@ class RemoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        coordinateActions()
+        configurationButtons()
         setupView()
         getProfilessFromDatabase()
         for profile in profiles {
             profilesName.append(profile.name)
         }
-        tableOfSaves.myArray = profilesName 
+        tableOfSaves.myArray = profilesName
+        
+        setupTableView()
      //   setConstraints()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
     }
     
     func setupView() {
         view.backgroundColor = appColors.backgroundColor
         
         view.addSubview(mainView)
-        //view.addSubview(bottomContainer)
-        //addChild(tableOfSaves)
+        mainView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(tableOfProfiles)
+        tableOfProfiles.translatesAutoresizingMaskIntoConstraints = false
+        
+        /*
         let bottomContainer = UIStackView(arrangedSubviews: [tableOfSaves.view])
-        //addChild(tableOfSaves)
-        //view.addSubview(tableOfSaves.view)
-        //tableOfSaves.didMove(toParent: self)
+        
         tableOfSaves.view.contentMode = .scaleAspectFit
+        tableOfSaves.view.translatesAutoresizingMaskIntoConstraints = false
         
         bottomContainer.axis = .vertical
         bottomContainer.alignment = .fill
@@ -56,8 +67,9 @@ class RemoteViewController: UIViewController {
         bottomContainer.translatesAutoresizingMaskIntoConstraints = false
         bottomContainer.addArrangedSubview(tableOfSaves.view)
         view.addSubview(bottomContainer)
-        tableOfSaves.view.translatesAutoresizingMaskIntoConstraints = false
-        mainView.translatesAutoresizingMaskIntoConstraints = false
+        */
+        
+        
         
         
         //verticalStackView.rankButtons01.remoteButton02.isHidden = true
@@ -68,22 +80,17 @@ class RemoteViewController: UIViewController {
         */
         let margins = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
-            mainView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
+            mainView.topAnchor.constraint(equalTo: margins.topAnchor),
+            mainView.bottomAnchor.constraint(lessThanOrEqualTo: tableOfProfiles.bottomAnchor),
             mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            mainView.topAnchor.constraint(equalTo: margins.topAnchor),
             
-            
+            tableOfProfiles.topAnchor.constraint(lessThanOrEqualTo: mainView.bottomAnchor),
+            tableOfProfiles.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            tableOfProfiles.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            tableOfProfiles.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             /*
-            tableOfSaves.view.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
-            tableOfSaves.view.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            tableOfSaves.view.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            
-            tableOfSaves.view.heightAnchor.constraint(equalToConstant: 200),
- */
-            
             bottomContainer.topAnchor.constraint(equalTo: mainView.bottomAnchor),
-            //bottomContainer.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
             bottomContainer.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             bottomContainer.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             bottomContainer.heightAnchor.constraint(equalToConstant: 160),
@@ -92,12 +99,16 @@ class RemoteViewController: UIViewController {
             tableOfSaves.view.topAnchor.constraint(equalTo: bottomContainer.bottomAnchor),
             tableOfSaves.view.trailingAnchor.constraint(equalTo: bottomContainer.trailingAnchor),
             tableOfSaves.view.leadingAnchor.constraint(equalTo: bottomContainer.leadingAnchor)
-            
+            */
         ])
         
     }
     
-    func coordinateActions() {
+    func setupTableView() {
+        tableOfProfiles.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    func configurationButtons() {
         
         let buttons = [mainView.rankButtons01.remoteButton01,
                        mainView.rankButtons01.remoteButton02,
@@ -108,6 +119,16 @@ class RemoteViewController: UIViewController {
                        mainView.rankButtons03.remoteButton01,
                        mainView.rankButtons03.remoteButton02,
                        mainView.rankButtons03.remoteButton03]
+        
+        if profiles.count > 0 {
+        let dataBase = profiles[0]
+            mainView.title.title.text = dataBase.name
+            let datasArray = dataBase.datas.components(separatedBy: ":")
+            
+            if datasArray.count > 1 {
+                buttons[0].setTitle(datasArray[0], for: .normal)
+            }
+        }
         
         for index in 0 ... 8 {
             buttons[index].tag = index
@@ -138,16 +159,20 @@ class RemoteViewController: UIViewController {
         print("Le bouton \(infosButtons.name[sender.tag]) a été pressé.")
         
         if title == "04" {
+            tableOfProfiles.isHidden = true
+            /*
         tableOfSaves.willMove(toParent: nil)
         tableOfSaves.removeFromParent()
         tableOfSaves.view.removeFromSuperview()
+ */
         }
+        
         if title == "05" {
-          //  bottomContainer.addSubview(tableOfSaves.view)
-          //  addChild(tableOfSaves)
-            tableOfSaves.didMove(toParent: self)
-            setupView()
-          //  setConstraints()
+            tableOfProfiles.isHidden = false
+            /*
+        tableOfSaves.didMove(toParent: self)
+        setupView()
+ */
         }
     }
     
@@ -158,7 +183,9 @@ class RemoteViewController: UIViewController {
                 print("Vide")
                 //viewState = .empty
             } else {
-                print("\(profiles[0].name)")
+                for profile in profiles {
+                print("\(profile.name)")
+                }
                 //viewState = .showData
                 
             }
@@ -169,6 +196,7 @@ class RemoteViewController: UIViewController {
     }
     
     private func configureButtons() {
+        
         
     }
     
@@ -185,8 +213,8 @@ extension RemoteViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
-        cell.textLabel!.text = "\(profiles[indexPath.row].name)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath)
+        cell.textLabel!.text = "\(profilesName[indexPath.row])"
         return cell
         /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as IndexPath)
@@ -195,4 +223,12 @@ extension RemoteViewController: UITableViewDataSource {
         return cell
         */
     }
+    
+    /*
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = profilesName[indexPath.row]
+        return cell
+      }
+    */
 }

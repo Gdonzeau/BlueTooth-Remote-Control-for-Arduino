@@ -14,7 +14,7 @@ class Connection: UIView {
     var activityIndicator = UIActivityIndicatorView()
     var nameBTModule = UITextField()
     
-    var status:Status = .disconnected
+    var status: Status = .disconnected 
     
     override init(frame: CGRect) {
         super.init(frame: frame)
