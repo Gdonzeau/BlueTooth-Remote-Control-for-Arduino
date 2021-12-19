@@ -135,6 +135,8 @@
 		046B7FB2276EA440006718E0 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */,
+				048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -142,6 +144,7 @@
 		046B7FB3276EA44E006718E0 /* Instruction */ = {
 			isa = PBXGroup;
 			children = (
+				048E0539276D0186003A1CD0 /* InstructionsViewController.swift */,
 			);
 			path = Instruction;
 			sourceTree = "<group>";
@@ -223,7 +226,6 @@
 				04B5657A276C8B1D006CEE37 /* ConfigView.swift */,
 				04D75B50276899CA0025F84A /* Connecting_Module.swift */,
 				04D75B8427695B7A0025F84A /* DatasReceived.swift */,
-				048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -231,12 +233,10 @@
 		04D75B052766722C0025F84A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				04D75B0B2766A1670025F84A /* ConfigurationViewController.swift */,
 				04D75B5527689D520025F84A /* TableViewController.swift */,
 				04D75B702768F36D0025F84A /* FirstChildViewController.swift */,
 				04D75B752768F3880025F84A /* SecondChildViewController.swift */,
 				04D75B622768A1730025F84A /* PickerViewBluetoothAvailableViewController.swift */,
-				048E0539276D0186003A1CD0 /* InstructionsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

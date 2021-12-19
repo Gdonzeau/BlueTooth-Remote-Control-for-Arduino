@@ -136,6 +136,7 @@ class RemoteViewController: UIViewController {
         print(title)
         print(infosButtons.order[sender.tag])
         print("Le bouton \(infosButtons.name[sender.tag]) a été pressé.")
+        
         if title == "04" {
         tableOfSaves.willMove(toParent: nil)
         tableOfSaves.removeFromParent()
@@ -165,6 +166,10 @@ class RemoteViewController: UIViewController {
             print("Error loading recipes from database \(error.localizedDescription)")
             //viewState = .error
         }
+    }
+    
+    private func configureButtons() {
+        
     }
     
 }

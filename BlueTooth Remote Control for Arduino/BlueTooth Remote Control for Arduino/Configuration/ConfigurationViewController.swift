@@ -10,6 +10,7 @@ import UIKit
 class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     let appColors = AppColors.shared
+    
     let profileStorageManager = ProfileStorageManager.shared
     
     var infosButtons = InfoButtons()
@@ -18,8 +19,10 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     var dataName01 = UITextField()
     var dataName02 = UITextField()
     var line = UIView()
-    var dataProfile = [String]()
+    var dataProfile = String()
     let saveButton = UIButton()
+    
+    var profileSaving = Profile(name: "", datas:"")
     
     override func viewDidLoad() {
         //tryWithTableView()
@@ -183,8 +186,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
             //let order = buttonsForConfiguration[index].orderTextField.text
             
             buttonsForConfiguration[index].button.setTitle(name, for: .normal)
-            buttonsForConfiguration[index].nameTextField.text = ""
-            
         }
     }
     
@@ -195,23 +196,18 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func save(sender: UIButton!) {
+        print("01")
         groupDatasInArray()
-        var profilePreparedToSave: Profile? {
-            didSet {
-                if let nameToSave = nameProfile.text {
-                    profilePreparedToSave?.name = nameToSave
-                }
-                
-                profilePreparedToSave?.datas = dataProfile
-            }
-        }
-        guard let profileToSave = profilePreparedToSave else {
-            return
-        }
+        profileSaving.name = nameProfile.text ?? "Save"
+        profileSaving.datas = dataProfile
+        let profileToSave = profileSaving
+        
         do {
+            print("Try to save")
             try profileStorageManager.saveProfile(profile: profileToSave)
         } catch {
             print("Error while saving")
+ 
             /*
              let error = AppError.errorSaving
              if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
@@ -219,17 +215,20 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
              }
              */
         }
+ 
     }
     
     func groupDatasInArray() {
-        //dataProfile.append(nameProfile.text ?? "Save")
-        dataProfile.append(dataName01.text ?? "Data01")
-        dataProfile.append(dataName02.text ?? "Data02")
-        
+        dataProfile = ""
         for button in buttonsForConfiguration {
-            dataProfile.append(button.nameTextField.text ?? "_")
-            dataProfile.append(button.orderTextField.text ?? "_")
+            let buttonName = button.nameTextField.text ?? "_"
+            let buttonOrder = button.orderTextField.text ?? "_"
+            dataProfile += buttonName + ":" + buttonOrder + ":"
         }
+        let data01 = dataName01.text ?? "Data01"
+        let data02 = dataName02.text ?? "Data02"
+        dataProfile += data01 + ":" + data02
+        print("\(dataProfile)")
     }
     
     func initializeButtons() {

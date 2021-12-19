@@ -28,12 +28,15 @@ class ProfileStorageManager {
         return profilesStored.map { Profile(from: $0) }
     }
     func saveProfile(profile: Profile) throws { // ajouter throws
+        print("Saving")
         let profileToSave = ProfileEntity(context: viewContext)
         profileToSave.name = profile.name
-        profileToSave.datas = try? JSONEncoder().encode(profile.datas)
+        profileToSave.datas = profile.datas
+        //profileToSave.datas = try? JSONEncoder().encode(profile.datas)
         
         do {
             try viewContext.save()
+            print("Saved : \(String(describing: profileToSave.name))")
        // } catch {  throw error }
         } catch { print("Error \(error)") ; throw error }
     }

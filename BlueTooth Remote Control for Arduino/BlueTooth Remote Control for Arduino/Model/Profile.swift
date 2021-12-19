@@ -9,21 +9,25 @@ import Foundation
 
 struct Profile {
     var name: String
-    var datas: [String]
+    var datas: String
     
     
     init(from profileEntity : ProfileEntity) {
         self.name = profileEntity.name ?? "Save"
-        self.datas = []
-        self.datas = convertDatasToStringArray(buttonsName: profileEntity.datas)
+        self.datas = profileEntity.datas ?? ""
     }
-    
+    init(name:String, datas:String) {
+        self.name = name
+        self.datas = datas
+    }
+    /*
     private func convertDatasToStringArray(buttonsName: Data?) -> [String] {
         guard let datas = buttonsName else { return [] }
             
         let data = Data(datas)
         return (try? JSONDecoder().decode([String].self, from: data)) ?? []
     }
+ */
 }
 
 extension Profile: Equatable {
