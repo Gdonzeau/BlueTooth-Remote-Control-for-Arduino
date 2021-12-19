@@ -177,6 +177,7 @@
 				04D75B7A27691CFF0025F84A /* Connection.swift */,
 				04D75B2A2767F66B0025F84A /* MainView.swift */,
 				04921B48276F82C700431F40 /* Title.swift */,
+				04D75B8427695B7A0025F84A /* DatasReceived.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -261,7 +262,6 @@
 				04B56591276CDE92006CEE37 /* TwoButtonsLine.swift */,
 				04B5657A276C8B1D006CEE37 /* ConfigView.swift */,
 				04D75B50276899CA0025F84A /* Connecting_Module.swift */,
-				04D75B8427695B7A0025F84A /* DatasReceived.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -13,7 +13,7 @@ class RemoteViewController: UIViewController {
     private let profileStorageManager = ProfileStorageManager.shared
     
     var mainView = MainView()
-    let infosButtons = InfoButtons()
+    var infosButtons = InfoButtons()
     let tableOfProfiles = UITableView()
     let tableOfSaves = TableViewController()
     var profiles : [Profile] = []
@@ -24,21 +24,31 @@ class RemoteViewController: UIViewController {
     // Test insertion
     
     var controller = PickerViewBluetoothAvailableViewController()
-    var autoadjust = true
+    var autoadjust = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configurationButtons()
+        
         setupView()
         getProfilessFromDatabase()
+        // Test pour TableView
+        //tableOfProfiles
         for profile in profiles {
             profilesName.append(profile.name)
         }
-        tableOfSaves.myArray = profilesName
         
+        //tableOfProfiles.myArray = profilesName
+        // Fin TableView
         setupTableView()
+        configurationButtons()
      //   setConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableOfProfiles.reloadData()
+        
     }
     
     override func loadView() {
@@ -124,22 +134,51 @@ class RemoteViewController: UIViewController {
         let dataBase = profiles[0]
             mainView.title.title.text = dataBase.name
             let datasArray = dataBase.datas.components(separatedBy: ":")
+            print("Array : \(datasArray)")
             
-            if datasArray.count > 1 {
-                buttons[0].setTitle(datasArray[0], for: .normal)
-            }
+                infosButtons.name[0] = datasArray[0]
+                infosButtons.order[0] = datasArray[1]
+                infosButtons.name[1] = datasArray[2]
+                infosButtons.order[1] = datasArray[3]
+                infosButtons.name[2] = datasArray[4]
+                infosButtons.order[2] = datasArray[5]
+                infosButtons.name[3] = datasArray[6]
+                infosButtons.order[3] = datasArray[7]
+                infosButtons.name[4] = datasArray[8]
+                infosButtons.order[4] = datasArray[9]
+                infosButtons.name[5] = datasArray[10]
+                infosButtons.order[5] = datasArray[11]
+                infosButtons.name[6] = datasArray[12]
+                infosButtons.order[6] = datasArray[13]
+                infosButtons.name[7] = datasArray[14]
+                infosButtons.order[7] = datasArray[15]
+                infosButtons.name[8] = datasArray[16]
+                infosButtons.order[8] = datasArray[17]
+                mainView.datas.titleData01.text = datasArray[18]
+                mainView.datas.titleData02.text = datasArray[19]
+                
+                print("\(infosButtons.order)")
+                print("\(infosButtons.name)")
+            
         }
         
         for index in 0 ... 8 {
             buttons[index].tag = index
             buttons[index].addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             buttons[index].setTitle(infosButtons.name[index], for: .normal)
+            if infosButtons.name[index] == "" && infosButtons.order[index] == "" {
+                infosButtons.notSeen[index] = true
+            } else {
+                infosButtons.notSeen[index] = false
+            }
+            
             if infosButtons.notSeen[index] == true {
+                
                 if autoadjust == true {
                 buttons[index].isHidden = true
                 } else {
-                    buttons[index].backgroundColor = super.view.backgroundColor
-                    buttons[index].tintColor = super.view.backgroundColor
+                    buttons[index].backgroundColor = appColors.backgroundColor
+                    buttons[index].setTitleColor(appColors.backgroundColor, for: .normal)
                 }
             } else {
                 buttons[index].isHidden = false
@@ -150,15 +189,13 @@ class RemoteViewController: UIViewController {
     
     @objc func buttonAction(sender: UIButton!) {
         
-        guard let title = sender.currentTitle else {
-            return
-        }
+        let buttonTag = sender.tag
         
-        print(title)
+        print(buttonTag)
         print(infosButtons.order[sender.tag])
         print("Le bouton \(infosButtons.name[sender.tag]) a été pressé.")
         
-        if title == "04" {
+        if buttonTag == 4 {
             tableOfProfiles.isHidden = true
             /*
         tableOfSaves.willMove(toParent: nil)
@@ -167,7 +204,7 @@ class RemoteViewController: UIViewController {
  */
         }
         
-        if title == "05" {
+        if buttonTag == 5 {
             tableOfProfiles.isHidden = false
             /*
         tableOfSaves.didMove(toParent: self)
