@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class RemoteViewController: UIViewController {
+class RemoteViewController: UIViewController, UITableViewDelegate {
     let appColors = AppColors.shared
     private let profileStorageManager = ProfileStorageManager.shared
     
@@ -17,7 +17,8 @@ class RemoteViewController: UIViewController {
     let tableOfProfiles = UITableView()
     let tableOfSaves = TableViewController()
     var profiles : [Profile] = []
-    var profilesName: [String] = ["01","02","03"]
+    var profilesName: [String] = []
+    let loadButton = UIButton()
     
     
     //var bottomContainer = UIStackView()
@@ -33,16 +34,18 @@ class RemoteViewController: UIViewController {
         setupView()
         getProfilessFromDatabase()
         // Test pour TableView
-        //tableOfProfiles
+        tableOfProfiles.register(UITableViewCell.self,forCellReuseIdentifier: "cell")
+        tableOfProfiles.dataSource = self
+        tableOfProfiles.delegate = self
+        
         for profile in profiles {
             profilesName.append(profile.name)
         }
+        AlternateTableLoadButton(tableShown: false)
         
-        //tableOfProfiles.myArray = profilesName
-        // Fin TableView
         setupTableView()
-        configurationButtons()
-     //   setConstraints()
+        //configurationButtons(rank:0)
+        //   setConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,57 +62,64 @@ class RemoteViewController: UIViewController {
     func setupView() {
         view.backgroundColor = appColors.backgroundColor
         
+        loadButton.backgroundColor = appColors.buttonColor
+        loadButton.layer.cornerRadius = 4
+        loadButton.layer.masksToBounds = true
+        loadButton.setTitle("Load Profile", for: .normal)
+        loadButton.setTitleColor(.white, for: .normal)
+        loadButton.addTarget(self, action: #selector(loadProfile), for: .touchUpInside)
+        
         view.addSubview(mainView)
         mainView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(tableOfProfiles)
         tableOfProfiles.translatesAutoresizingMaskIntoConstraints = false
+        let stackView = UIStackView(arrangedSubviews: [tableOfProfiles,loadButton])
+        
+        
+        
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        //sixthStackView.distribution = .fill
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(stackView)
+        /*
+         let bottomContainer = UIStackView(arrangedSubviews: [tableOfSaves.view])
+         
+         tableOfSaves.view.contentMode = .scaleAspectFit
+         tableOfSaves.view.translatesAutoresizingMaskIntoConstraints = false
+         
+         bottomContainer.axis = .vertical
+         bottomContainer.alignment = .fill
+         bottomContainer.distribution = .fillEqually
+         bottomContainer.translatesAutoresizingMaskIntoConstraints = false
+         bottomContainer.addArrangedSubview(tableOfSaves.view)
+         view.addSubview(bottomContainer)
+         */
         
         /*
-        let bottomContainer = UIStackView(arrangedSubviews: [tableOfSaves.view])
-        
-        tableOfSaves.view.contentMode = .scaleAspectFit
-        tableOfSaves.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        bottomContainer.axis = .vertical
-        bottomContainer.alignment = .fill
-        bottomContainer.distribution = .fillEqually
-        bottomContainer.translatesAutoresizingMaskIntoConstraints = false
-        bottomContainer.addArrangedSubview(tableOfSaves.view)
-        view.addSubview(bottomContainer)
-        */
-        
-        
-        
-        
-        //verticalStackView.rankButtons01.remoteButton02.isHidden = true
-        /*
-    }
-    
-    func setConstraints() {
-        */
+         }
+         
+         func setConstraints() {
+         */
         let margins = view.layoutMarginsGuide
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: margins.topAnchor),
             mainView.bottomAnchor.constraint(lessThanOrEqualTo: tableOfProfiles.bottomAnchor),
             mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            
+            /*
             tableOfProfiles.topAnchor.constraint(lessThanOrEqualTo: mainView.bottomAnchor),
             tableOfProfiles.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
             tableOfProfiles.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             tableOfProfiles.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            /*
-            bottomContainer.topAnchor.constraint(equalTo: mainView.bottomAnchor),
-            bottomContainer.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            bottomContainer.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            bottomContainer.heightAnchor.constraint(equalToConstant: 160),
-            
-            tableOfSaves.view.heightAnchor.constraint(equalToConstant: 160),
-            tableOfSaves.view.topAnchor.constraint(equalTo: bottomContainer.bottomAnchor),
-            tableOfSaves.view.trailingAnchor.constraint(equalTo: bottomContainer.trailingAnchor),
-            tableOfSaves.view.leadingAnchor.constraint(equalTo: bottomContainer.leadingAnchor)
-            */
+ */
+            stackView.topAnchor.constraint(lessThanOrEqualTo: mainView.bottomAnchor),
+            //stackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+            stackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: 60)
         ])
         
     }
@@ -118,7 +128,7 @@ class RemoteViewController: UIViewController {
         tableOfProfiles.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    func configurationButtons() {
+    func configurationButtons(rank:Int) {
         
         let buttons = [mainView.rankButtons01.remoteButton01,
                        mainView.rankButtons01.remoteButton02,
@@ -131,34 +141,36 @@ class RemoteViewController: UIViewController {
                        mainView.rankButtons03.remoteButton03]
         
         if profiles.count > 0 {
-        let dataBase = profiles[0]
+            
+            let dataBase = profiles[rank]
+            
             mainView.title.title.text = dataBase.name
             let datasArray = dataBase.datas.components(separatedBy: ":")
             print("Array : \(datasArray)")
             
-                infosButtons.name[0] = datasArray[0]
-                infosButtons.order[0] = datasArray[1]
-                infosButtons.name[1] = datasArray[2]
-                infosButtons.order[1] = datasArray[3]
-                infosButtons.name[2] = datasArray[4]
-                infosButtons.order[2] = datasArray[5]
-                infosButtons.name[3] = datasArray[6]
-                infosButtons.order[3] = datasArray[7]
-                infosButtons.name[4] = datasArray[8]
-                infosButtons.order[4] = datasArray[9]
-                infosButtons.name[5] = datasArray[10]
-                infosButtons.order[5] = datasArray[11]
-                infosButtons.name[6] = datasArray[12]
-                infosButtons.order[6] = datasArray[13]
-                infosButtons.name[7] = datasArray[14]
-                infosButtons.order[7] = datasArray[15]
-                infosButtons.name[8] = datasArray[16]
-                infosButtons.order[8] = datasArray[17]
-                mainView.datas.titleData01.text = datasArray[18]
-                mainView.datas.titleData02.text = datasArray[19]
-                
-                print("\(infosButtons.order)")
-                print("\(infosButtons.name)")
+            infosButtons.name[0] = datasArray[0]
+            infosButtons.order[0] = datasArray[1]
+            infosButtons.name[1] = datasArray[2]
+            infosButtons.order[1] = datasArray[3]
+            infosButtons.name[2] = datasArray[4]
+            infosButtons.order[2] = datasArray[5]
+            infosButtons.name[3] = datasArray[6]
+            infosButtons.order[3] = datasArray[7]
+            infosButtons.name[4] = datasArray[8]
+            infosButtons.order[4] = datasArray[9]
+            infosButtons.name[5] = datasArray[10]
+            infosButtons.order[5] = datasArray[11]
+            infosButtons.name[6] = datasArray[12]
+            infosButtons.order[6] = datasArray[13]
+            infosButtons.name[7] = datasArray[14]
+            infosButtons.order[7] = datasArray[15]
+            infosButtons.name[8] = datasArray[16]
+            infosButtons.order[8] = datasArray[17]
+            mainView.datas.titleData01.text = datasArray[18]
+            mainView.datas.titleData02.text = datasArray[19]
+            
+            print("\(infosButtons.order)")
+            print("\(infosButtons.name)")
             
         }
         
@@ -175,13 +187,15 @@ class RemoteViewController: UIViewController {
             if infosButtons.notSeen[index] == true {
                 
                 if autoadjust == true {
-                buttons[index].isHidden = true
+                    buttons[index].isHidden = true
                 } else {
                     buttons[index].backgroundColor = appColors.backgroundColor
                     buttons[index].setTitleColor(appColors.backgroundColor, for: .normal)
                 }
             } else {
                 buttons[index].isHidden = false
+                buttons[index].backgroundColor = appColors.buttonColor
+                buttons[index].setTitleColor(.white, for: .normal)
             }
         }
         
@@ -196,20 +210,11 @@ class RemoteViewController: UIViewController {
         print("Le bouton \(infosButtons.name[sender.tag]) a été pressé.")
         
         if buttonTag == 4 {
-            tableOfProfiles.isHidden = true
-            /*
-        tableOfSaves.willMove(toParent: nil)
-        tableOfSaves.removeFromParent()
-        tableOfSaves.view.removeFromSuperview()
- */
+            AlternateTableLoadButton(tableShown: false)
         }
         
         if buttonTag == 5 {
-            tableOfProfiles.isHidden = false
-            /*
-        tableOfSaves.didMove(toParent: self)
-        setupView()
- */
+            AlternateTableLoadButton(tableShown: true)
         }
     }
     
@@ -221,7 +226,7 @@ class RemoteViewController: UIViewController {
                 //viewState = .empty
             } else {
                 for profile in profiles {
-                print("\(profile.name)")
+                    print("\(profile.name)")
                 }
                 //viewState = .showData
                 
@@ -232,9 +237,14 @@ class RemoteViewController: UIViewController {
         }
     }
     
-    private func configureButtons() {
+    private func AlternateTableLoadButton(tableShown: Bool) {
+        loadButton.isHidden = tableShown
+        tableOfProfiles.isHidden = !tableShown
         
-        
+    }
+    
+    @objc private func loadProfile() {
+        AlternateTableLoadButton(tableShown: true)
     }
     
 }
@@ -246,7 +256,7 @@ extension RemoteViewController: UITableViewDataSource {
         profiles.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120.0//Choose your custom row height
+        return 60.0//Choose your custom row height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -254,18 +264,24 @@ extension RemoteViewController: UITableViewDataSource {
         cell.textLabel!.text = "\(profilesName[indexPath.row])"
         return cell
         /*
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as IndexPath)
-        
-        cell.textLabel!.text = "\(profiles[indexPath.row])"
-        return cell
-        */
+         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as IndexPath)
+         
+         cell.textLabel!.text = "\(profiles[indexPath.row])"
+         return cell
+         */
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("touch \(indexPath.row)")
+        configurationButtons(rank:indexPath.row)
+        AlternateTableLoadButton(tableShown:false)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     /*
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = profilesName[indexPath.row]
-        return cell
-      }
-    */
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+     cell.textLabel?.text = profilesName[indexPath.row]
+     return cell
+     }
+     */
 }

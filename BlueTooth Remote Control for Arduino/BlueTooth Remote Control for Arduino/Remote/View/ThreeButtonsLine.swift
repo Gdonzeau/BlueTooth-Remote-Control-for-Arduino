@@ -11,11 +11,6 @@ class ThreeButtonsLine: UIView {
     let appColors = AppColors.shared
     
     var remoteButton01 = UIButton()
-    /*
-    var remoteButton01 = ButtonForConfiguration()
-    var remoteButton02 = ButtonForConfiguration()
-    var remoteButton03 = ButtonForConfiguration()
- */
     var remoteButton02 = UIButton()
     var remoteButton03 = UIButton()
     
@@ -37,7 +32,6 @@ class ThreeButtonsLine: UIView {
         for button in buttons {
             
             button.backgroundColor = appColors.buttonColor
-            //button.setTitle("X", for: .normal)
             button.contentMode = .scaleAspectFit
             button.layer.cornerRadius = 4
             button.layer.masksToBounds = true
