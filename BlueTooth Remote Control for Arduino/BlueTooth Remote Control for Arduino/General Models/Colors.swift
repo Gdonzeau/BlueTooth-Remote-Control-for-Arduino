@@ -12,5 +12,6 @@ class AppColors {
     let backgroundColor = UIColor(displayP3Red: 7/255, green: 171/255, blue: 128/255, alpha: 1)
     let buttonColor = UIColor.darkGray
     let selectedButtonColor = UIColor.red
+    let fontColor = UIColor.darkGray
 }
 

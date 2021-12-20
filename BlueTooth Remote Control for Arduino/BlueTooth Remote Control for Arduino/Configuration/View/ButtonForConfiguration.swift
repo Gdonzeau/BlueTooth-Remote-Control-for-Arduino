@@ -32,18 +32,21 @@ class ButtonForConfiguration: UIView, UITextFieldDelegate {
         button.contentMode = .scaleAspectFit
         button.layer.cornerRadius = 4
         button.layer.masksToBounds = true
+        button.setTitleColor(.white, for: .normal)
         
-        nameTextField.backgroundColor = .white
+        nameTextField.backgroundColor = .lightGray
         nameTextField.layer.cornerRadius = 2
         nameTextField.layer.masksToBounds = true
         nameTextField.placeholder = "Button's name"
         nameTextField.delegate = self
+        nameTextField.tintColor = appColors.fontColor
         
-        orderTextField.backgroundColor = .white
+        orderTextField.backgroundColor = .lightGray
         orderTextField.layer.cornerRadius = 2
         orderTextField.layer.masksToBounds = true
         orderTextField.placeholder = "Button's order"
         orderTextField.delegate = self
+        orderTextField.tintColor = appColors.fontColor
         
         
     }

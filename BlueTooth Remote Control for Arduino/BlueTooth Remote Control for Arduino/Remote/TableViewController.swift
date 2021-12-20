@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+/*
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var myArray = ["First","Second","Third"]
@@ -46,3 +46,4 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
 }
+*/

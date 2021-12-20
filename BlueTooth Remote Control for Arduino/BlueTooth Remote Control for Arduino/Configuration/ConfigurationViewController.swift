@@ -48,11 +48,13 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         saveButton.backgroundColor = appColors.buttonColor
         saveButton.setTitle("Save", for: .normal)
         saveButton.contentMode = .scaleAspectFit
+        
         saveButton.layer.cornerRadius = 4
         saveButton.layer.masksToBounds = true
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.heightAnchor.constraint(equalToConstant: 60) //???
         saveButton.widthAnchor.constraint(equalToConstant: 60)
+        saveButton.heightAnchor.constraint(equalTo: saveButton.widthAnchor, multiplier: 1.0/1.0)
         
         view.backgroundColor = appColors.backgroundColor
         line.backgroundColor = .green
@@ -62,6 +64,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         dataName02.placeholder = "Second data's name"
         nameProfile.backgroundColor = .white
         nameProfile.placeholder = "Save's name"
+        nameProfile.backgroundColor = .lightGray
         
         
     }
@@ -117,8 +120,10 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         let fithStackView = UIStackView(arrangedSubviews: [dataName01,dataName02])
         dataName01.layer.cornerRadius = 2
         dataName01.layer.masksToBounds = true
+        dataName01.backgroundColor = .lightGray
         dataName02.layer.cornerRadius = 4
         dataName02.layer.masksToBounds = true
+        dataName02.backgroundColor = .lightGray
         fithStackView.axis = .horizontal
         fithStackView.alignment = .fill
         fithStackView.distribution = .fillEqually
