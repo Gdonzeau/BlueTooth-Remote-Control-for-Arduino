@@ -11,4 +11,5 @@ enum Status {
     case disconnected
     case connecting
     case connected
+    case error
 }

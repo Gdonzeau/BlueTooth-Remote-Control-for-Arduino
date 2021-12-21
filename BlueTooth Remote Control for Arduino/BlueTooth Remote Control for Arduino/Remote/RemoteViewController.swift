@@ -11,7 +11,7 @@ import CoreBluetooth
 
 class RemoteViewController: UIViewController {
     let appColors = AppColors.shared
-    private let profileStorageManager = ProfileStorageManager.shared
+    let profileStorageManager = ProfileStorageManager.shared
     
     var mainView = MainView()
     var infosButtons = InfoButtons()
@@ -28,12 +28,49 @@ class RemoteViewController: UIViewController {
     var targetPeripheral: CBPeripheral!
     var targetPeripheral02: CBPeripheral!
     var writeCharacteristic: CBCharacteristic!
+    var peripherals = [CBPeripheral]()
     var peripheralsName = [String]()
+    var peripheralsDetected = [PeripheralsDetected]()
     
-    var connected = false
+    //var status: Status = .disconnected
+    
     var code = ["1255000000","1000255000","LED_ON","LED_OFF","1193000255","1000255255"]
     
     var nom01 = ""
+    
+    var status:Status = .connecting {
+        didSet {
+            resetViewState()
+            switch status {
+            case .connecting:
+                mainView.connection.activityIndicator.startAnimating()
+                mainView.connection.connect.isHidden = true
+                mainView.connection.disconnect.isHidden = true
+                mainView.connection.nameBTModule.isHidden = true
+            case .error:
+                let error = AppError.loadingError
+                if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+                    self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+                }
+            case .disconnected:
+                mainView.connection.activityIndicator.stopAnimating()
+                mainView.connection.connect.isHidden = false
+                mainView.connection.disconnect.isHidden = true
+                mainView.connection.nameBTModule.isHidden = false
+            case .connected:
+                mainView.connection.activityIndicator.stopAnimating()
+                mainView.connection.connect.isHidden = true
+                mainView.connection.disconnect.isHidden = false
+                mainView.connection.nameBTModule.isHidden = true
+            }
+        }
+    }
+    private func resetViewState() {
+        mainView.connection.activityIndicator.stopAnimating()
+        mainView.connection.connect.isHidden = true
+        mainView.connection.disconnect.isHidden = true
+        mainView.connection.nameBTModule.isHidden = false
+    }
     // End of Bluetooth part
     
     var autoadjust = false
@@ -41,28 +78,20 @@ class RemoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        
-        
-        //configurationButtons(rank:0)
         //   setConstraints()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        /*
-        tableOfProfiles.reloadData()
-        getProfilesFromDatabase()
- */
         setupView()
         getProfilesFromDatabase()
-        // Test pour TableView
         tableOfProfiles.register(UITableViewCell.self,forCellReuseIdentifier: "cell")
         tableOfProfiles.dataSource = self
         tableOfProfiles.delegate = self
         
         AlternateTableLoadButton(tableShown: false)
         updatingTableView()
-        setupTableView()
+        //setupTableView()
 
     }
     
@@ -81,6 +110,8 @@ class RemoteViewController: UIViewController {
         loadButton.setTitleColor(.white, for: .normal)
         loadButton.addTarget(self, action: #selector(loadProfile), for: .touchUpInside)
         
+        mainView.connection.disconnect.addTarget(self, action: #selector(disconnect), for: .touchUpInside)
+        
         view.addSubview(mainView)
         mainView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -97,20 +128,6 @@ class RemoteViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(stackView)
         /*
-         let bottomContainer = UIStackView(arrangedSubviews: [tableOfSaves.view])
-         
-         tableOfSaves.view.contentMode = .scaleAspectFit
-         tableOfSaves.view.translatesAutoresizingMaskIntoConstraints = false
-         
-         bottomContainer.axis = .vertical
-         bottomContainer.alignment = .fill
-         bottomContainer.distribution = .fillEqually
-         bottomContainer.translatesAutoresizingMaskIntoConstraints = false
-         bottomContainer.addArrangedSubview(tableOfSaves.view)
-         view.addSubview(bottomContainer)
-         */
-        
-        /*
          }
          
          func setConstraints() {
@@ -121,12 +138,7 @@ class RemoteViewController: UIViewController {
             mainView.bottomAnchor.constraint(lessThanOrEqualTo: tableOfProfiles.bottomAnchor),
             mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            /*
-            tableOfProfiles.topAnchor.constraint(lessThanOrEqualTo: mainView.bottomAnchor),
-            tableOfProfiles.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
-            tableOfProfiles.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            tableOfProfiles.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
- */
+            
             stackView.topAnchor.constraint(lessThanOrEqualTo: mainView.bottomAnchor),
             //stackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
             stackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
@@ -217,7 +229,6 @@ class RemoteViewController: UIViewController {
                 buttons[index].setTitleColor(.white, for: .normal)
             }
         }
-        
     }
     
     @objc func buttonAction(sender: UIButton!) {
@@ -227,7 +238,7 @@ class RemoteViewController: UIViewController {
         print(buttonTag)
         print(infosButtons.order[sender.tag])
         print("Le bouton \(infosButtons.name[sender.tag]) a été pressé.")
-        
+        let order = infosButtons.order[buttonTag]
         if buttonTag == 4 {
             AlternateTableLoadButton(tableShown: false)
         }
@@ -235,9 +246,18 @@ class RemoteViewController: UIViewController {
         if buttonTag == 5 {
             AlternateTableLoadButton(tableShown: true)
         }
+        sendOrder(message: order)
     }
     
-    private func getProfilesFromDatabase() {
+    @objc func disconnect() {
+        status = .disconnected
+        guard let peripheral = targetPeripheral else {
+            return
+        }
+        centralManager.cancelPeripheralConnection(peripheral)
+    }
+    
+    func getProfilesFromDatabase() {
         do {
             profiles = try profileStorageManager.loadProfiles()
             if profiles.isEmpty {
@@ -247,239 +267,27 @@ class RemoteViewController: UIViewController {
                 for profile in profiles {
                     print("\(profile.name)")
                 }
-                //viewState = .showData
-                
             }
         } catch let error {
             print("Error loading recipes from database \(error.localizedDescription)")
-            //viewState = .error
         }
     }
     
-    private func AlternateTableLoadButton(tableShown: Bool) {
+    func AlternateTableLoadButton(tableShown: Bool) {
         loadButton.isHidden = tableShown
         tableOfProfiles.isHidden = !tableShown
         
     }
     
-    @objc private func loadProfile() {
+    @objc func loadProfile() {
         AlternateTableLoadButton(tableShown: true)
     }
     
-    private func allErrors(errorMessage: String, errorTitle: String) {
+    func allErrors(errorMessage: String, errorTitle: String) {
         let alertVC = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC,animated: true,completion: nil)
     }
     
 }
-extension RemoteViewController: UITableViewDataSource {
-    
-    // func numberOfSection not necessary as 1 by default
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        profiles.count
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0//Choose your custom row height
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath)
-        cell.textLabel!.text = "\(profilesName[indexPath.row])"
-        return cell
-        /*
-         let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as IndexPath)
-         
-         cell.textLabel!.text = "\(profiles[indexPath.row])"
-         return cell
-         */
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("touch \(indexPath.row)")
-        configurationButtons(rank:indexPath.row)
-        AlternateTableLoadButton(tableShown:false)
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    /*
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-     cell.textLabel?.text = profilesName[indexPath.row]
-     return cell
-     }
-     */
-}
 
-extension RemoteViewController: UITableViewDelegate {
-    /*
-    private func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) throws -> UISwipeActionsConfiguration? { // Swipe action
-        /*
-        guard recipeMode == .database else {
-            return nil
-        }
-        */
-        let deleteAction = UIContextualAction(
-            style: .destructive, title: "Delete") { _, _, completionHandler in
-            let profileToDelete = self.profiles[indexPath.row]
-            
-            do {
-                try self.profileStorageManager.deleteProfile(profileToDelete: profileToDelete)
-                DispatchQueue.main.async {
-                    self.getProfilesFromDatabase()
-                }
-                completionHandler(true)
-            } catch {
-                print("Error while deleting")
-                completionHandler(false)
-                let error = AppError.errorDelete
-                if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
-                    self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
-                }
-            }
-        }
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-        return configuration
-    }
-    */
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        
-        if editingStyle == .delete {
-            
-            let deleteAction = UIContextualAction(
-                style: .destructive, title: "Delete") { _, _, completionHandler in
-                let profileToDelete = self.profiles[indexPath.row]
-                
-                do {
-                    try self.profileStorageManager.deleteProfile(profileToDelete: profileToDelete)
-                    DispatchQueue.main.async {
-                        self.getProfilesFromDatabase()
-                    }
-                    completionHandler(true)
-                } catch {
-                    print("Error while deleting")
-                    completionHandler(false)
-                    let error = AppError.errorDelete
-                    if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
-                        self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
-                    }
-                }
-            }
-            
-            profilesName.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .bottom)
-        }
-        if editingStyle == .insert {
-        }
-    }
-}
-
-
-extension RemoteViewController: CBCentralManagerDelegate {
-    
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        switch central.state {
-        case .unknown:
-            print("central.state is .unknown")
-        case .resetting:
-            print("central.state is .resetting")
-        case .unsupported:
-            print("central.state is .unsupported")
-        case .unauthorized:
-            print("central.state is .unauthorized")
-        case .poweredOff:
-            print("central.state is .poweredOff")
-        case .poweredOn:
-            print("central.state is .poweredOn")
-            centralManager.scanForPeripherals(withServices: [targetCBUUID])
-        default:
-            print("Oh ben zut alors.")
-        }
-    }
-    
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
-                        advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        print(peripheral)
-        if let nameTarget = peripheral.name {
-            print("Le périphérique s'appelle : \(nameTarget)")
-            peripheralsName.append(nameTarget)
-            nom01 = String(nameTarget)
-        }
-       // if nom01.starts(with: "BT") || nom01.starts(with: "HM") || nom01.starts(with: "GD") || nom01.starts(with: "new")  {
-        targetPeripheral = peripheral
-        targetPeripheral.delegate = self
-        centralManager.stopScan()
-        centralManager.connect(targetPeripheral)
-        //}
-    }
-    
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("Connected!")
-        connected = true
-        targetPeripheral.discoverServices([targetCBUUID])
-     //   targetPeripheral02.discoverServices([targetCBUUID])
-    }
-    func sendOrder (message:String) {
-        if connected {
-            let dataA = message.data(using: .utf8)
-            targetPeripheral.writeValue(dataA!, for: writeCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
-        }
-    }
-}
-
-extension RemoteViewController: CBPeripheralDelegate {
-    
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        print("Trouvé !")
-        guard let services = peripheral.services else { return }
-        for service in services {
-            print(service)
-            peripheral.discoverCharacteristics(nil, for: service)
-        }
-    }
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        guard let characteristics = service.characteristics else { return }
-        
-        for characteristic in characteristics {
-            print(characteristic)
-            
-            if characteristic.properties.contains(.read) {
-                print("\(characteristic.uuid): properties contains .read")
-                peripheral.readValue(for: characteristic)
-            }
-            if characteristic.properties.contains(.notify) {
-                print("\(characteristic.uuid): properties contains .notify")
-                peripheral.setNotifyValue(true, for: characteristic)
-            }
-            for characteristic in service.characteristics!{
-                let aCharacteristic = characteristic as CBCharacteristic
-                if aCharacteristic.uuid == CBUUID(string: "FFE1"){
-                    print("We found our write Characteristic")
-                    writeCharacteristic = aCharacteristic
-                }
-            }
-        }
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        switch characteristic.uuid {
-        case dialogCBUUID:
-            print("Test")
-            print(characteristic.value ?? "no value")
-            if let result = String( data: characteristic.value! , encoding: .utf8) {
-                print("Reçu : \(result)")
-                // On sépare le String aux : pour faire un tableau
-                let resultArr = result.components(separatedBy: ":")
-                if resultArr.count > 1 {
-                let data01 = "\(resultArr[1])"
-                let data02 = "\(resultArr[0])"
-                    mainView.datas.contentData01.text = data01
-                    mainView.datas.contentData02.text = data02
-                }
-            }
-        default:
-            print("Unhandled Characteristic UUID: \(characteristic.uuid)")
-        }
-    }
-}
