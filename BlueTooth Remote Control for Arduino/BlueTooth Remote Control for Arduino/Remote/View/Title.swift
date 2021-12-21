@@ -25,7 +25,7 @@ class Title: UIView {
     
     func setupView() {
         backgroundColor = appColors.backgroundColor
-        title.backgroundColor = .white
+        //title.backgroundColor = .lightGray
         title.contentMode = .scaleAspectFit
         title.textAlignment = .center
         

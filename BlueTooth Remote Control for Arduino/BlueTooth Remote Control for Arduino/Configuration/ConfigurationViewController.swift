@@ -225,11 +225,21 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     func groupDatasInArray() {
         dataProfile = ""
+        var nameButtons = ""
+        var orderButtons = ""
         for button in buttonsForConfiguration {
             let buttonName = button.nameTextField.text ?? "_"
             let buttonOrder = button.orderTextField.text ?? "_"
+            
+            /*
+            let buttonName = button.nameTextField.text ?? "_"
+            let buttonOrder = button.orderTextField.text ?? "_"
             dataProfile += buttonName + ":" + buttonOrder + ":"
+ */
+            nameButtons += buttonName + ":"
+            orderButtons += buttonOrder + ":"
         }
+        dataProfile += nameButtons + orderButtons
         let data01 = dataName01.text ?? "Data01"
         let data02 = dataName02.text ?? "Data02"
         dataProfile += data01 + ":" + data02

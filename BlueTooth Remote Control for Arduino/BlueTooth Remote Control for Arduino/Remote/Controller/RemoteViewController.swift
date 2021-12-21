@@ -16,6 +16,7 @@ class RemoteViewController: UIViewController {
     var mainView = MainView()
     var infosButtons = InfoButtons()
     let tableOfProfiles = UITableView()
+    let tableBluetooth = UITableView()
     var profiles : [Profile] = []
     var profilesName: [String] = []
     let loadButton = UIButton()
@@ -34,11 +35,11 @@ class RemoteViewController: UIViewController {
     
     //var status: Status = .disconnected
     
-    var code = ["1255000000","1000255000","LED_ON","LED_OFF","1193000255","1000255255"]
+    //var code = ["1255000000","1000255000","LED_ON","LED_OFF","1193000255","1000255255"]
     
     var nom01 = ""
     
-    var status:Status = .connecting {
+    var status:Status = .disconnected {
         didSet {
             resetViewState()
             switch status {
@@ -77,8 +78,12 @@ class RemoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        status = .disconnected
         centralManager = CBCentralManager(delegate: self, queue: nil)
         //   setConstraints()
+        
+        let idTry = UUID().uuidString
+        print("ID : \(idTry)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,6 +116,8 @@ class RemoteViewController: UIViewController {
         loadButton.addTarget(self, action: #selector(loadProfile), for: .touchUpInside)
         
         mainView.connection.disconnect.addTarget(self, action: #selector(disconnect), for: .touchUpInside)
+        
+        mainView.connection.connect.addTarget(self, action: #selector(connect), for: .touchUpInside)
         
         view.addSubview(mainView)
         mainView.translatesAutoresizingMaskIntoConstraints = false
@@ -179,24 +186,11 @@ class RemoteViewController: UIViewController {
             let datasArray = dataBase.datas.components(separatedBy: ":")
             print("Array : \(datasArray)")
             
-            infosButtons.name[0] = datasArray[0]
-            infosButtons.order[0] = datasArray[1]
-            infosButtons.name[1] = datasArray[2]
-            infosButtons.order[1] = datasArray[3]
-            infosButtons.name[2] = datasArray[4]
-            infosButtons.order[2] = datasArray[5]
-            infosButtons.name[3] = datasArray[6]
-            infosButtons.order[3] = datasArray[7]
-            infosButtons.name[4] = datasArray[8]
-            infosButtons.order[4] = datasArray[9]
-            infosButtons.name[5] = datasArray[10]
-            infosButtons.order[5] = datasArray[11]
-            infosButtons.name[6] = datasArray[12]
-            infosButtons.order[6] = datasArray[13]
-            infosButtons.name[7] = datasArray[14]
-            infosButtons.order[7] = datasArray[15]
-            infosButtons.name[8] = datasArray[16]
-            infosButtons.order[8] = datasArray[17]
+            for index in 0 ..< infosButtons.name.count {
+                infosButtons.name[index] = datasArray[index]
+                infosButtons.order[index] = datasArray[index+9]
+            }
+            
             mainView.datas.titleData01.text = datasArray[18]
             mainView.datas.titleData02.text = datasArray[19]
             
@@ -247,6 +241,15 @@ class RemoteViewController: UIViewController {
             AlternateTableLoadButton(tableShown: true)
         }
         sendOrder(message: order)
+    }
+    @objc func connect() {
+        if peripheralsDetected.count > 0 {
+        status = .connecting
+       let peripheral = peripheralsDetected[0].peripheral
+        connectBT(peripheral: peripheral)
+        } else {
+            print("No bluetooth detected")
+        }
     }
     
     @objc func disconnect() {

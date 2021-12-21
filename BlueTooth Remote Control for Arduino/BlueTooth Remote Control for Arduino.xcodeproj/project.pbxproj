@@ -16,6 +16,9 @@
 		04921B672770D35D00431F40 /* RemoteViewController_TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B662770D35D00431F40 /* RemoteViewController_TableView.swift */; };
 		04921B6C2770D5E700431F40 /* RemoteViewController_BlueTooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B6B2770D5E700431F40 /* RemoteViewController_BlueTooth.swift */; };
 		04921B712770DEFC00431F40 /* Peripherals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B702770DEFC00431F40 /* Peripherals.swift */; };
+		04921B862771DBBB00431F40 /* FakeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B852771DBBB00431F40 /* FakeResponse.swift */; };
+		04921B8E2771E7C800431F40 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B8D2771E7C800431F40 /* CoreDataTestStack.swift */; };
+		04921B9B2771EFDB00431F40 /* FakeProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B9A2771EFDB00431F40 /* FakeProfiles.swift */; };
 		04B56588276CA507006CEE37 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56587276CA507006CEE37 /* Colors.swift */; };
 		04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACD276671D80025F84A /* AppDelegate.swift */; };
 		04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACF276671D80025F84A /* SceneDelegate.swift */; };
@@ -62,6 +65,9 @@
 		04921B662770D35D00431F40 /* RemoteViewController_TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteViewController_TableView.swift; sourceTree = "<group>"; };
 		04921B6B2770D5E700431F40 /* RemoteViewController_BlueTooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteViewController_BlueTooth.swift; sourceTree = "<group>"; };
 		04921B702770DEFC00431F40 /* Peripherals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripherals.swift; sourceTree = "<group>"; };
+		04921B852771DBBB00431F40 /* FakeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponse.swift; sourceTree = "<group>"; };
+		04921B8D2771E7C800431F40 /* CoreDataTestStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
+		04921B9A2771EFDB00431F40 /* FakeProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeProfiles.swift; sourceTree = "<group>"; };
 		04B56587276CA507006CEE37 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		04D75ACA276671D80025F84A /* BlueTooth Remote Control for Arduino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BlueTooth Remote Control for Arduino.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D75ACD276671D80025F84A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,11 +121,9 @@
 		046B7FAE276EA415006718E0 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				04921B7F2771D83900431F40 /* Controller */,
 				046B7FC2276F681B006718E0 /* View */,
 				046B7FC0276F67DD006718E0 /* Model */,
-				04D75AD1276671D80025F84A /* RemoteViewController.swift */,
-				04921B662770D35D00431F40 /* RemoteViewController_TableView.swift */,
-				04921B6B2770D5E700431F40 /* RemoteViewController_BlueTooth.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -179,6 +183,26 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		04921B7B2771D77500431F40 /* Test Storage */ = {
+			isa = PBXGroup;
+			children = (
+				04D75AE7276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift */,
+				04921B8D2771E7C800431F40 /* CoreDataTestStack.swift */,
+				04921B9A2771EFDB00431F40 /* FakeProfiles.swift */,
+			);
+			path = "Test Storage";
+			sourceTree = "<group>";
+		};
+		04921B7F2771D83900431F40 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04D75AD1276671D80025F84A /* RemoteViewController.swift */,
+				04921B662770D35D00431F40 /* RemoteViewController_TableView.swift */,
+				04921B6B2770D5E700431F40 /* RemoteViewController_BlueTooth.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		04D75AC1276671D80025F84A = {
 			isa = PBXGroup;
 			children = (
@@ -202,10 +226,10 @@
 		04D75ACC276671D80025F84A /* BlueTooth Remote Control for Arduino */ = {
 			isa = PBXGroup;
 			children = (
+				04D75B07276672AB0025F84A /* Services */,
 				046B7FAE276EA415006718E0 /* Remote */,
 				046B7FB2276EA440006718E0 /* Configuration */,
 				046B7FB3276EA44E006718E0 /* Instruction */,
-				04D75B07276672AB0025F84A /* Services */,
 				04D75B062766724D0025F84A /* Other Files */,
 				04D75B032766721E0025F84A /* General Models */,
 				04D75B04276672250025F84A /* View */,
@@ -217,8 +241,9 @@
 		04D75AE6276671E60025F84A /* BlueTooth Remote Control for ArduinoTests */ = {
 			isa = PBXGroup;
 			children = (
-				04D75AE7276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift */,
+				04921B7B2771D77500431F40 /* Test Storage */,
 				04D75AE9276671E60025F84A /* Info.plist */,
+				04921B852771DBBB00431F40 /* FakeResponse.swift */,
 			);
 			path = "BlueTooth Remote Control for ArduinoTests";
 			sourceTree = "<group>";
@@ -428,7 +453,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04921B9B2771EFDB00431F40 /* FakeProfiles.swift in Sources */,
 				04D75AE8276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift in Sources */,
+				04921B8E2771E7C800431F40 /* CoreDataTestStack.swift in Sources */,
+				04921B862771DBBB00431F40 /* FakeResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class ProfileStorageManager {
-
+    
     private let viewContext: NSManagedObjectContext
     static let shared = ProfileStorageManager()
     
@@ -29,6 +29,7 @@ class ProfileStorageManager {
     }
     func saveProfile(profile: Profile) throws { // ajouter throws
         print("Saving")
+        
         let profileToSave = ProfileEntity(context: viewContext)
         profileToSave.name = profile.name
         profileToSave.datas = profile.datas
@@ -37,7 +38,7 @@ class ProfileStorageManager {
         do {
             try viewContext.save()
             print("Saved : \(String(describing: profileToSave.name))")
-       // } catch {  throw error }
+            // } catch {  throw error }
         } catch { print("Error \(error)") ; throw error }
     }
     
@@ -53,5 +54,6 @@ class ProfileStorageManager {
             try viewContext.save()
         } catch { print("Error while deleting : \(error)") ; throw error }
     }
-
+    
+    
 }

@@ -9,17 +9,25 @@ import UIKit
 extension RemoteViewController: UITableViewDataSource {
     
     // func numberOfSection not necessary as 1 by default
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1 // A modifier pour plusieurs sections
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        profiles.count
+      //  if tableView == tableOfProfiles {
+       // switch section
+        return profiles.count
+       // } else if
+        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0//Choose your custom row height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = indexPath.section
+        //switch section
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath)
-        cell.textLabel!.text = "\(profilesName[indexPath.row])"
+        cell.textLabel?.text = "\(profiles[indexPath.row].name)"
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -61,6 +69,7 @@ extension RemoteViewController: UITableViewDelegate {
         return configuration
     }
     */
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         
@@ -86,8 +95,8 @@ extension RemoteViewController: UITableViewDelegate {
                 }
             }
             
-            profilesName.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .bottom)
+            //profilesName.remove(at: indexPath.row)
+            //tableView.deleteRows(at: [indexPath], with: .bottom)
         }
         if editingStyle == .insert {
         }

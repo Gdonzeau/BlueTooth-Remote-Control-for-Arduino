@@ -32,7 +32,7 @@ class Connection: UIView {
     
     func setupView() {
         // Temporary, for tests
-        btNames = ["BT01", "BT02", "BT03"]
+        btNames = []
         connect.isHidden = true
         activityIndicator.isHidden = true
         
@@ -95,6 +95,7 @@ extension Connection: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("touch BT \(indexPath.row)")
+        
         //configurationButtons(rank:indexPath.row)
         //AlternateTableLoadButton(tableShown:false)
         tableView.deselectRow(at: indexPath, animated: true)

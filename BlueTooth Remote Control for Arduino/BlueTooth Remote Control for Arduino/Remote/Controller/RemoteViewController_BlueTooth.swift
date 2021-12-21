@@ -22,6 +22,7 @@ extension RemoteViewController: CBCentralManagerDelegate {
             print("central.state is .poweredOff")
         case .poweredOn:
             print("central.state is .poweredOn")
+            mainView.connection.btNames = []
             centralManager.scanForPeripherals(withServices: [targetCBUUID])
         default:
             print("Oh ben zut alors.")
@@ -40,12 +41,19 @@ extension RemoteViewController: CBCentralManagerDelegate {
             // Gestion des périphériques BlueTooth détectés
             let peripheralDetected = PeripheralsDetected(name: nameTarget, peripheral: peripheral)
             peripheralsDetected.append(peripheralDetected)
+            mainView.connection.btNames.append(nameTarget)
+            mainView.connection.nameBTModule.reloadData()
         }
+        
+    }
+    func connectBT(peripheral: CBPeripheral) {
+        status = .connecting
        // if nom01.starts(with: "BT") || nom01.starts(with: "HM") || nom01.starts(with: "GD") || nom01.starts(with: "new")  {
         targetPeripheral = peripheral
         targetPeripheral.delegate = self
         centralManager.stopScan()
         centralManager.connect(targetPeripheral)
+        status = .connected
         //}
     }
     
