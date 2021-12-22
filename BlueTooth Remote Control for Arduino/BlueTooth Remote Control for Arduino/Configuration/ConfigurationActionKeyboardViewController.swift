@@ -19,13 +19,13 @@ extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keybo
    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == dataName01 || textField == dataName02 || textField == nameProfile {
-            animateViewMoving(up: true, moveValue: 120)
+            animateViewMoving(up: true, moveValue: 160)
         }
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == dataName01 || textField == dataName02 || textField == nameProfile {
-            animateViewMoving(up: false, moveValue: 120)
+            animateViewMoving(up: false, moveValue: 160)
         }
     }
 

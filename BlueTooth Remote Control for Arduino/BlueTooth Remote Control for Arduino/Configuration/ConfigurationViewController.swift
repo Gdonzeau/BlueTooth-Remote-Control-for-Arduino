@@ -38,43 +38,58 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         configuration()
     }
     func setup() {
-        //registerForKeyboardNotifications()
         
         for index in 0 ..< buttonsForConfiguration.count {
             buttonsForConfiguration[index].nameTextField.delegate = self
             buttonsForConfiguration[index].orderTextField.delegate = self
         }
-        
-        
         nameProfile.delegate = self
         dataName02.delegate = self
         dataName01.delegate = self
-        
     }
     
     func setView() {
         
-        saveButton.backgroundColor = appColors.buttonColor
-        saveButton.setTitle("Save", for: .normal)
-        saveButton.contentMode = .scaleAspectFit
-        
-        saveButton.layer.cornerRadius = 4
-        saveButton.layer.masksToBounds = true
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
         //saveButton.heightAnchor.constraint(equalToConstant: 60) //???
         //saveButton.widthAnchor.constraint(equalToConstant: 60)
         //saveButton.heightAnchor.constraint(equalTo: saveButton.widthAnchor, multiplier: 1.0/1.0)
-        activityIndicator.stopAnimating()
+        
         view.backgroundColor = appColors.backgroundColor
+        
+        // 4 StackView = green line
+        line.layer.cornerRadius = 4
+        line.layer.masksToBounds = true
         line.backgroundColor = .green
-        dataName01.backgroundColor = .white
+        
+        // 5 StackView = datasName
+        dataName01.layer.cornerRadius = 2
+        dataName01.layer.masksToBounds = true
+        dataName01.backgroundColor = .lightGray
+        //dataName01.backgroundColor = .white
         dataName01.placeholder = "First data's name"
-        dataName02.backgroundColor = .white
+        
+        dataName02.layer.cornerRadius = 4
+        dataName02.layer.masksToBounds = true
+        dataName02.backgroundColor = .lightGray
+        //dataName02.backgroundColor = .white
         dataName02.placeholder = "Second data's name"
-        nameProfile.backgroundColor = .white
+        
+        
+        // 6 StackView = SaveName and Save button
+        nameProfile.layer.cornerRadius = 2
+        nameProfile.layer.masksToBounds = true
+        //nameProfile.backgroundColor = .white
         nameProfile.placeholder = "Save's name"
         nameProfile.backgroundColor = .lightGray
         
+        saveButton.backgroundColor = appColors.buttonColor
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.contentMode = .scaleAspectFit
+        saveButton.layer.cornerRadius = 4
+        saveButton.layer.masksToBounds = true
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        activityIndicator.stopAnimating()
         
     }
     
@@ -82,7 +97,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     func setConstraints() {
         let margins = view.layoutMarginsGuide
-        
+        // Faire un tableau de StackView et une boucle for ?
         let firstStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[0],buttonsForConfiguration[1],buttonsForConfiguration[2]])
         firstStackView.axis = .horizontal
         firstStackView.alignment = .fill
@@ -117,9 +132,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         view.addSubview(thirdStackView)
         
         let fourthStackView = UIStackView(arrangedSubviews: [line])
-        line.layer.cornerRadius = 4
-        line.layer.masksToBounds = true
-        
         fourthStackView.axis = .horizontal
         fourthStackView.alignment = .fill
         fourthStackView.distribution = .fillEqually
@@ -127,12 +139,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         view.addSubview(fourthStackView)
         
         let fithStackView = UIStackView(arrangedSubviews: [dataName01,dataName02])
-        dataName01.layer.cornerRadius = 2
-        dataName01.layer.masksToBounds = true
-        dataName01.backgroundColor = .lightGray
-        dataName02.layer.cornerRadius = 4
-        dataName02.layer.masksToBounds = true
-        dataName02.backgroundColor = .lightGray
         fithStackView.axis = .horizontal
         fithStackView.alignment = .fill
         fithStackView.distribution = .fillEqually
@@ -141,13 +147,9 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         view.addSubview(fithStackView)
         
         let sixthStackView = UIStackView(arrangedSubviews: [nameProfile,saveButton,activityIndicator])
-        nameProfile.layer.cornerRadius = 2
-        nameProfile.layer.masksToBounds = true
-        
-        
         sixthStackView.axis = .horizontal
         sixthStackView.alignment = .fill
-        //sixthStackView.distribution = .fill
+        //sixthStackView.distribution = .fillEqually
         sixthStackView.spacing = 5
         sixthStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(sixthStackView)
@@ -155,7 +157,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         let globalStackView = UIStackView(arrangedSubviews: [firstStackView,secondStackView,thirdStackView])
         globalStackView.axis = .vertical
         globalStackView.alignment = .fill
-        globalStackView.distribution = .fillProportionally
+        //globalStackView.distribution = .fillProportionally
         globalStackView.spacing = 5
         globalStackView.translatesAutoresizingMaskIntoConstraints = false
         globalStackView.addArrangedSubview(firstStackView)
@@ -177,20 +179,10 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
             
             globalStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             globalStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            globalStackView.topAnchor.constraint(equalTo: margins.topAnchor),
+            globalStackView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 40),
+            //globalStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0) ,
             globalStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
             
-            /*
-            globalStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            globalStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            globalStackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            globalStackView.bottomAnchor.constraint(lessThanOrEqualTo: scrollView.bottomAnchor),
-            
-            scrollView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: margins.topAnchor),
-            scrollView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
-            */
             fourthStackView.heightAnchor.constraint(equalToConstant: 10),
             fithStackView.heightAnchor.constraint(equalToConstant: 30),
             sixthStackView.heightAnchor.constraint(equalToConstant: 60)
@@ -235,7 +227,14 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         // On lance le chrono. Une fois le temps écoulé il va lancer fireTimer.
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
         groupDatasInArray()
-        profileSaving.name = nameProfile.text ?? "Save"
+        if var name = nameProfile.text {
+            if name == "" {
+                name = "Save"
+            }
+            profileSaving.name = name
+        }
+        
+        
         profileSaving.datas = dataProfile
         
         //Ajout UUID

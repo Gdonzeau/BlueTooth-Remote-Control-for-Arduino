@@ -20,6 +20,7 @@
 		04921B8E2771E7C800431F40 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B8D2771E7C800431F40 /* CoreDataTestStack.swift */; };
 		04921B9B2771EFDB00431F40 /* FakeProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B9A2771EFDB00431F40 /* FakeProfiles.swift */; };
 		04921BA02773437E00431F40 /* ConfigurationActionKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B9F2773437D00431F40 /* ConfigurationActionKeyboardViewController.swift */; };
+		04921BD92773908A00431F40 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921BD82773908A00431F40 /* TabBarViewController.swift */; };
 		04B56588276CA507006CEE37 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56587276CA507006CEE37 /* Colors.swift */; };
 		04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACD276671D80025F84A /* AppDelegate.swift */; };
 		04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACF276671D80025F84A /* SceneDelegate.swift */; };
@@ -70,6 +71,7 @@
 		04921B8D2771E7C800431F40 /* CoreDataTestStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
 		04921B9A2771EFDB00431F40 /* FakeProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeProfiles.swift; sourceTree = "<group>"; };
 		04921B9F2773437D00431F40 /* ConfigurationActionKeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationActionKeyboardViewController.swift; sourceTree = "<group>"; };
+		04921BD82773908A00431F40 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		04B56587276CA507006CEE37 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		04D75ACA276671D80025F84A /* BlueTooth Remote Control for Arduino.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BlueTooth Remote Control for Arduino.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D75ACD276671D80025F84A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			children = (
 				04D75AD9276671E50025F84A /* Assets.xcassets */,
 				04D75ADB276671E50025F84A /* LaunchScreen.storyboard */,
+				04921BD82773908A00431F40 /* TabBarViewController.swift */,
 				04D75ACD276671D80025F84A /* AppDelegate.swift */,
 				04D75ACF276671D80025F84A /* SceneDelegate.swift */,
 			);
@@ -443,6 +446,7 @@
 				04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */,
 				04D75B7B27691CFF0025F84A /* Connection.swift in Sources */,
 				04921BA02773437E00431F40 /* ConfigurationActionKeyboardViewController.swift in Sources */,
+				04921BD92773908A00431F40 /* TabBarViewController.swift in Sources */,
 				04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */,
 				048E0535276CF8DE003A1CD0 /* ButtonForConfiguration.swift in Sources */,
 				04921B672770D35D00431F40 /* RemoteViewController_TableView.swift in Sources */,
