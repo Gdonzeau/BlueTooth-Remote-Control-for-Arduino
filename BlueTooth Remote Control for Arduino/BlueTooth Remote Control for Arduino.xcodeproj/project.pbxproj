@@ -25,7 +25,6 @@
 		04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACD276671D80025F84A /* AppDelegate.swift */; };
 		04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75ACF276671D80025F84A /* SceneDelegate.swift */; };
 		04D75AD2276671D80025F84A /* RemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AD1276671D80025F84A /* RemoteViewController.swift */; };
-		04D75AD5276671D80025F84A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D75AD3276671D80025F84A /* Main.storyboard */; };
 		04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04D75AD6276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld */; };
 		04D75ADA276671E50025F84A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D75AD9276671E50025F84A /* Assets.xcassets */; };
 		04D75ADD276671E50025F84A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D75ADB276671E50025F84A /* LaunchScreen.storyboard */; };
@@ -77,7 +76,6 @@
 		04D75ACD276671D80025F84A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04D75ACF276671D80025F84A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04D75AD1276671D80025F84A /* RemoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteViewController.swift; sourceTree = "<group>"; };
-		04D75AD4276671D80025F84A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04D75AD7276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BlueTooth_Remote_Control_for_Arduino.xcdatamodel; sourceTree = "<group>"; };
 		04D75AD9276671E50025F84A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04D75ADC276671E50025F84A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -237,7 +235,7 @@
 				046B7FB3276EA44E006718E0 /* Instruction */,
 				04D75B062766724D0025F84A /* Other Files */,
 				04D75B032766721E0025F84A /* General Models */,
-				04D75B04276672250025F84A /* View */,
+				04D75B04276672250025F84A /* Starting Controller */,
 				04D75ADE276671E50025F84A /* Info.plist */,
 			);
 			path = "BlueTooth Remote Control for Arduino";
@@ -272,12 +270,12 @@
 			path = "General Models";
 			sourceTree = "<group>";
 		};
-		04D75B04276672250025F84A /* View */ = {
+		04D75B04276672250025F84A /* Starting Controller */ = {
 			isa = PBXGroup;
 			children = (
-				04D75AD3276671D80025F84A /* Main.storyboard */,
+				04921BD82773908A00431F40 /* TabBarViewController.swift */,
 			);
-			path = View;
+			path = "Starting Controller";
 			sourceTree = "<group>";
 		};
 		04D75B062766724D0025F84A /* Other Files */ = {
@@ -285,7 +283,6 @@
 			children = (
 				04D75AD9276671E50025F84A /* Assets.xcassets */,
 				04D75ADB276671E50025F84A /* LaunchScreen.storyboard */,
-				04921BD82773908A00431F40 /* TabBarViewController.swift */,
 				04D75ACD276671D80025F84A /* AppDelegate.swift */,
 				04D75ACF276671D80025F84A /* SceneDelegate.swift */,
 			);
@@ -406,7 +403,6 @@
 			files = (
 				04D75ADD276671E50025F84A /* LaunchScreen.storyboard in Resources */,
 				04D75ADA276671E50025F84A /* Assets.xcassets in Resources */,
-				04D75AD5276671D80025F84A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,14 +488,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		04D75AD3276671D80025F84A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				04D75AD4276671D80025F84A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		04D75ADB276671E50025F84A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -62,23 +62,20 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         line.backgroundColor = .green
         
         // 5 StackView = datasName
-        dataName01.layer.cornerRadius = 2
+        dataName01.layer.cornerRadius = 4
         dataName01.layer.masksToBounds = true
         dataName01.backgroundColor = .lightGray
-        //dataName01.backgroundColor = .white
         dataName01.placeholder = "First data's name"
         
         dataName02.layer.cornerRadius = 4
         dataName02.layer.masksToBounds = true
         dataName02.backgroundColor = .lightGray
-        //dataName02.backgroundColor = .white
         dataName02.placeholder = "Second data's name"
         
         
         // 6 StackView = SaveName and Save button
         nameProfile.layer.cornerRadius = 2
         nameProfile.layer.masksToBounds = true
-        //nameProfile.backgroundColor = .white
         nameProfile.placeholder = "Save's name"
         nameProfile.backgroundColor = .lightGray
         
@@ -98,94 +95,85 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     func setConstraints() {
         let margins = view.layoutMarginsGuide
         // Faire un tableau de StackView et une boucle for ?
-        let firstStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[0],buttonsForConfiguration[1],buttonsForConfiguration[2]])
-        firstStackView.axis = .horizontal
-        firstStackView.alignment = .fill
-        firstStackView.distribution = .fillEqually
-        firstStackView.spacing = 2
-        firstStackView.translatesAutoresizingMaskIntoConstraints = false
-        firstStackView.addArrangedSubview(buttonsForConfiguration[0])
-        firstStackView.addArrangedSubview(buttonsForConfiguration[1])
-        firstStackView.addArrangedSubview(buttonsForConfiguration[2])
-        view.addSubview(firstStackView)
+        let firstRankButtonsStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[0],buttonsForConfiguration[1],buttonsForConfiguration[2]])
+        firstRankButtonsStackView.axis = .horizontal
+        firstRankButtonsStackView.alignment = .fill
+        firstRankButtonsStackView.distribution = .fillEqually
+        firstRankButtonsStackView.spacing = 2
+        firstRankButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        firstRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[0])
+        firstRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[1])
+        firstRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[2])
+        view.addSubview(firstRankButtonsStackView)
         
-        let secondStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[3],buttonsForConfiguration[4],buttonsForConfiguration[5]])
-        secondStackView.axis = .horizontal
-        secondStackView.alignment = .fill
-        secondStackView.distribution = .fillEqually
-        secondStackView.spacing = 2
-        secondStackView.translatesAutoresizingMaskIntoConstraints = false
-        secondStackView.addArrangedSubview(buttonsForConfiguration[3])
-        secondStackView.addArrangedSubview(buttonsForConfiguration[4])
-        secondStackView.addArrangedSubview(buttonsForConfiguration[5])
-        view.addSubview(secondStackView)
+        let secondRankButtonsStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[3],buttonsForConfiguration[4],buttonsForConfiguration[5]])
+        secondRankButtonsStackView.axis = .horizontal
+        secondRankButtonsStackView.alignment = .fill
+        secondRankButtonsStackView.distribution = .fillEqually
+        secondRankButtonsStackView.spacing = 2
+        secondRankButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        secondRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[3])
+        secondRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[4])
+        secondRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[5])
+        view.addSubview(secondRankButtonsStackView)
         
-        let thirdStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[6],buttonsForConfiguration[7],buttonsForConfiguration[8]])
-        thirdStackView.axis = .horizontal
-        thirdStackView.alignment = .fill
-        thirdStackView.distribution = .fillEqually
-        thirdStackView.spacing = 2
-        thirdStackView.translatesAutoresizingMaskIntoConstraints = false
-        thirdStackView.addArrangedSubview(buttonsForConfiguration[6])
-        thirdStackView.addArrangedSubview(buttonsForConfiguration[7])
-        thirdStackView.addArrangedSubview(buttonsForConfiguration[8])
-        view.addSubview(thirdStackView)
+        let thirdRankButtonsStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[6],buttonsForConfiguration[7],buttonsForConfiguration[8]])
+        thirdRankButtonsStackView.axis = .horizontal
+        thirdRankButtonsStackView.alignment = .fill
+        thirdRankButtonsStackView.distribution = .fillEqually
+        thirdRankButtonsStackView.spacing = 2
+        thirdRankButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        thirdRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[6])
+        thirdRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[7])
+        thirdRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[8])
+        view.addSubview(thirdRankButtonsStackView)
         
-        let fourthStackView = UIStackView(arrangedSubviews: [line])
-        fourthStackView.axis = .horizontal
-        fourthStackView.alignment = .fill
-        fourthStackView.distribution = .fillEqually
-        fourthStackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(fourthStackView)
+        let separatorStackView = UIStackView(arrangedSubviews: [line])
+        separatorStackView.axis = .horizontal
+        separatorStackView.alignment = .fill
+        separatorStackView.distribution = .fillEqually
+        separatorStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(separatorStackView)
         
-        let fithStackView = UIStackView(arrangedSubviews: [dataName01,dataName02])
-        fithStackView.axis = .horizontal
-        fithStackView.alignment = .fill
-        fithStackView.distribution = .fillEqually
-        fithStackView.spacing = 5
-        fithStackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(fithStackView)
+        let datasReceivedStackView = UIStackView(arrangedSubviews: [dataName01,dataName02])
+        datasReceivedStackView.axis = .horizontal
+        datasReceivedStackView.alignment = .fill
+        datasReceivedStackView.distribution = .fillEqually
+        datasReceivedStackView.spacing = 5
+        datasReceivedStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(datasReceivedStackView)
         
-        let sixthStackView = UIStackView(arrangedSubviews: [nameProfile,saveButton,activityIndicator])
-        sixthStackView.axis = .horizontal
-        sixthStackView.alignment = .fill
-        //sixthStackView.distribution = .fillEqually
-        sixthStackView.spacing = 5
-        sixthStackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(sixthStackView)
+        let savingStackView = UIStackView(arrangedSubviews: [nameProfile,saveButton,activityIndicator])
+        savingStackView.axis = .horizontal
+        savingStackView.alignment = .fill
+        savingStackView.spacing = 5
+        savingStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(savingStackView)
         
-        let globalStackView = UIStackView(arrangedSubviews: [firstStackView,secondStackView,thirdStackView])
+        let globalStackView = UIStackView(arrangedSubviews: [firstRankButtonsStackView,secondRankButtonsStackView,thirdRankButtonsStackView])
         globalStackView.axis = .vertical
         globalStackView.alignment = .fill
-        //globalStackView.distribution = .fillProportionally
         globalStackView.spacing = 5
         globalStackView.translatesAutoresizingMaskIntoConstraints = false
-        globalStackView.addArrangedSubview(firstStackView)
-        globalStackView.addArrangedSubview(secondStackView)
-        globalStackView.addArrangedSubview(thirdStackView)
-        globalStackView.addArrangedSubview(fourthStackView)
-        globalStackView.addArrangedSubview(fithStackView)
-        globalStackView.addArrangedSubview(sixthStackView)
+        globalStackView.addArrangedSubview(firstRankButtonsStackView)
+        globalStackView.addArrangedSubview(secondRankButtonsStackView)
+        globalStackView.addArrangedSubview(thirdRankButtonsStackView)
+        globalStackView.addArrangedSubview(separatorStackView)
+        globalStackView.addArrangedSubview(datasReceivedStackView)
+        globalStackView.addArrangedSubview(savingStackView)
         view.addSubview(globalStackView)
         
-        //let scrollView = UIScrollView()
-        /*
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scrollView)
-        scrollView.backgroundColor = .orange
-        scrollView.addSubview(globalStackView)
-        */
         NSLayoutConstraint.activate([
             
             globalStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             globalStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             globalStackView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 40),
-            //globalStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0) ,
             globalStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
             
-            fourthStackView.heightAnchor.constraint(equalToConstant: 10),
-            fithStackView.heightAnchor.constraint(equalToConstant: 30),
-            sixthStackView.heightAnchor.constraint(equalToConstant: 60)
+            separatorStackView.heightAnchor.constraint(equalToConstant: 10),
+            datasReceivedStackView.heightAnchor.constraint(equalToConstant: 32),
+            savingStackView.heightAnchor.constraint(equalToConstant: 32),
+            saveButton.widthAnchor.constraint(equalTo: savingStackView.heightAnchor, multiplier: 16/9),
         ])
     }
     
@@ -226,14 +214,15 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         activityIndicator.startAnimating()
         // On lance le chrono. Une fois le temps écoulé il va lancer fireTimer.
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
+        
         groupDatasInArray()
+        
         if var name = nameProfile.text {
             if name == "" {
                 name = "Save"
             }
             profileSaving.name = name
         }
-        
         
         profileSaving.datas = dataProfile
         
@@ -256,7 +245,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         saveButton.isHidden = false
         activityIndicator.stopAnimating()
         timer.invalidate()
-        deleteButtons()
+        initializeDatasButtons()
  
     }
     
@@ -278,7 +267,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         print("\(dataProfile)")
     }
     
-    func deleteButtons() {
+    func initializeDatasButtons() {
         for button in buttonsForConfiguration {
             button.nameTextField.text = ""
             button.orderTextField.text = ""

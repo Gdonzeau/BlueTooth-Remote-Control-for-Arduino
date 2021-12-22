@@ -39,18 +39,39 @@ extension RemoteViewController: UITableViewDataSource {
 }
 
 extension RemoteViewController: UITableViewDelegate {
-    /*
+    
     private func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) throws -> UISwipeActionsConfiguration? { // Swipe action
         /*
         guard recipeMode == .database else {
             return nil
         }
         */
+        let editingAction = UIContextualAction(
+            style: .normal, title: "Edit") { _, _, completionHandler in
+            let profileToEdit = self.profiles[indexPath.row]
+            
+            do {
+                try self.profileStorageManager.deleteProfile(profileToDelete: profileToEdit)
+                DispatchQueue.main.async {
+                    self.getProfilesFromDatabase()
+                }
+                completionHandler(true)
+            } catch {
+                print("Error while deleting")
+                completionHandler(false)
+                let error = AppError.errorDelete
+                if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+                    self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+                }
+            }
+        }
+        
         let deleteAction = UIContextualAction(
             style: .destructive, title: "Delete") { _, _, completionHandler in
             let profileToDelete = self.profiles[indexPath.row]
             
             do {
+                print("On efface")
                 try self.profileStorageManager.deleteProfile(profileToDelete: profileToDelete)
                 DispatchQueue.main.async {
                     self.getProfilesFromDatabase()
@@ -65,14 +86,14 @@ extension RemoteViewController: UITableViewDelegate {
                 }
             }
         }
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        let configuration = UISwipeActionsConfiguration(actions: [editingAction,deleteAction])
         return configuration
     }
-    */
+    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        
+        /*
         if editingStyle == .delete {
             
             let deleteAction = UIContextualAction(
@@ -100,5 +121,6 @@ extension RemoteViewController: UITableViewDelegate {
         }
         if editingStyle == .insert {
         }
+ */
     }
 }

@@ -18,14 +18,34 @@ extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keybo
     }
    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == dataName01 || textField == dataName02 || textField == nameProfile {
-            animateViewMoving(up: true, moveValue: 160)
+        if  textField == dataName01 ||
+            textField ==  dataName02 ||
+            textField == nameProfile ||
+                
+            textField == buttonsForConfiguration[6].nameTextField ||
+            textField == buttonsForConfiguration[7].nameTextField ||
+            textField == buttonsForConfiguration[8].nameTextField ||
+            
+            textField == buttonsForConfiguration[6].orderTextField ||
+            textField == buttonsForConfiguration[7].orderTextField ||
+            textField == buttonsForConfiguration[8].orderTextField {
+            animateViewMoving(up: true, moveValue: 200)
         }
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == dataName01 || textField == dataName02 || textField == nameProfile {
-            animateViewMoving(up: false, moveValue: 160)
+        if  textField == dataName01 ||
+            textField ==  dataName02 ||
+            textField == nameProfile ||
+                
+            textField == buttonsForConfiguration[6].nameTextField ||
+            textField == buttonsForConfiguration[7].nameTextField ||
+            textField == buttonsForConfiguration[8].nameTextField ||
+            
+            textField == buttonsForConfiguration[6].orderTextField ||
+            textField == buttonsForConfiguration[7].orderTextField ||
+            textField == buttonsForConfiguration[8].orderTextField {
+            animateViewMoving(up: false, moveValue: 200)
         }
     }
 
