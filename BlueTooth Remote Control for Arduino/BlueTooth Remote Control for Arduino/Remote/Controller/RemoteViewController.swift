@@ -15,10 +15,12 @@ class RemoteViewController: UIViewController {
     
     var mainView = MainView()
     var infosButtons = InfoButtons()
+    
     let tableOfProfiles = UITableView()
     let tableBluetooth = UITableView()
+    
     var profiles : [Profile] = []
-    var profilesName: [String] = []
+    //var profilesName: [String] = []
     let loadButton = UIButton()
     
     // BlueTooth part
@@ -95,7 +97,7 @@ class RemoteViewController: UIViewController {
         tableOfProfiles.delegate = self
         
         AlternateTableLoadButton(tableShown: false)
-        updatingTableView()
+        //updatingTableView()
         //setupTableView()
 
     }
@@ -160,10 +162,12 @@ class RemoteViewController: UIViewController {
     }
     
     func updatingTableView() {
+        /*
         profilesName = []
         for profile in profiles {
             profilesName.append(profile.name)
         }
+ */
     }
     
     func configurationButtons(rank:Int) {

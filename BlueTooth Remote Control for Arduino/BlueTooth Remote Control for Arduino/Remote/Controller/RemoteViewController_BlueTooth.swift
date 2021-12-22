@@ -120,8 +120,8 @@ extension RemoteViewController: CBPeripheralDelegate {
                 // On sépare le String aux : pour faire un tableau
                 let resultArr = result.components(separatedBy: ":")
                 if resultArr.count > 1 {
-                let data01 = "\(resultArr[1])"
-                let data02 = "\(resultArr[0])"
+                let data01 = "\(resultArr[0])"
+                let data02 = "\(resultArr[1])"
                     mainView.datas.contentData01.text = data01
                     mainView.datas.contentData02.text = data02
                 }
