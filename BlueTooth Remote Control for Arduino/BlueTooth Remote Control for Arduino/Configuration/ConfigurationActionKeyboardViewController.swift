@@ -33,18 +33,9 @@ extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keybo
         let movementDuration:TimeInterval = 0.3
         let movement:CGFloat = ( up ? -moveValue : moveValue)
 
-        //UIView.beginAnimations("animateView", context: nil)
         UIView.animate(withDuration: movementDuration, animations: {
             self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         })
-        /*
-        UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(movementDuration)
-
-        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
-        
-        UIView.commitAnimations()
-        */
     }
 }
 
