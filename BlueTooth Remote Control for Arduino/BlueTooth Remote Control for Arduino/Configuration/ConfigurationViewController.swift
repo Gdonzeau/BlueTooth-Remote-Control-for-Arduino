@@ -28,6 +28,8 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     var profileSaving = Profile(name: "", datas:"")
     
+    var activeField: UITextField?
+    
     override func viewDidLoad() {
         //tryWithTableView()
         setup()
@@ -36,6 +38,8 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         configuration()
     }
     func setup() {
+        //registerForKeyboardNotifications()
+        
         for index in 0 ..< buttonsForConfiguration.count {
             buttonsForConfiguration[index].nameTextField.delegate = self
             buttonsForConfiguration[index].orderTextField.delegate = self
@@ -291,15 +295,5 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     }
     func resigningFirstResponder() {
         UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil);
-    }
-}
-
-extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keyboard when returnKey
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil);
-        
-        updateButtons()
-        return true
     }
 }

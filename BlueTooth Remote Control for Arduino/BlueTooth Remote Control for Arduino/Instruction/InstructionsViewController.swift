@@ -7,7 +7,7 @@
 
 import UIKit
 
-class InstructionsViewController: UIViewController {
+class InstructionsViewController: UIViewController, UITextFieldDelegate {
     
     let appColors = AppColors.shared
     var boutonTest = ButtonForConfiguration()
@@ -20,6 +20,9 @@ class InstructionsViewController: UIViewController {
     }
     
     func setupView() {
+        boutonTest.nameTextField.delegate = self
+        boutonTest.orderTextField.delegate = self
+        
         view.backgroundColor = appColors.backgroundColor
         view.addSubview(boutonTest)
         boutonTest.translatesAutoresizingMaskIntoConstraints = false
@@ -31,5 +34,5 @@ class InstructionsViewController: UIViewController {
             boutonTest.topAnchor.constraint(equalTo: margins.topAnchor),
         ])
     }
-
+    
 }
