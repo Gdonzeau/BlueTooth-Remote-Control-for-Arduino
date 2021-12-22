@@ -41,8 +41,9 @@ extension RemoteViewController: CBCentralManagerDelegate {
             // Gestion des périphériques BlueTooth détectés
             let peripheralDetected = PeripheralsDetected(name: nameTarget, peripheral: peripheral)
             peripheralsDetected.append(peripheralDetected)
-            mainView.connection.btNames.append(nameTarget)
-            mainView.connection.nameBTModule.reloadData()
+            tableBluetooth.reloadData()
+            //mainView.connection.btNames.append(nameTarget)
+            //mainView.connection.nameBTModule.reloadData()
         }
         
     }

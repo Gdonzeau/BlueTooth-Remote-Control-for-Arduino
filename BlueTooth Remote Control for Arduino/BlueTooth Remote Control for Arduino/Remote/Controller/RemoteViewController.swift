@@ -82,6 +82,9 @@ class RemoteViewController: UIViewController {
         super.viewDidLoad()
         status = .disconnected
         centralManager = CBCentralManager(delegate: self, queue: nil)
+        mainView.connection.nameBTModule = tableBluetooth
+        
+        
         //   setConstraints()
         
         let idTry = UUID().uuidString
@@ -92,13 +95,10 @@ class RemoteViewController: UIViewController {
         super.viewWillAppear(animated)
         setupView()
         getProfilesFromDatabase()
-        tableOfProfiles.register(UITableViewCell.self,forCellReuseIdentifier: "cell")
-        tableOfProfiles.dataSource = self
-        tableOfProfiles.delegate = self
         
         AlternateTableLoadButton(tableShown: false)
         //updatingTableView()
-        //setupTableView()
+        setupTableView()
 
     }
     
@@ -158,7 +158,13 @@ class RemoteViewController: UIViewController {
     }
     
     func setupTableView() {
-        tableOfProfiles.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableOfProfiles.register(UITableViewCell.self,forCellReuseIdentifier: "cell_Profile")
+        tableOfProfiles.dataSource = self
+        tableOfProfiles.delegate = self
+        
+        tableBluetooth.register(UITableViewCell.self, forCellReuseIdentifier: "cell_ModuleBT")
+        tableBluetooth.dataSource = self
+        tableBluetooth.dataSource = self
     }
     
     func updatingTableView() {
