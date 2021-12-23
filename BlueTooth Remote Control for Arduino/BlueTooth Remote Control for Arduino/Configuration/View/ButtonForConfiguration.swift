@@ -30,7 +30,7 @@ class ButtonForConfiguration: UIView, UITextFieldDelegate {
         button.backgroundColor = appColors.buttonColor
         button.setTitle("X", for: .normal)
         button.contentMode = .scaleAspectFit
-        button.layer.cornerRadius = 4
+        button.layer.cornerRadius = 24
         button.layer.masksToBounds = true
         button.setTitleColor(.white, for: .normal)
         

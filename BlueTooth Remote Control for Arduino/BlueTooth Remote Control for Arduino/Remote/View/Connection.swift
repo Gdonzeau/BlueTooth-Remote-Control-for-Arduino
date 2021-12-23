@@ -15,7 +15,7 @@ class Connection: UIView {
     var disconnect = UIButton() // Press this button to disconnect from BT
     var activityIndicator = UIActivityIndicatorView()
     var btNames: [String] = []
-    var nameBTModule = UITableView()
+    //var nameBTModule = UITableView()
     
     //var status: Status = .disconnected 
     
@@ -38,12 +38,13 @@ class Connection: UIView {
         
         // End Temporary
         backgroundColor = appColors.backgroundColor
-        
-        nameBTModule.backgroundColor = .white
+        /*
+        nameBTModule.backgroundColor = .black
         nameBTModule.register(UITableViewCell.self, forCellReuseIdentifier: "BTcell")
         nameBTModule.delegate = self
         nameBTModule.dataSource = self
         //nameBTModule.placeholder = "BT module's name"
+        */
         
         connect.setTitle("Connect", for: .normal)
         connect.backgroundColor = appColors.buttonColor
@@ -61,7 +62,7 @@ class Connection: UIView {
         connect.contentMode = .scaleAspectFit
         disconnect.contentMode = .scaleAspectFit
         
-        let horizontalStackView = UIStackView(arrangedSubviews: [nameBTModule,connect,disconnect,activityIndicator])
+        let horizontalStackView = UIStackView(arrangedSubviews: [connect,disconnect,activityIndicator])//[nameBTModule,connect,disconnect,activityIndicator])
         horizontalStackView.axis = .horizontal
         horizontalStackView.alignment = .fill
         horizontalStackView.distribution = .fillEqually
@@ -78,8 +79,9 @@ class Connection: UIView {
         ])
     }
 }
-
+/*
 extension Connection: UITableViewDelegate, UITableViewDataSource {
+    /*
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return btNames.count
     }
@@ -100,4 +102,6 @@ extension Connection: UITableViewDelegate, UITableViewDataSource {
         //AlternateTableLoadButton(tableShown:false)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    */
 }
+*/

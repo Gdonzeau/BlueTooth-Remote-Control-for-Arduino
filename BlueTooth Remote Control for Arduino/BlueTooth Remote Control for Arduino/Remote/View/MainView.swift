@@ -29,18 +29,17 @@ class MainView: UIStackView {
     }
     
     func setupView() {
-        title.title.text = "Titre"
+        //title.title.text = "Titre"
         
         backgroundColor = appColors.backgroundColor
-        //backgroundColor = UIColor(displayP3Red: 7/255, green: 171/255, blue: 128/255, alpha: 1)
         alignment = .fill
         axis = .vertical
         distribution = .fill
         translatesAutoresizingMaskIntoConstraints = false
         spacing = 5
         
-        addArrangedSubview(title)
-        addArrangedSubview(connection)
+        //addArrangedSubview(title)
+        //addArrangedSubview(connection)
         addArrangedSubview(rankButtons01)
         addArrangedSubview(rankButtons02)
         addArrangedSubview(rankButtons03)

@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window?.makeKeyAndVisible()
                 window?.windowScene = windowScene
         
-        home.selectedIndex = 1
+        home.selectedIndex = 0
         
         //guard let _ = (scene as? UIWindowScene) else { return }
         

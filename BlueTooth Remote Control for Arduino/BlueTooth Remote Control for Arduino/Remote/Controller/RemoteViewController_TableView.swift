@@ -10,9 +10,12 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
     
     // func numberOfSection not necessary as 1 by default
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2 // A modifier pour plusieurs sections
+        return 1 // A modifier pour plusieurs sections
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        //return profiles.count
+        /*
         switch section {
         case 0:
             return profiles.count
@@ -21,13 +24,23 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return 0
         }
+ */
       //  if tableView == tableOfProfiles {
        // switch section
         
        // } else if
+        if tableView == tableOfProfiles {
+            return profiles.count
+        } else if tableView == tableBluetooth {
+            return peripheralsDetected.count
+        } else {
+            return 0
+        }
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+        /*
         let section = indexPath.section
         switch section {
         case 0:
@@ -37,10 +50,20 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return 0.0
         }
+        */
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
+        print(section)
+        
+         /*
+         if tableView == tableBluetooth
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell_Profile", for: indexPath as IndexPath)
+        cell.textLabel?.text = "\(profiles[indexPath.row].name)"
+        return cell
+        */
+        /*
         switch section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell_Profile", for: indexPath as IndexPath)
@@ -53,10 +76,33 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return UITableViewCell()
         }
+        */
+        if tableView == tableOfProfiles {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell_Profile", for: indexPath as IndexPath)
+            cell.textLabel?.text = "\(profiles[indexPath.row].name)"
+            return cell
+        } else if tableView == tableBluetooth {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell_ModuleBT", for: indexPath as IndexPath)
+            cell.textLabel?.text = "\(peripheralsDetected[indexPath.row].name)"
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Touching")
+        /*
         let section = indexPath.section
+        print(section)
+        print("touch \(indexPath.row)")
+        configurationButtons(rank:indexPath.row)
+        AlternateTableLoadButton(tableShown:false)
+        tableView.deselectRow(at: indexPath, animated: true)
+ */
+        /*
+        let section = indexPath.section
+        
         switch section {
         case 0:
             print("touch \(indexPath.row)")
@@ -72,6 +118,20 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         configurationButtons(rank:indexPath.row)
         AlternateTableLoadButton(tableShown:false)
         tableView.deselectRow(at: indexPath, animated: true)
+        */
+        if tableView == tableOfProfiles {
+            
+            print("touch0 \(indexPath.row)")
+            configurationButtons(rank:indexPath.row)
+            AlternateTableLoadButton(tableShown:false)
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+        } else if tableView == tableBluetooth {
+            print("touch1 \(indexPath.row)")
+            //configurationButtons(rank:indexPath.row)
+            //AlternateTableLoadButton(tableShown:false)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     internal func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? { // Swipe action

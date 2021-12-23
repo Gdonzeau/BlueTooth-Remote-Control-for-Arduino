@@ -31,17 +31,34 @@ extension RemoteViewController: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
                         advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        
         print(peripheral)
+        //peripheralsDetected = []
         if let nameTarget = peripheral.name {
             // À retirer par la suite
             print("Le périphérique s'appelle : \(nameTarget)")
-            peripheralsName.append(nameTarget)
-            nom01 = nameTarget
-            //
-            // Gestion des périphériques BlueTooth détectés
-            let peripheralDetected = PeripheralsDetected(name: nameTarget, peripheral: peripheral)
+            let peripheralDetected = PeripheralDetected(name: nameTarget, peripheral: peripheral, indentifier: peripheral.identifier)
+            /*
+            for peripheralRegistred in peripheralsDetected {
+                
+                guard peripheralRegistred.indentifier != peripheralDetected.indentifier else {
+                    return
+                }
+                peripheralsDetected.append(peripheralDetected)
+                tableBluetooth.reloadData()
+            }
+            */
             peripheralsDetected.append(peripheralDetected)
             tableBluetooth.reloadData()
+            peripheralsName.append(nameTarget)
+            //nom01 = nameTarget
+            //
+            // Gestion des périphériques BlueTooth détectés
+            
+            /*
+            peripheralsDetected.append(peripheralDetected)
+            tableBluetooth.reloadData()
+ */            
             //mainView.connection.btNames.append(nameTarget)
             //mainView.connection.nameBTModule.reloadData()
         }

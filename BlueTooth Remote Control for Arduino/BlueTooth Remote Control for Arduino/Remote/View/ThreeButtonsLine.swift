@@ -33,7 +33,7 @@ class ThreeButtonsLine: UIView {
             
             button.backgroundColor = appColors.buttonColor
             button.contentMode = .scaleAspectFit
-            button.layer.cornerRadius = 14
+            button.layer.cornerRadius = 24
             button.layer.masksToBounds = true
         }
         

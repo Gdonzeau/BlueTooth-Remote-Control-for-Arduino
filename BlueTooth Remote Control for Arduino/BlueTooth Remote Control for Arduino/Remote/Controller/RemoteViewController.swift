@@ -13,6 +13,14 @@ class RemoteViewController: UIViewController {
     let appColors = AppColors.shared
     let profileStorageManager = ProfileStorageManager.shared
     
+    var saveTitle = UILabel()
+    
+    var connectButton = UIButton() // Press this button to connect to BT
+    var disconnectButton = UIButton() // Press this button to disconnect from BT
+    var activityIndicator = UIActivityIndicatorView()
+    //var btNames: [String] = []
+    //var nameBTModule = UITableView()
+    
     var mainView = MainView()
     var infosButtons = InfoButtons()
     
@@ -33,38 +41,38 @@ class RemoteViewController: UIViewController {
     var writeCharacteristic: CBCharacteristic!
     var peripherals = [CBPeripheral]()
     var peripheralsName = [String]()
-    var peripheralsDetected = [PeripheralsDetected]()
+    var peripheralsDetected = [PeripheralDetected]()
     
     //var status: Status = .disconnected
     
     //var code = ["1255000000","1000255000","LED_ON","LED_OFF","1193000255","1000255255"]
     
-    var nom01 = ""
+    //var nom01 = ""
     
     var status:Status = .disconnected {
         didSet {
             resetViewState()
             switch status {
             case .connecting:
-                mainView.connection.activityIndicator.startAnimating()
-                mainView.connection.connect.isHidden = true
-                mainView.connection.disconnect.isHidden = true
-                mainView.connection.nameBTModule.isHidden = true
+                activityIndicator.startAnimating()
+                connectButton.isHidden = true
+                disconnectButton.isHidden = true
+                tableBluetooth.isHidden = true
             case .error:
                 let error = AppError.loadingError
                 if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
                     self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
                 }
             case .disconnected:
-                mainView.connection.activityIndicator.stopAnimating()
-                mainView.connection.connect.isHidden = false
-                mainView.connection.disconnect.isHidden = true
-                mainView.connection.nameBTModule.isHidden = false
+                activityIndicator.stopAnimating()
+                connectButton.isHidden = false
+                disconnectButton.isHidden = true
+                tableBluetooth.isHidden = false
             case .connected:
-                mainView.connection.activityIndicator.stopAnimating()
-                mainView.connection.connect.isHidden = true
-                mainView.connection.disconnect.isHidden = false
-                mainView.connection.nameBTModule.isHidden = true
+                activityIndicator.stopAnimating()
+                connectButton.isHidden = true
+                disconnectButton.isHidden = false
+                tableBluetooth.isHidden = true
             }
         }
     }
@@ -72,7 +80,8 @@ class RemoteViewController: UIViewController {
         mainView.connection.activityIndicator.stopAnimating()
         mainView.connection.connect.isHidden = true
         mainView.connection.disconnect.isHidden = true
-        mainView.connection.nameBTModule.isHidden = false
+        //mainView.connection.nameBTModule.isHidden = false
+        tableBluetooth.isHidden = false
     }
     // End of Bluetooth part
     
@@ -82,7 +91,7 @@ class RemoteViewController: UIViewController {
         super.viewDidLoad()
         status = .disconnected
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        mainView.connection.nameBTModule = tableBluetooth
+        //mainView.connection.nameBTModule = tableBluetooth
         
         
         //   setConstraints()
@@ -109,50 +118,127 @@ class RemoteViewController: UIViewController {
     
     func setupView() {
         view.backgroundColor = appColors.backgroundColor
+        // Setting Title
+        saveTitle.backgroundColor = appColors.backgroundColor
+        saveTitle.contentMode = .scaleAspectFit
+        saveTitle.textAlignment = .center
+        saveTitle.font = UIFont.boldSystemFont(ofSize: 20.0)
+        saveTitle.translatesAutoresizingMaskIntoConstraints = false
         
+        // Setting connection module
+        tableBluetooth.backgroundColor = .black
+        tableBluetooth.layer.cornerRadius = 24
+        tableBluetooth.layer.masksToBounds = true
+        
+        //tableBluetooth.register(UITableViewCell.self, forCellReuseIdentifier: "BTcell")
+        //tableBluetooth.delegate = self
+        //tableBluetooth.dataSource = self
+        tableBluetooth.translatesAutoresizingMaskIntoConstraints = false
+        
+        connectButton.layer.cornerRadius = 24
+        connectButton.layer.masksToBounds = true
+        connectButton.setTitle("Connect", for: .normal)
+        connectButton.backgroundColor = appColors.buttonColor
+        connectButton.tintColor = .black
+        connectButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        disconnectButton.layer.cornerRadius = 24
+        disconnectButton.layer.masksToBounds = true
+        disconnectButton.setTitle("Disconnect", for: .normal)
+        disconnectButton.backgroundColor = appColors.buttonColor
+        disconnectButton.tintColor = .black
+        disconnectButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        connectButton.contentMode = .scaleAspectFit
+        disconnectButton.contentMode = .scaleAspectFit
+        
+        disconnectButton.addTarget(self, action: #selector(disconnect), for: .touchUpInside)
+        
+        connectButton.addTarget(self, action: #selector(connect), for: .touchUpInside)
+        
+        // Buttons and datas in "mainView"
+        view.addSubview(mainView)
+        mainView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //Button Load / TableView with profiles available
         loadButton.backgroundColor = appColors.buttonColor
-        loadButton.layer.cornerRadius = 4
+        loadButton.layer.cornerRadius = 24
         loadButton.layer.masksToBounds = true
         loadButton.setTitle("Load Profile", for: .normal)
         loadButton.setTitleColor(.white, for: .normal)
         loadButton.addTarget(self, action: #selector(loadProfile), for: .touchUpInside)
         
-        mainView.connection.disconnect.addTarget(self, action: #selector(disconnect), for: .touchUpInside)
-        
-        mainView.connection.connect.addTarget(self, action: #selector(connect), for: .touchUpInside)
-        
-        view.addSubview(mainView)
-        mainView.translatesAutoresizingMaskIntoConstraints = false
-        
+        tableOfProfiles.layer.cornerRadius = 24
+        tableOfProfiles.layer.masksToBounds = true
         view.addSubview(tableOfProfiles)
         tableOfProfiles.translatesAutoresizingMaskIntoConstraints = false
-        let stackView = UIStackView(arrangedSubviews: [tableOfProfiles,loadButton])
         
+        // MARK: - Constraints
         
-        
-        stackView.axis = .horizontal
-        stackView.alignment = .fill
-        //sixthStackView.distribution = .fill
-        stackView.spacing = 5
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
-        /*
-         }
-         
-         func setConstraints() {
-         */
         let margins = view.layoutMarginsGuide
+        // Title
+        let titleStackView = UIStackView(arrangedSubviews: [saveTitle])
+        titleStackView.axis = .horizontal
+        titleStackView.alignment = .fill
+        titleStackView.distribution = .fillEqually
+        titleStackView.spacing = 5
+        titleStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(titleStackView)
+        
+        //connectionModule
+        let connectionStackView = UIStackView(arrangedSubviews: [tableBluetooth,connectButton,disconnectButton,activityIndicator])
+        connectionStackView.axis = .horizontal
+        connectionStackView.alignment = .fill
+        connectionStackView.distribution = .fill
+        connectionStackView.spacing = 5
+        connectionStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(connectionStackView)
+        
+        // Mainview already configurated
+        
+        //
+        let loadButtonProfileTVStackView = UIStackView(arrangedSubviews: [tableOfProfiles,loadButton])
+        loadButtonProfileTVStackView.axis = .horizontal
+        loadButtonProfileTVStackView.alignment = .fill
+        //sixthStackView.distribution = .fill
+        loadButtonProfileTVStackView.spacing = 5
+        loadButtonProfileTVStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(loadButtonProfileTVStackView)
+        
+        //GlobalStackView
+        let globalStackView = UIStackView(arrangedSubviews: [titleStackView,connectionStackView,mainView,loadButtonProfileTVStackView])
+        globalStackView.axis = .vertical
+        globalStackView.alignment = .fill
+        globalStackView.spacing = 5
+        globalStackView.translatesAutoresizingMaskIntoConstraints = false
+        globalStackView.addArrangedSubview(titleStackView)
+        globalStackView.addArrangedSubview(connectionStackView)
+        globalStackView.addArrangedSubview(mainView)
+        globalStackView.addArrangedSubview(loadButtonProfileTVStackView)
+        view.addSubview(globalStackView)
+        
         NSLayoutConstraint.activate([
+            
+            globalStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            globalStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            globalStackView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 40),
+            globalStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
+            
+            connectButton.widthAnchor.constraint(equalTo: connectionStackView.heightAnchor, multiplier: 20/9),
+            connectionStackView.heightAnchor.constraint(equalToConstant: 60),
+            loadButtonProfileTVStackView.heightAnchor.constraint(equalToConstant: 60)
+            /*
             mainView.topAnchor.constraint(equalTo: margins.topAnchor),
             mainView.bottomAnchor.constraint(lessThanOrEqualTo: tableOfProfiles.bottomAnchor),
             mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
             mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             
-            stackView.topAnchor.constraint(lessThanOrEqualTo: mainView.bottomAnchor),
+            saveStackView.topAnchor.constraint(lessThanOrEqualTo: mainView.bottomAnchor),
             //stackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
-            stackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            stackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 60)
+            saveStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+            saveStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+            saveStackView.heightAnchor.constraint(equalToConstant: 60)
+ */
         ])
         
     }
@@ -192,7 +278,7 @@ class RemoteViewController: UIViewController {
             
             let dataBase = profiles[rank]
             
-            mainView.title.title.text = dataBase.name
+            saveTitle.text = dataBase.name
             let datasArray = dataBase.datas.components(separatedBy: ":")
             print("Array : \(datasArray)")
             
@@ -224,7 +310,9 @@ class RemoteViewController: UIViewController {
                 if autoadjust == true {
                     buttons[index].isHidden = true
                 } else {
-                    buttons[index].backgroundColor = appColors.backgroundColor
+                    buttons[index].isEnabled = false
+                    buttons[index].backgroundColor = appColors.buttonNotEnableColor
+                    //buttons[index].backgroundColor = appColors.backgroundColor
                     buttons[index].setTitleColor(appColors.backgroundColor, for: .normal)
                 }
             } else {
