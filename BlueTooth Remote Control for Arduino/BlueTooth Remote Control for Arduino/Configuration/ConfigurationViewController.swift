@@ -30,6 +30,8 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     var activeField: UITextField?
     
+    var uuidInUse = UUID()
+    
     override func viewDidLoad() {
         //tryWithTableView()
         setup()
@@ -209,6 +211,17 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func save(sender: UIButton!) {
+        
+        for button in buttonsForConfiguration { // First of all, let's check there are no :
+            
+            if let buttonName = button.nameTextField.text, let buttonOrder = button.orderTextField.text, let data01 = dataName01.text, let data02 = dataName02.text {
+                if buttonName.contains(":") || buttonOrder.contains(":") || data01.contains(":") || data02.contains(":") {
+                    allErrors(errorMessage: "Don't use : ", errorTitle: "Forbidden character used")
+                    return
+                }
+            }
+        }
+        
         nameProfile.isHidden = true
         saveButton.isHidden = true
         activityIndicator.startAnimating()
@@ -249,6 +262,58 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
  
     }
     
+    func loadingProfile(profileToLoad: Profile) {
+        // Let's delete the profile to edit from Storage
+        do {
+            print("On efface")
+            try self.profileStorageManager.deleteProfile(profileToDelete: profileToLoad)
+            /*
+            DispatchQueue.main.async {
+                self.getProfilesFromDatabase()
+                tableView.reloadData()
+            }
+            completionHandler(true)
+ */
+        } catch {
+            print("Error while deleting")
+            //completionHandler(false)
+            let error = AppError.errorDelete
+            if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+                self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+            }
+        }
+        // Trouver le profil équivalent et le supprimer de la base de données
+        /*
+        var profiles = [Profile]()
+        do {
+            profiles = try profileStorageManager.loadProfiles()
+            if profiles.isEmpty {
+                print("Vide")
+            } else {
+                print("loading")
+                for profile in profiles {
+                    print("\(profile.name)")
+                }
+            }
+        } catch let error {
+            print("Error loading recipes from database \(error.localizedDescription)")
+        }
+        */
+            nameProfile.text = profileToLoad.name
+            let datasArray = profileToLoad.datas.components(separatedBy: ":")
+            print("Array : \(datasArray)")
+            
+            for index in 0 ..< buttonsForConfiguration.count {
+                buttonsForConfiguration[index].nameTextField.text = datasArray[index]
+                buttonsForConfiguration[index].orderTextField.text = datasArray[index+9]
+            }
+        dataName01.text = datasArray[18]
+        dataName02.text = datasArray[19]
+            
+            print("\(infosButtons.order)")
+            print("\(infosButtons.name)")
+    }
+    
     func groupDatasInArray() {
         dataProfile = ""
         var nameButtons = ""
@@ -272,6 +337,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
             button.nameTextField.text = ""
             button.orderTextField.text = ""
             button.button.setTitle("", for: .normal)
+            nameProfile.text = ""
         }
     }
     
@@ -283,5 +349,11 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     }
     func resigningFirstResponder() {
         UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil);
+    }
+    
+    func allErrors(errorMessage: String, errorTitle: String) {
+        let alertVC = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC,animated: true,completion: nil)
     }
 }

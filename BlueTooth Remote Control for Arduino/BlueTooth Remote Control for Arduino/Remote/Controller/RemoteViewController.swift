@@ -108,7 +108,7 @@ class RemoteViewController: UIViewController {
         AlternateTableLoadButton(tableShown: false)
         //updatingTableView()
         setupTableView()
-
+        
     }
     
     override func loadView() {
@@ -228,17 +228,17 @@ class RemoteViewController: UIViewController {
             connectionStackView.heightAnchor.constraint(equalToConstant: 60),
             loadButtonProfileTVStackView.heightAnchor.constraint(equalToConstant: 60)
             /*
-            mainView.topAnchor.constraint(equalTo: margins.topAnchor),
-            mainView.bottomAnchor.constraint(lessThanOrEqualTo: tableOfProfiles.bottomAnchor),
-            mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            
-            saveStackView.topAnchor.constraint(lessThanOrEqualTo: mainView.bottomAnchor),
-            //stackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
-            saveStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            saveStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            saveStackView.heightAnchor.constraint(equalToConstant: 60)
- */
+             mainView.topAnchor.constraint(equalTo: margins.topAnchor),
+             mainView.bottomAnchor.constraint(lessThanOrEqualTo: tableOfProfiles.bottomAnchor),
+             mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+             mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+             
+             saveStackView.topAnchor.constraint(lessThanOrEqualTo: mainView.bottomAnchor),
+             //stackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
+             saveStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
+             saveStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
+             saveStackView.heightAnchor.constraint(equalToConstant: 60)
+             */
         ])
         
     }
@@ -255,11 +255,11 @@ class RemoteViewController: UIViewController {
     
     func updatingTableView() {
         /*
-        profilesName = []
-        for profile in profiles {
-            profilesName.append(profile.name)
-        }
- */
+         profilesName = []
+         for profile in profiles {
+         profilesName.append(profile.name)
+         }
+         */
     }
     
     func configurationButtons(rank:Int) {
@@ -338,13 +338,19 @@ class RemoteViewController: UIViewController {
         if buttonTag == 5 {
             AlternateTableLoadButton(tableShown: true)
         }
+        if buttonTag == 6 {
+            //guard let tabbarController = UIApplication.shared.tabBarController() as? RootTabBarViewController else do { return }
+            tabBarController?.selectedIndex = 1
+            //tabbarController.selectedIndex = 0  // Will redirect to first tab ( index = 0 )
+            
+        }
         sendOrder(message: order)
     }
     @objc func connect() {
         if peripheralsDetected.count > 0 {
-        status = .connecting
-       let peripheral = peripheralsDetected[0].peripheral
-        connectBT(peripheral: peripheral)
+            status = .connecting
+            let peripheral = peripheralsDetected[0].peripheral
+            connectBT(peripheral: peripheral)
         } else {
             print("No bluetooth detected")
         }
@@ -392,3 +398,16 @@ class RemoteViewController: UIViewController {
     
 }
 
+extension UIApplication {
+    /*function will return reference to tabbarcontroller */
+    func tabbarController() -> UIViewController? {
+        guard let vcs = self.keyWindow?.rootViewController?.children else { return nil }
+        
+        for vc in vcs {
+            if  let _ = vc as? TabBarViewController {
+                return vc
+            }
+        }
+        return nil
+    }
+}

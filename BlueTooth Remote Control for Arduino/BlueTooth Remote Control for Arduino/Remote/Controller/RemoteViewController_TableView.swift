@@ -39,7 +39,13 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
+        //return 30.0
+        
+        if tableView == tableOfProfiles {
+            return 30.0
+        } else {
+            return 20
+        }
         /*
         let section = indexPath.section
         switch section {
@@ -126,7 +132,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
             AlternateTableLoadButton(tableShown:false)
             tableView.deselectRow(at: indexPath, animated: true)
             
-        } else if tableView == tableBluetooth {
+        } else { //if tableView == tableBluetooth {
             print("touch1 \(indexPath.row)")
             //configurationButtons(rank:indexPath.row)
             //AlternateTableLoadButton(tableShown:false)
