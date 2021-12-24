@@ -32,15 +32,28 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     var uuidInUse = UUID()
     
+    var test = ""
+    var profileReceivedToBeLoaded = Profile(name: "", datas: "")
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
         //tryWithTableView()
         setup()
         setView()
         setConstraints()
         configuration()
     }
-    func setup() {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("test01 : \(test)")
+        if profileReceivedToBeLoaded != Profile(name: "", datas: "") {
+            loadingProfile(profileToLoad: profileReceivedToBeLoaded)
+            profileReceivedToBeLoaded = Profile(name: "", datas: "")
+        }
         
+    }
+    func setup() {
         for index in 0 ..< buttonsForConfiguration.count {
             buttonsForConfiguration[index].nameTextField.delegate = self
             buttonsForConfiguration[index].orderTextField.delegate = self
@@ -221,7 +234,8 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
                 }
             }
         }
-        
+        //animateViewMoving(up: false, moveValue: 200)
+        resigningFirstResponder()
         nameProfile.isHidden = true
         saveButton.isHidden = true
         activityIndicator.startAnimating()

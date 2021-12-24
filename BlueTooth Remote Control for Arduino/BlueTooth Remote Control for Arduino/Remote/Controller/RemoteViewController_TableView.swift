@@ -129,6 +129,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
             
             print("touch0 \(indexPath.row)")
             configurationButtons(rank:indexPath.row)
+            profileLoaded = profiles[indexPath.row]
             AlternateTableLoadButton(tableShown:false)
             tableView.deselectRow(at: indexPath, animated: true)
             

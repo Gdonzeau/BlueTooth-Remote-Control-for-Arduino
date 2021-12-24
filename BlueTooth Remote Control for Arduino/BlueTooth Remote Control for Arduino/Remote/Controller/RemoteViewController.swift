@@ -28,6 +28,7 @@ class RemoteViewController: UIViewController {
     let tableBluetooth = UITableView()
     
     var profiles : [Profile] = []
+    var profileLoaded = Profile(name: "", datas: "")
     //var profilesName: [String] = []
     let loadButton = UIButton()
     
@@ -42,6 +43,8 @@ class RemoteViewController: UIViewController {
     var peripherals = [CBPeripheral]()
     var peripheralsName = [String]()
     var peripheralsDetected = [PeripheralDetected]()
+    
+    var test = "Test passé"
     
     //var status: Status = .disconnected
     
@@ -339,10 +342,13 @@ class RemoteViewController: UIViewController {
             AlternateTableLoadButton(tableShown: true)
         }
         if buttonTag == 6 {
-            //guard let tabbarController = UIApplication.shared.tabBarController() as? RootTabBarViewController else do { return }
-            tabBarController?.selectedIndex = 1
-            //tabbarController.selectedIndex = 0  // Will redirect to first tab ( index = 0 )
+            // To edit profile in use
+            let navVC = tabBarController?.viewControllers![1] as! UINavigationController
+                    let configurationVC = navVC.topViewController as! ConfigurationViewController
+            configurationVC.test = test
+            configurationVC.profileReceivedToBeLoaded = profileLoaded
             
+            tabBarController?.selectedIndex = 1
         }
         sendOrder(message: order)
     }
