@@ -29,7 +29,6 @@ class RemoteViewController: UIViewController {
     
     var profiles : [Profile] = []
     var profileLoaded = Profile(name: "", datas: "")
-    //var profilesName: [String] = []
     let loadButton = UIButton()
     
     // BlueTooth part
@@ -45,12 +44,6 @@ class RemoteViewController: UIViewController {
     var peripheralsDetected = [PeripheralDetected]()
     
     var test = "Test passé"
-    
-    //var status: Status = .disconnected
-    
-    //var code = ["1255000000","1000255000","LED_ON","LED_OFF","1193000255","1000255255"]
-    
-    //var nom01 = ""
     
     var status:Status = .disconnected {
         didSet {
@@ -83,7 +76,6 @@ class RemoteViewController: UIViewController {
         mainView.connection.activityIndicator.stopAnimating()
         mainView.connection.connect.isHidden = true
         mainView.connection.disconnect.isHidden = true
-        //mainView.connection.nameBTModule.isHidden = false
         tableBluetooth.isHidden = false
     }
     // End of Bluetooth part
@@ -94,8 +86,6 @@ class RemoteViewController: UIViewController {
         super.viewDidLoad()
         status = .disconnected
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        //mainView.connection.nameBTModule = tableBluetooth
-        
         
         //   setConstraints()
         
@@ -105,6 +95,7 @@ class RemoteViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //overrideUserInterfaceStyle = .dark
         setupView()
         getProfilesFromDatabase()
         
@@ -128,28 +119,24 @@ class RemoteViewController: UIViewController {
         saveTitle.font = UIFont.boldSystemFont(ofSize: 20.0)
         saveTitle.translatesAutoresizingMaskIntoConstraints = false
         
-        // Setting connection module
-        tableBluetooth.backgroundColor = .black
+        //tableBluetooth.backgroundColor = .black
         tableBluetooth.layer.cornerRadius = 24
         tableBluetooth.layer.masksToBounds = true
         
-        //tableBluetooth.register(UITableViewCell.self, forCellReuseIdentifier: "BTcell")
-        //tableBluetooth.delegate = self
-        //tableBluetooth.dataSource = self
         tableBluetooth.translatesAutoresizingMaskIntoConstraints = false
         
         connectButton.layer.cornerRadius = 24
         connectButton.layer.masksToBounds = true
         connectButton.setTitle("Connect", for: .normal)
         connectButton.backgroundColor = appColors.buttonColor
-        connectButton.tintColor = .black
+        //connectButton.tintColor = .black
         connectButton.translatesAutoresizingMaskIntoConstraints = false
         
         disconnectButton.layer.cornerRadius = 24
         disconnectButton.layer.masksToBounds = true
         disconnectButton.setTitle("Disconnect", for: .normal)
         disconnectButton.backgroundColor = appColors.buttonColor
-        disconnectButton.tintColor = .black
+        //disconnectButton.tintColor = .black
         disconnectButton.translatesAutoresizingMaskIntoConstraints = false
         
         connectButton.contentMode = .scaleAspectFit
@@ -230,18 +217,6 @@ class RemoteViewController: UIViewController {
             connectButton.widthAnchor.constraint(equalTo: connectionStackView.heightAnchor, multiplier: 20/9),
             connectionStackView.heightAnchor.constraint(equalToConstant: 60),
             loadButtonProfileTVStackView.heightAnchor.constraint(equalToConstant: 60)
-            /*
-             mainView.topAnchor.constraint(equalTo: margins.topAnchor),
-             mainView.bottomAnchor.constraint(lessThanOrEqualTo: tableOfProfiles.bottomAnchor),
-             mainView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-             mainView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-             
-             saveStackView.topAnchor.constraint(lessThanOrEqualTo: mainView.bottomAnchor),
-             //stackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor),
-             saveStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-             saveStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-             saveStackView.heightAnchor.constraint(equalToConstant: 60)
-             */
         ])
         
     }
@@ -253,16 +228,7 @@ class RemoteViewController: UIViewController {
         
         tableBluetooth.register(UITableViewCell.self, forCellReuseIdentifier: "cell_ModuleBT")
         tableBluetooth.dataSource = self
-        tableBluetooth.dataSource = self
-    }
-    
-    func updatingTableView() {
-        /*
-         profilesName = []
-         for profile in profiles {
-         profilesName.append(profile.name)
-         }
-         */
+        tableBluetooth.delegate = self
     }
     
     func configurationButtons(rank:Int) {
@@ -302,6 +268,8 @@ class RemoteViewController: UIViewController {
             buttons[index].tag = index
             buttons[index].addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             buttons[index].setTitle(infosButtons.name[index], for: .normal)
+            buttons[index].isEnabled = true
+            
             if infosButtons.name[index] == "" && infosButtons.order[index] == "" {
                 infosButtons.notSeen[index] = true
             } else {
@@ -315,7 +283,7 @@ class RemoteViewController: UIViewController {
                 } else {
                     buttons[index].isEnabled = false
                     buttons[index].backgroundColor = appColors.buttonNotEnableColor
-                    //buttons[index].backgroundColor = appColors.backgroundColor
+                    buttons[index].backgroundColor = appColors.backgroundColor
                     buttons[index].setTitleColor(appColors.backgroundColor, for: .normal)
                 }
             } else {
@@ -335,13 +303,19 @@ class RemoteViewController: UIViewController {
         print("Le bouton \(infosButtons.name[sender.tag]) a été pressé.")
         let order = infosButtons.order[buttonTag]
         if buttonTag == 4 {
-            AlternateTableLoadButton(tableShown: false)
+            overrideUserInterfaceStyle = .dark
+            //AlternateTableLoadButton(tableShown: false)
+            
+            //window.overrideUserInterfaceStyle = .dark
         }
         
         if buttonTag == 5 {
-            AlternateTableLoadButton(tableShown: true)
+            overrideUserInterfaceStyle = .light
+            //AlternateTableLoadButton(tableShown: true)
         }
         if buttonTag == 6 {
+            
+            /*
             // To edit profile in use
             let navVC = tabBarController?.viewControllers![1] as! UINavigationController
                     let configurationVC = navVC.topViewController as! ConfigurationViewController
@@ -349,6 +323,7 @@ class RemoteViewController: UIViewController {
             configurationVC.profileReceivedToBeLoaded = profileLoaded
             
             tabBarController?.selectedIndex = 1
+ */
         }
         sendOrder(message: order)
     }

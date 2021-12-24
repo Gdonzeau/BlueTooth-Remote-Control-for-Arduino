@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.window?.rootViewController = home
                 window?.makeKeyAndVisible()
                 window?.windowScene = windowScene
-        
+        //self.window?.overrideUserInterfaceStyle = .light
         home.selectedIndex = 0
         
         //guard let _ = (scene as? UIWindowScene) else { return }

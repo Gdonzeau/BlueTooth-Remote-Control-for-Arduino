@@ -29,8 +29,8 @@ class DatasReceived: UIView {
         backgroundColor = appColors.backgroundColor
         titleData01.text = "Data01 :"
         titleData02.text = "Data02 :"
-        contentData01.text = "0,23"
-        contentData02.text = "3,134"
+        contentData01.text = ""
+        contentData02.text = ""
         
         titleData01.addConstraint(NSLayoutConstraint(item: titleData01, attribute: .height, relatedBy: .equal, toItem: titleData01, attribute: .width, multiplier: 0.5, constant: 0))
         contentData01.addConstraint(NSLayoutConstraint(item: contentData01, attribute: .height, relatedBy: .equal, toItem: contentData01, attribute: .width, multiplier: 0.5, constant: 0))

@@ -16,6 +16,8 @@ class TabBarViewController: UITabBarController {
            tabBar.tintColor = .label
            setupVCs()
     }
+    
+    
     fileprivate func createNavController(for rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
@@ -23,7 +25,7 @@ class TabBarViewController: UITabBarController {
         //navController.navigationBar.prefersLargeTitles = true
         //navController.navigationBar.isHidden = true
         navController.navigationBar.prefersLargeTitles = false
-        navController.navigationBar.backgroundColor = .systemGreen
+        //navController.navigationBar.backgroundColor = .systemGreen
         rootViewController.navigationItem.title = title
         
         return navController
@@ -33,7 +35,7 @@ class TabBarViewController: UITabBarController {
             viewControllers = [
                 createNavController(for: RemoteViewController(), title: NSLocalizedString("Remote Control", comment: ""), image: UIImage(systemName: "keyboard")!),
                 createNavController(for: ConfigurationViewController(), title: NSLocalizedString("Configuration", comment: ""), image: UIImage(systemName: "gear")!),
-                createNavController(for: InstructionsViewController(), title: NSLocalizedString("Instructions", comment: ""), image: UIImage(systemName: "book")!)
+                createNavController(for: InstructionsViewController(), title: NSLocalizedString("Instructions", comment: ""), image: UIImage(systemName: "book")!),
             ]
         }
 }

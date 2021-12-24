@@ -187,7 +187,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
             
             separatorStackView.heightAnchor.constraint(equalToConstant: 10),
             datasReceivedStackView.heightAnchor.constraint(equalToConstant: 32),
-            savingStackView.heightAnchor.constraint(equalToConstant: 32),
+            savingStackView.heightAnchor.constraint(equalToConstant: 50),
             saveButton.widthAnchor.constraint(equalTo: savingStackView.heightAnchor, multiplier: 16/9),
         ])
     }
@@ -234,7 +234,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
                 }
             }
         }
-        //animateViewMoving(up: false, moveValue: 200)
         resigningFirstResponder()
         nameProfile.isHidden = true
         saveButton.isHidden = true
@@ -281,38 +280,15 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         do {
             print("On efface")
             try self.profileStorageManager.deleteProfile(profileToDelete: profileToLoad)
-            /*
-            DispatchQueue.main.async {
-                self.getProfilesFromDatabase()
-                tableView.reloadData()
-            }
-            completionHandler(true)
- */
+            
         } catch {
             print("Error while deleting")
-            //completionHandler(false)
             let error = AppError.errorDelete
             if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
                 self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
             }
         }
-        // Trouver le profil équivalent et le supprimer de la base de données
-        /*
-        var profiles = [Profile]()
-        do {
-            profiles = try profileStorageManager.loadProfiles()
-            if profiles.isEmpty {
-                print("Vide")
-            } else {
-                print("loading")
-                for profile in profiles {
-                    print("\(profile.name)")
-                }
-            }
-        } catch let error {
-            print("Error loading recipes from database \(error.localizedDescription)")
-        }
-        */
+        
             nameProfile.text = profileToLoad.name
             let datasArray = profileToLoad.datas.components(separatedBy: ":")
             print("Array : \(datasArray)")
