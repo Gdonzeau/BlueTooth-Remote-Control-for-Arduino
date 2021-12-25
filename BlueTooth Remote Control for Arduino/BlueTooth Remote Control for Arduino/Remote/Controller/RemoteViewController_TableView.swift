@@ -43,13 +43,13 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         var height:CGFloat = 10.0
         
         if tableView == tableBluetooth {
-            print("Height") // Ne s'imprime pas
-            height = 20.0
+            print("Height")
+            height = 40.0
         }
         
         if tableView == tableOfProfiles {
-            print("Hauteur") // S'imprime
-            height = 30.0
+            print("Hauteur")
+            height = 40.0
         }
         
         
@@ -148,6 +148,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
             
         } else { //if tableView == tableBluetooth {
             print("touch1 \(indexPath.row)")
+            connectBT(peripheral: peripheralsDetected[indexPath.row].peripheral)
             //configurationButtons(rank:indexPath.row)
             //AlternateTableLoadButton(tableShown:false)
             tableView.deselectRow(at: indexPath, animated: true)
@@ -193,11 +194,25 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         // edit
         let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
             print("Edit \(indexPath.row)")
-            
+            // First : send the profile to edit
             let navVC = self.tabBarController?.viewControllers![1] as! UINavigationController
             let configurationVC = navVC.topViewController as! ConfigurationViewController
             configurationVC.test = self.test
             configurationVC.profileReceivedToBeLoaded = self.profiles[indexPath.row]
+            // Let's delete the profile to edit from Storage
+            do {
+                print("On efface")
+                try self.profileStorageManager.deleteProfile(profileToDelete: self.profiles[indexPath.row])
+                
+            } catch {
+                print("Error while deleting")
+                let error = AppError.errorDelete
+                if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+                    self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+                }
+            }
+            // Reload the TableView of Profiles
+            self.tableOfProfiles.reloadData()
             
             completionHandler(true)
             self.tabBarController?.selectedIndex = 1

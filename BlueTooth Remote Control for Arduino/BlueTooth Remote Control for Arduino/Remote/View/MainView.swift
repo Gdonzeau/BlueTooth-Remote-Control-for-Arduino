@@ -34,7 +34,7 @@ class MainView: UIStackView {
         backgroundColor = appColors.backgroundColor
         alignment = .fill
         axis = .vertical
-        distribution = .fill
+        distribution = .fillProportionally
         translatesAutoresizingMaskIntoConstraints = false
         spacing = 5
         

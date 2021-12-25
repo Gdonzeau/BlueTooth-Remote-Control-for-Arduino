@@ -45,30 +45,43 @@ class RemoteViewController: UIViewController {
     
     var test = "Test passé"
     
+    var heightSVConnected:CGFloat = 60.0
+    var heightSVLoadProfile:CGFloat = 60.0
+    
     var status:Status = .disconnected {
         didSet {
             resetViewState()
             switch status {
+            
             case .connecting:
                 activityIndicator.startAnimating()
                 connectButton.isHidden = true
                 disconnectButton.isHidden = true
                 tableBluetooth.isHidden = true
+                heightSVConnected = 60.0
+                setupView()
+                
             case .error:
                 let error = AppError.loadingError
                 if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
                     self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
                 }
+                
             case .disconnected:
                 activityIndicator.stopAnimating()
-                connectButton.isHidden = false
+                connectButton.isHidden = true
                 disconnectButton.isHidden = true
                 tableBluetooth.isHidden = false
+                heightSVConnected = 120.0
+                setupView()
+                
             case .connected:
                 activityIndicator.stopAnimating()
                 connectButton.isHidden = true
                 disconnectButton.isHidden = false
                 tableBluetooth.isHidden = true
+                heightSVConnected = 60.0
+                setupView()
             }
         }
     }
@@ -77,6 +90,7 @@ class RemoteViewController: UIViewController {
         mainView.connection.connect.isHidden = true
         mainView.connection.disconnect.isHidden = true
         tableBluetooth.isHidden = false
+        heightSVConnected = 120.0
     }
     // End of Bluetooth part
     
@@ -215,8 +229,8 @@ class RemoteViewController: UIViewController {
             globalStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
             
             connectButton.widthAnchor.constraint(equalTo: connectionStackView.heightAnchor, multiplier: 20/9),
-            connectionStackView.heightAnchor.constraint(equalToConstant: 60),
-            loadButtonProfileTVStackView.heightAnchor.constraint(equalToConstant: 60)
+            connectionStackView.heightAnchor.constraint(equalToConstant: heightSVConnected),
+            loadButtonProfileTVStackView.heightAnchor.constraint(equalToConstant: heightSVLoadProfile)
         ])
         
     }
@@ -364,6 +378,13 @@ class RemoteViewController: UIViewController {
     func AlternateTableLoadButton(tableShown: Bool) {
         loadButton.isHidden = tableShown
         tableOfProfiles.isHidden = !tableShown
+        
+        if tableShown == true {
+            heightSVLoadProfile = 120
+        } else {
+            heightSVLoadProfile = 60
+        }
+        setupView()
         
     }
     

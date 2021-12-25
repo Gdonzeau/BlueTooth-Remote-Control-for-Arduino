@@ -276,6 +276,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     }
     
     func loadingProfile(profileToLoad: Profile) {
+        /*
         // Let's delete the profile to edit from Storage
         do {
             print("On efface")
@@ -288,7 +289,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
                 self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
             }
         }
-        
+        */
             nameProfile.text = profileToLoad.name
             let datasArray = profileToLoad.datas.components(separatedBy: ":")
             print("Array : \(datasArray)")
