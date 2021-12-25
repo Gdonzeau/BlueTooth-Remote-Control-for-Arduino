@@ -54,7 +54,6 @@ class ButtonForConfiguration: UIView, UITextFieldDelegate {
         let verticalStackView = UIStackView(arrangedSubviews: [button,nameTextField,orderTextField])
         verticalStackView.axis = .vertical
         verticalStackView.alignment = .fill
-        //verticalStackView.distribution = .fillEqually
         verticalStackView.spacing = 2
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(verticalStackView)

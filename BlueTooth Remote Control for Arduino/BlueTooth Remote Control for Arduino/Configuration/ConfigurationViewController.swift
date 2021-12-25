@@ -229,26 +229,53 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
             
             if let buttonName = button.nameTextField.text, let buttonOrder = button.orderTextField.text, let data01 = dataName01.text, let data02 = dataName02.text {
                 if buttonName.contains(":") || buttonOrder.contains(":") || data01.contains(":") || data02.contains(":") {
-                    allErrors(errorMessage: "Don't use : ", errorTitle: "Forbidden character used")
+                    
+                    let error = AppError.forbiddenCharacters
+                    if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+                        allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+                    }
                     return
                 }
             }
+        }
+        // Then let's check save name
+        if let name = nameProfile.text {
+            
+            if name == "" {
+                
+                let error = AppError.nothingIsWritten
+                if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+                    allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+                }
+                return
+            }
+            
+            do {
+                let profilesAlreadySaved = try profileStorageManager.loadProfiles()
+                    for profile in profilesAlreadySaved {
+                        if profile.name == name {
+                            let error = AppError.nameAlreadyExists
+                            if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+                                allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+                            }
+                            return
+                        }
+                    }
+            } catch let error {
+                print("Error loading recipes from database \(error.localizedDescription)")
+            }
+            
+            profileSaving.name = name
         }
         resigningFirstResponder()
         nameProfile.isHidden = true
         saveButton.isHidden = true
         activityIndicator.startAnimating()
-        // On lance le chrono. Une fois le temps écoulé il va lancer fireTimer.
+        
+        // On lance le chrono pour le côté utilisateur. Une fois le temps écoulé il va lancer fireTimer.
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
         
         groupDatasInArray()
-        
-        if var name = nameProfile.text {
-            if name == "" {
-                name = "Save"
-            }
-            profileSaving.name = name
-        }
         
         profileSaving.datas = dataProfile
         

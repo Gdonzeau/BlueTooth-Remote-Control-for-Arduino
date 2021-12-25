@@ -35,12 +35,12 @@ class DatasReceived: UIView {
         titleData02.text = "Data02 :"
         contentData01.text = ""
         contentData02.text = ""
-        
+        /*
         titleData01.addConstraint(NSLayoutConstraint(item: titleData01, attribute: .height, relatedBy: .equal, toItem: titleData01, attribute: .width, multiplier: 0.5, constant: 0))
         contentData01.addConstraint(NSLayoutConstraint(item: contentData01, attribute: .height, relatedBy: .equal, toItem: contentData01, attribute: .width, multiplier: 0.5, constant: 0))
         titleData02.addConstraint(NSLayoutConstraint(item: titleData02, attribute: .height, relatedBy: .equal, toItem: titleData02, attribute: .width, multiplier: 0.5, constant: 0))
         contentData02.addConstraint(NSLayoutConstraint(item: contentData02, attribute: .height, relatedBy: .equal, toItem: contentData02, attribute: .width, multiplier: 0.5, constant: 0))
-        
+        */
         titleData01.contentMode = .scaleAspectFit
         contentData01.contentMode = .scaleAspectFit
         titleData02.contentMode = .scaleAspectFit
@@ -59,7 +59,11 @@ class DatasReceived: UIView {
             horizontalStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             horizontalStackView.topAnchor.constraint(equalTo: topAnchor),
-            horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            titleData01.heightAnchor.constraint(equalToConstant: 32),
+            titleData02.heightAnchor.constraint(equalToConstant: 32),
+            contentData01.heightAnchor.constraint(equalToConstant: 32),
+            contentData02.heightAnchor.constraint(equalToConstant: 32)
         ])
     }
 }

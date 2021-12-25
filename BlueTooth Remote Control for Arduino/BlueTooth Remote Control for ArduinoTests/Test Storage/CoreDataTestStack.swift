@@ -9,7 +9,7 @@ import XCTest
 import CoreData
 @testable import BlueTooth_Remote_Control_for_Arduino
 
-
+/*
 struct CoreDataTestStack {
     let persistentContainer: NSPersistentContainer
     let backgroundContext: NSManagedObjectContext
@@ -36,3 +36,4 @@ struct CoreDataTestStack {
     }
     
 }
+*/

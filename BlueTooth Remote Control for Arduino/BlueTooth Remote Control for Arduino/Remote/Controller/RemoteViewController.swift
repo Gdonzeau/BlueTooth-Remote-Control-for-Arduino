@@ -22,6 +22,15 @@ class RemoteViewController: UIViewController {
     //var nameBTModule = UITableView()
     
     var mainView = MainView()
+    var firstThreeButtons = ThreeButtonsLine()
+    var secondThreeButtons = ThreeButtonsLine()
+    var thirdThreeButtons = ThreeButtonsLine()
+    
+    var titleData01 = UILabel()
+    var contentData01 = UILabel()
+    var titleData02 = UILabel()
+    var contentData02 = UILabel()
+    
     var infosButtons = InfoButtons()
     
     let tableOfProfiles = UITableView()
@@ -62,6 +71,8 @@ class RemoteViewController: UIViewController {
                 setupView()
                 
             case .error:
+                
+                
                 let error = AppError.loadingError
                 if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
                     self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
@@ -135,24 +146,20 @@ class RemoteViewController: UIViewController {
         saveTitle.font = UIFont.boldSystemFont(ofSize: 20.0)
         saveTitle.translatesAutoresizingMaskIntoConstraints = false
         
-        //tableBluetooth.backgroundColor = .black
         tableBluetooth.layer.cornerRadius = 24
         tableBluetooth.layer.masksToBounds = true
-        
         tableBluetooth.translatesAutoresizingMaskIntoConstraints = false
-        
+
         actualizeButton.layer.cornerRadius = 24
         actualizeButton.layer.masksToBounds = true
         actualizeButton.setTitle("Actualize", for: .normal)
         actualizeButton.backgroundColor = appColors.buttonColor
-        //connectButton.tintColor = .black
         actualizeButton.translatesAutoresizingMaskIntoConstraints = false
         
         disconnectButton.layer.cornerRadius = 24
         disconnectButton.layer.masksToBounds = true
         disconnectButton.setTitle("Disconnect", for: .normal)
         disconnectButton.backgroundColor = appColors.buttonColor
-        //disconnectButton.tintColor = .black
         disconnectButton.translatesAutoresizingMaskIntoConstraints = false
         
         actualizeButton.contentMode = .scaleAspectFit
@@ -163,8 +170,25 @@ class RemoteViewController: UIViewController {
         actualizeButton.addTarget(self, action: #selector(actualize), for: .touchUpInside)
         
         // Buttons and datas in "mainView"
-        view.addSubview(mainView)
-        mainView.translatesAutoresizingMaskIntoConstraints = false
+        //view.addSubview(mainView)
+        //mainView.translatesAutoresizingMaskIntoConstraints = false
+        titleData01.adjustsFontForContentSizeCategory = true
+        titleData02.adjustsFontForContentSizeCategory = true
+        contentData01.adjustsFontForContentSizeCategory = true
+        contentData02.adjustsFontForContentSizeCategory = true
+        
+        titleData01.text = "Data01 :"
+        titleData02.text = "Data02 :"
+        contentData01.text = ""
+        contentData02.text = ""
+        
+        titleData01.contentMode = .scaleAspectFit
+        contentData01.contentMode = .scaleAspectFit
+        titleData02.contentMode = .scaleAspectFit
+        contentData02.contentMode = .scaleAspectFit
+        
+        
+        
         
         //Button Load / TableView with profiles available
         loadButton.backgroundColor = appColors.buttonColor
@@ -200,6 +224,22 @@ class RemoteViewController: UIViewController {
         connectionStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(connectionStackView)
         
+        let buttonsStackView = UIStackView(arrangedSubviews: [firstThreeButtons,secondThreeButtons,thirdThreeButtons])
+        buttonsStackView.axis = .vertical
+        buttonsStackView.alignment = .fill
+        buttonsStackView.distribution = .fillEqually
+        buttonsStackView.spacing = 5
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonsStackView)
+        
+        let dataReceivedStackView = UIStackView(arrangedSubviews: [titleData01,contentData01,titleData02,contentData02])
+        dataReceivedStackView.axis = .horizontal
+        dataReceivedStackView.alignment = .fill
+        dataReceivedStackView.distribution = .fillEqually
+        dataReceivedStackView.spacing = 5
+        dataReceivedStackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(dataReceivedStackView)
+        
         // Mainview already configurated
         
         //
@@ -212,14 +252,16 @@ class RemoteViewController: UIViewController {
         view.addSubview(loadButtonProfileTVStackView)
         
         //GlobalStackView
-        let globalStackView = UIStackView(arrangedSubviews: [titleStackView,connectionStackView,mainView,loadButtonProfileTVStackView])
+        let globalStackView = UIStackView(arrangedSubviews: [titleStackView,connectionStackView,buttonsStackView,dataReceivedStackView,loadButtonProfileTVStackView])
         globalStackView.axis = .vertical
         globalStackView.alignment = .fill
         globalStackView.spacing = 5
         globalStackView.translatesAutoresizingMaskIntoConstraints = false
         globalStackView.addArrangedSubview(titleStackView)
         globalStackView.addArrangedSubview(connectionStackView)
-        globalStackView.addArrangedSubview(mainView)
+        globalStackView.addArrangedSubview(buttonsStackView)
+        globalStackView.addArrangedSubview(dataReceivedStackView)
+        //globalStackView.addArrangedSubview(mainView)
         globalStackView.addArrangedSubview(loadButtonProfileTVStackView)
         view.addSubview(globalStackView)
         
@@ -227,11 +269,13 @@ class RemoteViewController: UIViewController {
             
             globalStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             globalStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            globalStackView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 40),
-            globalStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
+            //globalStackView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 40),
+            globalStackView.topAnchor.constraint(equalTo: margins.topAnchor),
+            //globalStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
+            globalStackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor,constant: -40),
             
             titleStackView.heightAnchor.constraint(equalToConstant: 32.0),
-            actualizeButton.heightAnchor.constraint(equalToConstant: 32.0),
+            //actualizeButton.heightAnchor.constraint(equalToConstant: 32.0),
             //actualizeButton.widthAnchor.constraint(equalTo: connectionStackView.heightAnchor, multiplier: 20/9),
             connectionStackView.heightAnchor.constraint(equalToConstant: heightSVConnected),
             loadButtonProfileTVStackView.heightAnchor.constraint(equalToConstant: heightSVLoadProfile)
@@ -251,15 +295,15 @@ class RemoteViewController: UIViewController {
     
     func configurationButtons(rank:Int) {
         
-        let buttons = [mainView.rankButtons01.remoteButton01,
-                       mainView.rankButtons01.remoteButton02,
-                       mainView.rankButtons01.remoteButton03,
-                       mainView.rankButtons02.remoteButton01,
-                       mainView.rankButtons02.remoteButton02,
-                       mainView.rankButtons02.remoteButton03,
-                       mainView.rankButtons03.remoteButton01,
-                       mainView.rankButtons03.remoteButton02,
-                       mainView.rankButtons03.remoteButton03]
+        let buttons = [firstThreeButtons.remoteButton01,
+                       firstThreeButtons.remoteButton02,
+                       firstThreeButtons.remoteButton03,
+                       secondThreeButtons.remoteButton01,
+                       secondThreeButtons.remoteButton02,
+                       secondThreeButtons.remoteButton03,
+                       thirdThreeButtons.remoteButton01,
+                       thirdThreeButtons.remoteButton02,
+                       thirdThreeButtons.remoteButton03]
         
         if profiles.count > 0 {
             
@@ -388,6 +432,25 @@ class RemoteViewController: UIViewController {
     
     @objc func loadProfile() {
         AlternateTableLoadButton(tableShown: true)
+    }
+    
+    func receivedMessage(messageReceived: String) {
+        // On sépare le String aux : pour faire un tableau
+        let messageReceivedInArray = messageReceived.components(separatedBy: ":")
+        if messageReceivedInArray.count > 1 {
+        let data01 = "\(messageReceivedInArray[0])"
+        let data02 = "\(messageReceivedInArray[1])"
+            contentData01.text = data01
+            contentData02.text = data02
+        }
+    }
+    
+    func sendOrder (message:String) {
+        if status == .connected {
+            if let dataA = message.data(using: .utf8) {
+            targetPeripheral.writeValue(dataA, for: writeCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+        }
+        }
     }
     
     func allErrors(errorMessage: String, errorTitle: String) {

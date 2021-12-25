@@ -13,8 +13,6 @@ class BlueTooth_Remote_Control_for_ArduinoTests: XCTestCase {
 
     var profileStorageManager: ProfileStorageManager!
     
-    let fakeProfiles = FakeProfiles()
-    
     override func setUp() {
         super.setUp()
         
@@ -60,7 +58,7 @@ class BlueTooth_Remote_Control_for_ArduinoTests: XCTestCase {
         XCTAssertTrue(loadedProfiles.first?.name == "Name01Test")
     }
     
-    func testWhenDeletingOneRecipeFromFiveThenFourLeft() {
+    func testWhenDeletingOneProfileFromSixThenFiveLeft() {
         var loadedProfiles: [Profile] = []
         print("Contenu = \(FakeResponse.profiles.count)")
         // Saving recipes from FakeResponse

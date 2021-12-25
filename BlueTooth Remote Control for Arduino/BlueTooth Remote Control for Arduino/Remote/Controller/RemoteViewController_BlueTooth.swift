@@ -86,12 +86,7 @@ extension RemoteViewController: CBCentralManagerDelegate {
         print("Disconnected !")
         status = .disconnected
     }
-    func sendOrder (message:String) {
-        if status == .connected {
-            let dataA = message.data(using: .utf8)
-            targetPeripheral.writeValue(dataA!, for: writeCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
-        }
-    }
+    
 }
 
 extension RemoteViewController: CBPeripheralDelegate {
@@ -135,6 +130,9 @@ extension RemoteViewController: CBPeripheralDelegate {
             print(characteristic.value ?? "no value")
             if let result = String( data: characteristic.value! , encoding: .utf8) {
                 print("Reçu : \(result)")
+                receivedMessage(messageReceived: result)
+            }
+           /*
                 // On sépare le String aux : pour faire un tableau
                 let resultArr = result.components(separatedBy: ":")
                 if resultArr.count > 1 {
@@ -144,6 +142,7 @@ extension RemoteViewController: CBPeripheralDelegate {
                     mainView.datas.contentData02.text = data02
                 }
             }
+        */
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }

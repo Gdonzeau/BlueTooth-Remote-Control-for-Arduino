@@ -50,9 +50,9 @@ class ThreeButtonsLine: UIView {
             horizontalStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             horizontalStackView.topAnchor.constraint(equalTo: topAnchor),
             horizontalStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            remoteButton01.heightAnchor.constraint(equalToConstant: 80),
-            remoteButton02.heightAnchor.constraint(equalToConstant: 80),
-            remoteButton03.heightAnchor.constraint(equalToConstant: 80)
+            remoteButton01.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
+            remoteButton02.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
+            remoteButton03.heightAnchor.constraint(greaterThanOrEqualToConstant: 60)
         ])
         
     }

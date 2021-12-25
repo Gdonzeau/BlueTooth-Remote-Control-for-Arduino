@@ -6,8 +6,9 @@
 //
 
 import Foundation
-
+/*
 class FakeProfiles {
     var name: String = "Led RC"
     var datas: String = "Datas to control Led"
 }
+*/

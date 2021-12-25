@@ -13,9 +13,9 @@ enum AppError: String, LocalizedError {
     case coreDataError = "CoreData Error."
     case errorDelete = "Error while deleting"
     case errorSaving = "Error while saving"
-    case nothingIsWritten = "You must write something correct"
-    case noUrl = "No url adress"
-    case noImage = "No Image"
+    case nothingIsWritten = "You must write a name"
+    case forbiddenCharacters = "Forbidden characters"
+    case nameAlreadyExists = "Name exists"
     
     var errorDescription: String? {
         switch self {
@@ -26,11 +26,11 @@ enum AppError: String, LocalizedError {
         case .errorSaving:
             return "Problem occured while saving"
         case .nothingIsWritten:
-            return "You must write something."
-        case .noUrl:
-            return "There is no url adress for this recipe"
-        case .noImage:
-            return "There are no image associated with this recipe"
+            return "You must give a name."
+        case .forbiddenCharacters:
+            return "You must not use ':' "
+        case .nameAlreadyExists:
+            return "This name already exists."
         case .loadingError:
             return "There was an loading error"
         }
@@ -44,11 +44,11 @@ enum AppError: String, LocalizedError {
         case .errorSaving:
             return "Did not save"
         case .nothingIsWritten:
-            return "No ingredient"
-        case .noUrl:
-            return "No url adress"
-        case .noImage:
-            return "No image associated"
+            return "No name"
+        case .forbiddenCharacters:
+            return "Forbidden Character used"
+        case .nameAlreadyExists:
+            return "Name already choosen"
         case .loadingError:
             return "Loading Error"
         }
