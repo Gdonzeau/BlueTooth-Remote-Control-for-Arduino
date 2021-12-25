@@ -8,8 +8,8 @@
 import Foundation
 
 struct InfoButtons {
-    var order = ["Bouton01","Bouton02","Bouton03","Bouton04","Bouton05","Bouton06","Bouton07","Bouton08","Bouton09"]
-    var name = ["01","02","03","04","05","06","07","08","09"]
+    var order = ["Order01","Order02","Order03","Order04","Order05","Order06","Order07","Order08","Order09"]
+    var name = ["Button 01","Button 02","Button 03","Button 04","Button 05","Button 06","Button 07","Button 08","Button 09"]
     var notSeen = [false,false,false,false,false,false,false,false,false]
     var selected = [false,false,false,false,false,false,false,false,false]
 }

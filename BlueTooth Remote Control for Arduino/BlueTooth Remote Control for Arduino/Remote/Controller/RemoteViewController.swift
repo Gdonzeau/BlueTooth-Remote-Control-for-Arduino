@@ -21,7 +21,7 @@ class RemoteViewController: UIViewController {
     //var btNames: [String] = []
     //var nameBTModule = UITableView()
     
-    var mainView = MainView()
+    //var mainView = MainView()
     var firstThreeButtons = ThreeButtonsLine()
     var secondThreeButtons = ThreeButtonsLine()
     var thirdThreeButtons = ThreeButtonsLine()
@@ -52,8 +52,6 @@ class RemoteViewController: UIViewController {
     var peripheralsName = [String]()
     var peripheralsDetected = [PeripheralDetected]()
     
-    var test = "Test passé"
-    
     var heightSVConnected:CGFloat = 60.0
     var heightSVLoadProfile:CGFloat = 60.0
     
@@ -71,8 +69,6 @@ class RemoteViewController: UIViewController {
                 setupView()
                 
             case .error:
-                
-                
                 let error = AppError.loadingError
                 if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
                     self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
@@ -97,9 +93,9 @@ class RemoteViewController: UIViewController {
         }
     }
     private func resetViewState() {
-        mainView.connection.activityIndicator.stopAnimating()
-        mainView.connection.connect.isHidden = true
-        mainView.connection.disconnect.isHidden = true
+        activityIndicator.stopAnimating()
+        actualizeButton.isHidden = true
+        disconnectButton.isHidden = true
         tableBluetooth.isHidden = false
         heightSVConnected = 120.0
     }
@@ -111,21 +107,13 @@ class RemoteViewController: UIViewController {
         super.viewDidLoad()
         status = .disconnected
         centralManager = CBCentralManager(delegate: self, queue: nil)
-        
-        //   setConstraints()
-        
-        let idTry = UUID().uuidString
-        print("ID : \(idTry)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //overrideUserInterfaceStyle = .dark
         setupView()
         getProfilesFromDatabase()
-        
         AlternateTableLoadButton(tableShown: false)
-        //updatingTableView()
         setupTableView()
         
     }
@@ -136,7 +124,7 @@ class RemoteViewController: UIViewController {
     }
     
     func setupView() {
-        //UIFont.preferredFont(forTextStyle: UIFont.systemFont(ofSize: 20.0))
+        //UIFont.preferredFont(forTextStyle: UIFont.systemFont(ofSize: 20.0)) ???
         view.backgroundColor = appColors.backgroundColor
         // Setting Title
         saveTitle.adjustsFontForContentSizeCategory = true
@@ -146,6 +134,7 @@ class RemoteViewController: UIViewController {
         saveTitle.font = UIFont.boldSystemFont(ofSize: 20.0)
         saveTitle.translatesAutoresizingMaskIntoConstraints = false
         
+        // Connection Module
         tableBluetooth.layer.cornerRadius = 24
         tableBluetooth.layer.masksToBounds = true
         tableBluetooth.translatesAutoresizingMaskIntoConstraints = false
@@ -166,12 +155,9 @@ class RemoteViewController: UIViewController {
         disconnectButton.contentMode = .scaleAspectFit
         
         disconnectButton.addTarget(self, action: #selector(disconnect), for: .touchUpInside)
-        
         actualizeButton.addTarget(self, action: #selector(actualize), for: .touchUpInside)
         
-        // Buttons and datas in "mainView"
-        //view.addSubview(mainView)
-        //mainView.translatesAutoresizingMaskIntoConstraints = false
+        // Datas received from Arduino
         titleData01.adjustsFontForContentSizeCategory = true
         titleData02.adjustsFontForContentSizeCategory = true
         contentData01.adjustsFontForContentSizeCategory = true
@@ -181,14 +167,10 @@ class RemoteViewController: UIViewController {
         titleData02.text = "Data02 :"
         contentData01.text = ""
         contentData02.text = ""
-        
         titleData01.contentMode = .scaleAspectFit
         contentData01.contentMode = .scaleAspectFit
         titleData02.contentMode = .scaleAspectFit
         contentData02.contentMode = .scaleAspectFit
-        
-        
-        
         
         //Button Load / TableView with profiles available
         loadButton.backgroundColor = appColors.buttonColor
@@ -224,6 +206,7 @@ class RemoteViewController: UIViewController {
         connectionStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(connectionStackView)
         
+        // Nine buttons Stackview
         let buttonsStackView = UIStackView(arrangedSubviews: [firstThreeButtons,secondThreeButtons,thirdThreeButtons])
         buttonsStackView.axis = .vertical
         buttonsStackView.alignment = .fill
@@ -232,6 +215,7 @@ class RemoteViewController: UIViewController {
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(buttonsStackView)
         
+        // Stackview with datas received from Arduino
         let dataReceivedStackView = UIStackView(arrangedSubviews: [titleData01,contentData01,titleData02,contentData02])
         dataReceivedStackView.axis = .horizontal
         dataReceivedStackView.alignment = .fill
@@ -240,13 +224,10 @@ class RemoteViewController: UIViewController {
         dataReceivedStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(dataReceivedStackView)
         
-        // Mainview already configurated
-        
-        //
+        // Stackview with alternatively loadButton and TableView with profiles
         let loadButtonProfileTVStackView = UIStackView(arrangedSubviews: [tableOfProfiles,loadButton])
         loadButtonProfileTVStackView.axis = .horizontal
         loadButtonProfileTVStackView.alignment = .fill
-        //sixthStackView.distribution = .fill
         loadButtonProfileTVStackView.spacing = 5
         loadButtonProfileTVStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loadButtonProfileTVStackView)
@@ -261,7 +242,6 @@ class RemoteViewController: UIViewController {
         globalStackView.addArrangedSubview(connectionStackView)
         globalStackView.addArrangedSubview(buttonsStackView)
         globalStackView.addArrangedSubview(dataReceivedStackView)
-        //globalStackView.addArrangedSubview(mainView)
         globalStackView.addArrangedSubview(loadButtonProfileTVStackView)
         view.addSubview(globalStackView)
         
@@ -269,14 +249,11 @@ class RemoteViewController: UIViewController {
             
             globalStackView.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             globalStackView.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            //globalStackView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 40),
             globalStackView.topAnchor.constraint(equalTo: margins.topAnchor),
-            //globalStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
             globalStackView.bottomAnchor.constraint(equalTo: margins.bottomAnchor,constant: -40),
             
             titleStackView.heightAnchor.constraint(equalToConstant: 32.0),
-            //actualizeButton.heightAnchor.constraint(equalToConstant: 32.0),
-            //actualizeButton.widthAnchor.constraint(equalTo: connectionStackView.heightAnchor, multiplier: 20/9),
+            actualizeButton.widthAnchor.constraint(equalTo: connectionStackView.heightAnchor, multiplier: 1/1),
             connectionStackView.heightAnchor.constraint(equalToConstant: heightSVConnected),
             loadButtonProfileTVStackView.heightAnchor.constraint(equalToConstant: heightSVLoadProfile)
         ])
@@ -318,12 +295,11 @@ class RemoteViewController: UIViewController {
                 infosButtons.order[index] = datasArray[index+9]
             }
             
-            mainView.datas.titleData01.text = datasArray[18]
-            mainView.datas.titleData02.text = datasArray[19]
+            titleData01.text = datasArray[18]
+            titleData02.text = datasArray[19]
             
             print("\(infosButtons.order)")
             print("\(infosButtons.name)")
-            
         }
         
         for index in 0 ... 8 {
@@ -345,7 +321,6 @@ class RemoteViewController: UIViewController {
                 } else {
                     buttons[index].isEnabled = false
                     buttons[index].backgroundColor = appColors.buttonNotEnableColor
-                    //buttons[index].backgroundColor = appColors.backgroundColor
                     buttons[index].setTitleColor(appColors.backgroundColor, for: .normal)
                 }
             } else {
@@ -359,38 +334,13 @@ class RemoteViewController: UIViewController {
     @objc func buttonAction(sender: UIButton!) {
         
         let buttonTag = sender.tag
-        
-        print(buttonTag)
-        print(infosButtons.order[sender.tag])
-        print("Le bouton \(infosButtons.name[sender.tag]) a été pressé.")
         let order = infosButtons.order[buttonTag]
-        if buttonTag == 4 {
-            //view.window?.overrideUserInterfaceStyle = .dark
-            
-        }
-        
-        if buttonTag == 5 {
-            //view.window?.overrideUserInterfaceStyle = .light
-            
-        }
-        if buttonTag == 6 {
-            
-        }
         sendOrder(message: order)
     }
     @objc func actualize() {
         peripheralsDetected = []
         tableBluetooth.reloadData()
         centralManager.scanForPeripherals(withServices: [targetCBUUID])
-        /*
-        if peripheralsDetected.count > 0 {
-            status = .connecting
-            let peripheral = peripheralsDetected[0].peripheral
-            connectBT(peripheral: peripheral)
-        } else {
-            print("No bluetooth detected")
-        }
- */
     }
     
     @objc func disconnect() {

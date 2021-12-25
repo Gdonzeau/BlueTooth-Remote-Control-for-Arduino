@@ -54,8 +54,6 @@ class ThreeButtonsLine: UIView {
             remoteButton02.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
             remoteButton03.heightAnchor.constraint(greaterThanOrEqualToConstant: 60)
         ])
-        
     }
-
 }
 

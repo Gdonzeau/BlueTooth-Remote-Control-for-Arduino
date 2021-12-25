@@ -19,25 +19,16 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     var dataName01 = UITextField()
     var dataName02 = UITextField()
     var line = UIView()
-    var dataProfile = String()
+    
     let saveButton = UIButton()
     let activityIndicator = UIActivityIndicatorView()
-    let scrollView = UIScrollView()
     
     var timer = Timer()
-    
-    var profileSaving = Profile(name: "", datas:"")
-    
-    var activeField: UITextField?
-    
-    var uuidInUse = UUID()
-    
-    var test = ""
+    //var profileSaving = Profile(name: "", datas:"")
     var profileReceivedToBeLoaded = Profile(name: "", datas: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tryWithTableView()
         setup()
         setView()
         setConstraints()
@@ -46,7 +37,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("test01 : \(test)")
         if profileReceivedToBeLoaded != Profile(name: "", datas: "") {
             loadingProfile(profileToLoad: profileReceivedToBeLoaded)
             profileReceivedToBeLoaded = Profile(name: "", datas: "")
@@ -64,10 +54,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     }
     
     func setView() {
-        
-        //saveButton.heightAnchor.constraint(equalToConstant: 60) //???
-        //saveButton.widthAnchor.constraint(equalToConstant: 60)
-        //saveButton.heightAnchor.constraint(equalTo: saveButton.widthAnchor, multiplier: 1.0/1.0)
         
         view.backgroundColor = appColors.backgroundColor
         
@@ -108,8 +94,9 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     // MARK: - Constraints
     
     func setConstraints() {
+        
         let margins = view.layoutMarginsGuide
-        // Faire un tableau de StackView et une boucle for ?
+        // First buttons line
         let firstRankButtonsStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[0],buttonsForConfiguration[1],buttonsForConfiguration[2]])
         firstRankButtonsStackView.axis = .horizontal
         firstRankButtonsStackView.alignment = .fill
@@ -121,6 +108,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         firstRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[2])
         view.addSubview(firstRankButtonsStackView)
         
+        // Second buttons line
         let secondRankButtonsStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[3],buttonsForConfiguration[4],buttonsForConfiguration[5]])
         secondRankButtonsStackView.axis = .horizontal
         secondRankButtonsStackView.alignment = .fill
@@ -132,6 +120,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         secondRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[5])
         view.addSubview(secondRankButtonsStackView)
         
+        // Third buttons line
         let thirdRankButtonsStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[6],buttonsForConfiguration[7],buttonsForConfiguration[8]])
         thirdRankButtonsStackView.axis = .horizontal
         thirdRankButtonsStackView.alignment = .fill
@@ -143,6 +132,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         thirdRankButtonsStackView.addArrangedSubview(buttonsForConfiguration[8])
         view.addSubview(thirdRankButtonsStackView)
         
+        // Separator
         let separatorStackView = UIStackView(arrangedSubviews: [line])
         separatorStackView.axis = .horizontal
         separatorStackView.alignment = .fill
@@ -150,6 +140,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         separatorStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(separatorStackView)
         
+        // Datas received from Arduino
         let datasReceivedStackView = UIStackView(arrangedSubviews: [dataName01,dataName02])
         datasReceivedStackView.axis = .horizontal
         datasReceivedStackView.alignment = .fill
@@ -158,6 +149,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         datasReceivedStackView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(datasReceivedStackView)
         
+        // Saving Profile Module
         let savingStackView = UIStackView(arrangedSubviews: [nameProfile,saveButton,activityIndicator])
         savingStackView.axis = .horizontal
         savingStackView.alignment = .fill
@@ -193,14 +185,10 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     }
     
     func configuration() {
-        for index in 0 ..< buttonsForConfiguration.count {
-            buttonsForConfiguration[index].tag = index + 1
-            buttonsForConfiguration[index].button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        }
-        saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(save), for: .touchUpInside) // action is assign to saveButton
     }
     
-    func setting() {
+    func setting() { // If the button as no order to transmit, no need to see it
         for index in 0 ..< buttonsForConfiguration.count {
             if infosButtons.order[index] == "" {
                 infosButtons.notSeen[index] = true
@@ -208,24 +196,17 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    func updateButtons() {
+    func updateButtons() { // Button's name appear on the button
         for index in 0 ..< buttonsForConfiguration.count {
             let name = buttonsForConfiguration[index].nameTextField.text
-            //let order = buttonsForConfiguration[index].orderTextField.text
-            
             buttonsForConfiguration[index].button.setTitle(name, for: .normal)
         }
     }
     
-    @objc func buttonAction(sender: UIButton!) {
-        initializeButtons()
-        sender.backgroundColor = appColors.selectedButtonColor
-        resigningFirstResponder()
-    }
-    
     @objc func save(sender: UIButton!) {
+        var profileSaving = Profile(name: "", datas: "")
         
-        for button in buttonsForConfiguration { // First of all, let's check there are no :
+        for button in buttonsForConfiguration { // First of all, let's check there are no ":"
             
             if let buttonName = button.nameTextField.text, let buttonOrder = button.orderTextField.text, let data01 = dataName01.text, let data02 = dataName02.text {
                 if buttonName.contains(":") || buttonOrder.contains(":") || data01.contains(":") || data02.contains(":") {
@@ -238,7 +219,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
                 }
             }
         }
-        // Then let's check save name
+        // Then let's check that save name doesn't exist already
         if let name = nameProfile.text {
             
             if name == "" {
@@ -272,18 +253,16 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         saveButton.isHidden = true
         activityIndicator.startAnimating()
         
-        // On lance le chrono pour le côté utilisateur. Une fois le temps écoulé il va lancer fireTimer.
+        // Starting timer, for user sensation
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
         
-        groupDatasInArray()
+        profileSaving.datas = groupDatasInArray()
         
-        profileSaving.datas = dataProfile
-        
-        let profileToSave = profileSaving
+        //let profileToSave = profileSaving
         
         do {
             print("Try to save")
-            try profileStorageManager.saveProfile(profile: profileToSave)
+            try profileStorageManager.saveProfile(profile: profileSaving)
         } catch {
             print("Error while saving")
         }
@@ -315,8 +294,8 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
             print("\(infosButtons.name)")
     }
     
-    func groupDatasInArray() {
-        dataProfile = ""
+    func groupDatasInArray() -> String {
+        var dataProfile = ""
         var nameButtons = ""
         var orderButtons = ""
         for button in buttonsForConfiguration {
@@ -330,7 +309,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         let data01 = dataName01.text ?? " "
         let data02 = dataName02.text ?? " "
         dataProfile += data01 + ":" + data02
-        print("\(dataProfile)")
+        return dataProfile
     }
     
     func initializeDatasButtons() {

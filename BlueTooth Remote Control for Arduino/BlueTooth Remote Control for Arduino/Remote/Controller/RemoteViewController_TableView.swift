@@ -157,11 +157,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
     
     internal func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? { // Swipe action
         print("swipeFR \(indexPath.row)")
-        /*
-         guard recipeMode == .database else {
-         return nil
-         }
-         */
+        
         // delete
         let delete = UIContextualAction(style: .normal, title: "Efface") { (action, view, completionHandler) in
             print("Efface \(indexPath.row)")
@@ -197,8 +193,8 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
             // First : send the profile to edit
             let navVC = self.tabBarController?.viewControllers![1] as! UINavigationController
             let configurationVC = navVC.topViewController as! ConfigurationViewController
-            configurationVC.test = self.test
             configurationVC.profileReceivedToBeLoaded = self.profiles[indexPath.row]
+            
             // Let's delete the profile to edit from Storage
             do {
                 print("On efface")
@@ -216,7 +212,6 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
             
             completionHandler(true)
             self.tabBarController?.selectedIndex = 1
-           // self.tabBarController?.state = "Youpi"
         }
         edit.image = UIImage(systemName: "book")
         
@@ -301,6 +296,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         // edit
         let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
             print("Edit \(indexPath.row)")
+            
             completionHandler(true)
         }
         edit.image = UIImage(systemName: "book")
