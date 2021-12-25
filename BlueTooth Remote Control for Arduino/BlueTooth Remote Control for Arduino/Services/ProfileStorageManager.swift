@@ -33,12 +33,11 @@ class ProfileStorageManager {
         let profileToSave = ProfileEntity(context: viewContext)
         profileToSave.name = profile.name
         profileToSave.datas = profile.datas
-        //profileToSave.datas = try? JSONEncoder().encode(profile.datas)
         
         do {
             try viewContext.save()
             print("Saved : \(String(describing: profileToSave.name))")
-            // } catch {  throw error }
+            
         } catch { print("Error \(error)") ; throw error }
     }
     

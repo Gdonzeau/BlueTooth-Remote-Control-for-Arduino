@@ -42,23 +42,14 @@ class BlueTooth_Remote_Control_for_ArduinoTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSaveProfiles() {
-        
-        let profile = Profile(name: "LED RC", datas: "Datas to control led")
-        try? profileStorageManager.saveProfile(profile: profile)
-        
-        
-        
-    }
     // Premier test fonctionne
     func testLoadRecipes() {
         var loadedProfiles: [Profile] = []
         XCTAssertTrue(loadedProfiles.isEmpty)
         
-        //let profile = FakeResponse.profiles.first!
-        let profile = Profile(name: "LED RC", datas: "Datas to control led")
+        let profile = FakeResponse.profiles.first!
         try? profileStorageManager.saveProfile(profile: profile)
-        XCTAssertTrue(profile.name == "LED RC")
+        XCTAssertTrue(profile.name == "Name01Test")
         
         do {
             loadedProfiles = try profileStorageManager.loadProfiles()
@@ -66,13 +57,14 @@ class BlueTooth_Remote_Control_for_ArduinoTests: XCTestCase {
             XCTFail("Error loading profiles \(error.localizedDescription)")
         }
         XCTAssertFalse(loadedProfiles.isEmpty)
-        XCTAssertTrue(loadedProfiles.first?.name == "LED RC")
+        XCTAssertTrue(loadedProfiles.first?.name == "Name01Test")
     }
     
     func testWhenDeletingOneRecipeFromFiveThenFourLeft() {
         var loadedProfiles: [Profile] = []
-        // Saving recipes from Recipes.json
-        for index in 0 ..< 5 {
+        print("Contenu = \(FakeResponse.profiles.count)")
+        // Saving recipes from FakeResponse
+        for index in 0 ..< FakeResponse.profiles.count {
             let profile = FakeResponse.profiles[index]
             try? profileStorageManager.saveProfile(profile: profile)
         }
@@ -83,17 +75,22 @@ class BlueTooth_Remote_Control_for_ArduinoTests: XCTestCase {
         } catch {
             XCTFail("Error loading recipes \(error.localizedDescription)")
         }
+        print(FakeResponse.profiles.count)
         
-        XCTAssertTrue(loadedProfiles.count == 5)
-        XCTAssertTrue(loadedProfiles[0].name == "Baking with Dorie: Lemon-Lemon Lemon Cream Recipe")
+        XCTAssertTrue(FakeResponse.profiles.count == 6)
+        XCTAssertTrue(loadedProfiles.count == 6)
+        print(loadedProfiles)
+        XCTAssertTrue(loadedProfiles[0].name == "Name02Test")
         
-        XCTAssertTrue(loadedProfiles[1].name == "Lemon Salt Lemon Cupcakes")
+        XCTAssertTrue(loadedProfiles[1].name == "Name04Test")
         
-        XCTAssertTrue(loadedProfiles[2].name == "Lemon Icey")
+        XCTAssertTrue(loadedProfiles[2].name == "Name06Test")
         
-        XCTAssertTrue(loadedProfiles[3].name == "Lemon Bars")
+        XCTAssertTrue(loadedProfiles[3].name == "Name01Test")
         
-        XCTAssertTrue(loadedProfiles[4].name == "Lemon Cookies")
+        XCTAssertTrue(loadedProfiles[4].name == "Name03Test")
+        
+        XCTAssertTrue(loadedProfiles[5].name == "Name05Test")
         
         try? profileStorageManager.deleteProfile(profileToDelete: loadedProfiles[4])
         
@@ -103,14 +100,16 @@ class BlueTooth_Remote_Control_for_ArduinoTests: XCTestCase {
             XCTFail("Error loading recipes \(error.localizedDescription)")
         }
         
-        XCTAssertTrue(loadedProfiles.count == 4)
+        XCTAssertTrue(loadedProfiles.count == 5)
         
-        XCTAssertTrue(loadedProfiles[0].name == "Baking with Dorie: Lemon-Lemon Lemon Cream Recipe")
+        XCTAssertTrue(loadedProfiles[0].name == "Name02Test")
         
-        XCTAssertTrue(loadedProfiles[1].name == "Lemon Salt Lemon Cupcakes")
+        XCTAssertTrue(loadedProfiles[1].name == "Name04Test")
         
-        XCTAssertTrue(loadedProfiles[2].name == "Lemon Icey")
+        XCTAssertTrue(loadedProfiles[2].name == "Name06Test")
         
-        XCTAssertTrue(loadedProfiles[3].name == "Lemon Bars")
+        XCTAssertTrue(loadedProfiles[3].name == "Name01Test")
+        
+        XCTAssertTrue(loadedProfiles[4].name == "Name05Test")
     }
 }

@@ -79,12 +79,12 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         // 5 StackView = datasName
         dataName01.layer.cornerRadius = 4
         dataName01.layer.masksToBounds = true
-        dataName01.backgroundColor = .lightGray
+        dataName01.backgroundColor = appColors.backGroudTextField
         dataName01.placeholder = "First data's name"
         
         dataName02.layer.cornerRadius = 4
         dataName02.layer.masksToBounds = true
-        dataName02.backgroundColor = .lightGray
+        dataName02.backgroundColor = appColors.backGroudTextField
         dataName02.placeholder = "Second data's name"
         
         
@@ -92,7 +92,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         nameProfile.layer.cornerRadius = 2
         nameProfile.layer.masksToBounds = true
         nameProfile.placeholder = "Save's name"
-        nameProfile.backgroundColor = .lightGray
+        nameProfile.backgroundColor = appColors.backGroudTextField
         
         saveButton.backgroundColor = appColors.buttonColor
         saveButton.setTitle("Save", for: .normal)
@@ -252,8 +252,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         
         profileSaving.datas = dataProfile
         
-        //Ajout UUID
-        
         let profileToSave = profileSaving
         
         do {
@@ -262,7 +260,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         } catch {
             print("Error while saving")
         }
-        
     }
     
     @objc func fireTimer() {
@@ -276,20 +273,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     }
     
     func loadingProfile(profileToLoad: Profile) {
-        /*
-        // Let's delete the profile to edit from Storage
-        do {
-            print("On efface")
-            try self.profileStorageManager.deleteProfile(profileToDelete: profileToLoad)
-            
-        } catch {
-            print("Error while deleting")
-            let error = AppError.errorDelete
-            if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
-                self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
-            }
-        }
-        */
             nameProfile.text = profileToLoad.name
             let datasArray = profileToLoad.datas.components(separatedBy: ":")
             print("Array : \(datasArray)")

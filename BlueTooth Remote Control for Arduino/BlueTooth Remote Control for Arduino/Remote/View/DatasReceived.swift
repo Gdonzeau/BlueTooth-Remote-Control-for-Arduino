@@ -26,6 +26,10 @@ class DatasReceived: UIView {
     }
     
     func setupView() {
+        titleData01.adjustsFontForContentSizeCategory = true
+        titleData02.adjustsFontForContentSizeCategory = true
+        contentData01.adjustsFontForContentSizeCategory = true
+        contentData02.adjustsFontForContentSizeCategory = true
         backgroundColor = appColors.backgroundColor
         titleData01.text = "Data01 :"
         titleData02.text = "Data02 :"

@@ -27,6 +27,7 @@ class Title: UIView {
         backgroundColor = appColors.backgroundColor
         title.contentMode = .scaleAspectFit
         title.textAlignment = .center
+        title.adjustsFontForContentSizeCategory = true
         
         let horizontalStackView = UIStackView(arrangedSubviews: [title])
         horizontalStackView.axis = .horizontal

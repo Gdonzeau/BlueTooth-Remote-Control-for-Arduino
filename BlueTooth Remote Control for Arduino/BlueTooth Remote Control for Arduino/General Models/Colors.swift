@@ -9,10 +9,14 @@ import UIKit
 
 class AppColors {// Enum et static let
     static let shared = AppColors()
-    let backgroundColor = UIColor(displayP3Red: 7/255, green: 171/255, blue: 128/255, alpha: 1)
-    let buttonColor = UIColor.systemGray//UIColor.darkGray
-    let buttonNotEnableColor = UIColor(displayP3Red: 128/255, green: 128/255, blue: 128/255, alpha: 1)
+    let backgroundColor = UIColor.systemBlue//UIColor.systemGreen
+    let buttonColor = UIColor.systemGray3
+    let buttonNotEnableColor = UIColor.systemGray//UIColor(displayP3Red: 128/255, green: 128/255, blue: 128/255, alpha: 1)
     let selectedButtonColor = UIColor.red
-    let fontColor = UIColor.darkGray
+    let fontColor = UIColor.systemGray4
+    let backGroudTextField = UIColor.systemGray2
+    var colorBackGround: UIColor = .systemBlue
+        
+    
 }
 

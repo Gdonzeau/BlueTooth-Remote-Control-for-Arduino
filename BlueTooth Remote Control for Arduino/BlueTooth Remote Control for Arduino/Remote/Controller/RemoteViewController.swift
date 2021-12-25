@@ -15,7 +15,7 @@ class RemoteViewController: UIViewController {
     
     var saveTitle = UILabel()
     
-    var connectButton = UIButton() // Press this button to connect to BT
+    var actualizeButton = UIButton() // Press this button to connect to BT
     var disconnectButton = UIButton() // Press this button to disconnect from BT
     var activityIndicator = UIActivityIndicatorView()
     //var btNames: [String] = []
@@ -55,7 +55,7 @@ class RemoteViewController: UIViewController {
             
             case .connecting:
                 activityIndicator.startAnimating()
-                connectButton.isHidden = true
+                actualizeButton.isHidden = true
                 disconnectButton.isHidden = true
                 tableBluetooth.isHidden = true
                 heightSVConnected = 60.0
@@ -69,7 +69,7 @@ class RemoteViewController: UIViewController {
                 
             case .disconnected:
                 activityIndicator.stopAnimating()
-                connectButton.isHidden = true
+                actualizeButton.isHidden = false
                 disconnectButton.isHidden = true
                 tableBluetooth.isHidden = false
                 heightSVConnected = 120.0
@@ -77,7 +77,7 @@ class RemoteViewController: UIViewController {
                 
             case .connected:
                 activityIndicator.stopAnimating()
-                connectButton.isHidden = true
+                actualizeButton.isHidden = true
                 disconnectButton.isHidden = false
                 tableBluetooth.isHidden = true
                 heightSVConnected = 60.0
@@ -125,8 +125,10 @@ class RemoteViewController: UIViewController {
     }
     
     func setupView() {
+        //UIFont.preferredFont(forTextStyle: UIFont.systemFont(ofSize: 20.0))
         view.backgroundColor = appColors.backgroundColor
         // Setting Title
+        saveTitle.adjustsFontForContentSizeCategory = true
         saveTitle.backgroundColor = appColors.backgroundColor
         saveTitle.contentMode = .scaleAspectFit
         saveTitle.textAlignment = .center
@@ -139,12 +141,12 @@ class RemoteViewController: UIViewController {
         
         tableBluetooth.translatesAutoresizingMaskIntoConstraints = false
         
-        connectButton.layer.cornerRadius = 24
-        connectButton.layer.masksToBounds = true
-        connectButton.setTitle("Connect", for: .normal)
-        connectButton.backgroundColor = appColors.buttonColor
+        actualizeButton.layer.cornerRadius = 24
+        actualizeButton.layer.masksToBounds = true
+        actualizeButton.setTitle("Actualize", for: .normal)
+        actualizeButton.backgroundColor = appColors.buttonColor
         //connectButton.tintColor = .black
-        connectButton.translatesAutoresizingMaskIntoConstraints = false
+        actualizeButton.translatesAutoresizingMaskIntoConstraints = false
         
         disconnectButton.layer.cornerRadius = 24
         disconnectButton.layer.masksToBounds = true
@@ -153,12 +155,12 @@ class RemoteViewController: UIViewController {
         //disconnectButton.tintColor = .black
         disconnectButton.translatesAutoresizingMaskIntoConstraints = false
         
-        connectButton.contentMode = .scaleAspectFit
+        actualizeButton.contentMode = .scaleAspectFit
         disconnectButton.contentMode = .scaleAspectFit
         
         disconnectButton.addTarget(self, action: #selector(disconnect), for: .touchUpInside)
         
-        connectButton.addTarget(self, action: #selector(connect), for: .touchUpInside)
+        actualizeButton.addTarget(self, action: #selector(actualize), for: .touchUpInside)
         
         // Buttons and datas in "mainView"
         view.addSubview(mainView)
@@ -190,7 +192,7 @@ class RemoteViewController: UIViewController {
         view.addSubview(titleStackView)
         
         //connectionModule
-        let connectionStackView = UIStackView(arrangedSubviews: [tableBluetooth,connectButton,disconnectButton,activityIndicator])
+        let connectionStackView = UIStackView(arrangedSubviews: [tableBluetooth,actualizeButton,disconnectButton,activityIndicator])
         connectionStackView.axis = .horizontal
         connectionStackView.alignment = .fill
         connectionStackView.distribution = .fill
@@ -228,7 +230,9 @@ class RemoteViewController: UIViewController {
             globalStackView.topAnchor.constraint(equalTo: margins.topAnchor, constant: 40),
             globalStackView.bottomAnchor.constraint(lessThanOrEqualTo: margins.bottomAnchor),
             
-            connectButton.widthAnchor.constraint(equalTo: connectionStackView.heightAnchor, multiplier: 20/9),
+            titleStackView.heightAnchor.constraint(equalToConstant: 32.0),
+            actualizeButton.heightAnchor.constraint(equalToConstant: 32.0),
+            //actualizeButton.widthAnchor.constraint(equalTo: connectionStackView.heightAnchor, multiplier: 20/9),
             connectionStackView.heightAnchor.constraint(equalToConstant: heightSVConnected),
             loadButtonProfileTVStackView.heightAnchor.constraint(equalToConstant: heightSVLoadProfile)
         ])
@@ -297,7 +301,7 @@ class RemoteViewController: UIViewController {
                 } else {
                     buttons[index].isEnabled = false
                     buttons[index].backgroundColor = appColors.buttonNotEnableColor
-                    buttons[index].backgroundColor = appColors.backgroundColor
+                    //buttons[index].backgroundColor = appColors.backgroundColor
                     buttons[index].setTitleColor(appColors.backgroundColor, for: .normal)
                 }
             } else {
@@ -317,31 +321,24 @@ class RemoteViewController: UIViewController {
         print("Le bouton \(infosButtons.name[sender.tag]) a été pressé.")
         let order = infosButtons.order[buttonTag]
         if buttonTag == 4 {
-            overrideUserInterfaceStyle = .dark
-            //AlternateTableLoadButton(tableShown: false)
+            //view.window?.overrideUserInterfaceStyle = .dark
             
-            //window.overrideUserInterfaceStyle = .dark
         }
         
         if buttonTag == 5 {
-            overrideUserInterfaceStyle = .light
-            //AlternateTableLoadButton(tableShown: true)
+            //view.window?.overrideUserInterfaceStyle = .light
+            
         }
         if buttonTag == 6 {
             
-            /*
-            // To edit profile in use
-            let navVC = tabBarController?.viewControllers![1] as! UINavigationController
-                    let configurationVC = navVC.topViewController as! ConfigurationViewController
-            configurationVC.test = test
-            configurationVC.profileReceivedToBeLoaded = profileLoaded
-            
-            tabBarController?.selectedIndex = 1
- */
         }
         sendOrder(message: order)
     }
-    @objc func connect() {
+    @objc func actualize() {
+        peripheralsDetected = []
+        tableBluetooth.reloadData()
+        centralManager.scanForPeripherals(withServices: [targetCBUUID])
+        /*
         if peripheralsDetected.count > 0 {
             status = .connecting
             let peripheral = peripheralsDetected[0].peripheral
@@ -349,6 +346,7 @@ class RemoteViewController: UIViewController {
         } else {
             print("No bluetooth detected")
         }
+ */
     }
     
     @objc func disconnect() {

@@ -9,8 +9,11 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.window?.overrideUserInterfaceStyle = .dark
+        //overrideUserInterfaceStyle = .light
         view.backgroundColor = .systemBackground
            UITabBar.appearance().barTintColor = .systemBackground
            tabBar.tintColor = .label

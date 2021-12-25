@@ -30,7 +30,6 @@ class ThreeButtonsLine: UIView {
         let buttons = [remoteButton01,remoteButton02,remoteButton03]
         
         for button in buttons {
-            
             button.backgroundColor = appColors.buttonColor
             button.contentMode = .scaleAspectFit
             button.layer.cornerRadius = 24
