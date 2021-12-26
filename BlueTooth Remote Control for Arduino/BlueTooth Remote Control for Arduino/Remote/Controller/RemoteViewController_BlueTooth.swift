@@ -5,6 +5,7 @@
 //  Created by Guillaume Donzeau on 20/12/2021.
 //
 import CoreBluetooth
+import UIKit
 
 extension RemoteViewController: CBCentralManagerDelegate {
     
@@ -33,10 +34,13 @@ extension RemoteViewController: CBCentralManagerDelegate {
         if let nameTarget = peripheral.name {
             let peripheralDetected = PeripheralDetected(name: nameTarget, peripheral: peripheral, indentifier: peripheral.identifier)
             peripheralsDetected.append(peripheralDetected)
-            tableBluetooth.reloadData()
-            peripheralsName.append(nameTarget)
+            bluetoothAvailableTableView.reloadData()
         }
     }
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print("Erreur de connection")
+    }
+    
     
     func connectBT(peripheral: CBPeripheral) {
         status = .connecting
@@ -53,6 +57,7 @@ extension RemoteViewController: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral) {
+        
         status = .disconnected
     }
 }
@@ -60,7 +65,7 @@ extension RemoteViewController: CBCentralManagerDelegate {
 extension RemoteViewController: CBPeripheralDelegate {
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        print("Trouvé !")
+        
         guard let services = peripheral.services else { return }
         for service in services {
             print(service)
@@ -95,8 +100,7 @@ extension RemoteViewController: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         switch characteristic.uuid {
         case dialogCBUUID:
-            print("Test")
-            print(characteristic.value ?? "no value")
+            
             if let result = String( data: characteristic.value! , encoding: .utf8) {
                 receivedMessage(messageReceived: result)
             }
@@ -104,4 +108,5 @@ extension RemoteViewController: CBPeripheralDelegate {
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
     }
+    
 }

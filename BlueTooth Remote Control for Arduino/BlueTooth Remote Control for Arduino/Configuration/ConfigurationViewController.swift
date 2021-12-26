@@ -9,7 +9,7 @@ import UIKit
 
 class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
-    let appColors = AppColors.shared
+    //let appColors = AppColors.shared
     
     let profileStorageManager = ProfileStorageManager.shared
     
@@ -55,7 +55,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     func setView() {
         
-        view.backgroundColor = appColors.backgroundColor
+        view.backgroundColor = AppColors.backgroundColorArduino
         
         // 4 StackView = green line
         line.layer.cornerRadius = 4
@@ -65,12 +65,12 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         // 5 StackView = datasName
         dataName01.layer.cornerRadius = 4
         dataName01.layer.masksToBounds = true
-        dataName01.backgroundColor = appColors.backGroudTextField
+        dataName01.backgroundColor = AppColors.backGroudTextField
         dataName01.placeholder = "First data's name"
         
         dataName02.layer.cornerRadius = 4
         dataName02.layer.masksToBounds = true
-        dataName02.backgroundColor = appColors.backGroudTextField
+        dataName02.backgroundColor = AppColors.backGroudTextField
         dataName02.placeholder = "Second data's name"
         
         
@@ -78,9 +78,9 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         nameProfile.layer.cornerRadius = 2
         nameProfile.layer.masksToBounds = true
         nameProfile.placeholder = "Save's name"
-        nameProfile.backgroundColor = appColors.backGroudTextField
+        nameProfile.backgroundColor = AppColors.backGroudTextField
         
-        saveButton.backgroundColor = appColors.buttonColor
+        saveButton.backgroundColor = AppColors.buttonColor
         saveButton.setTitle("Save", for: .normal)
         saveButton.contentMode = .scaleAspectFit
         saveButton.layer.cornerRadius = 4
@@ -323,7 +323,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     func initializeButtons() {
         for index in 0 ..< buttonsForConfiguration.count {
-            buttonsForConfiguration[index].button.backgroundColor = appColors.buttonColor
+            buttonsForConfiguration[index].button.backgroundColor = AppColors.buttonColor
         }
         
     }

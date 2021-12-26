@@ -16,6 +16,7 @@ enum AppError: String, LocalizedError {
     case nothingIsWritten = "You must write a name"
     case forbiddenCharacters = "Forbidden characters"
     case nameAlreadyExists = "Name exists"
+    case peripheralDisconnected = "Peripheral Disconnected"
     
     var errorDescription: String? {
         switch self {
@@ -33,6 +34,8 @@ enum AppError: String, LocalizedError {
             return "This name already exists."
         case .loadingError:
             return "There was an loading error"
+        case .peripheralDisconnected:
+            return "The peripheral doesn't answer, please reconnect"
         }
     }
     var failureReason: String? {
@@ -51,6 +54,8 @@ enum AppError: String, LocalizedError {
             return "Name already choosen"
         case .loadingError:
             return "Loading Error"
+        case .peripheralDisconnected:
+            return "Disconnected"
         }
     }
 }

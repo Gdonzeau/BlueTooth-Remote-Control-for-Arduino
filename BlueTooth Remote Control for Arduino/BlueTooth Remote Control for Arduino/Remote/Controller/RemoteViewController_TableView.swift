@@ -12,6 +12,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1 // A modifier pour plusieurs sections
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var numberOfRows = 0
         //return profiles.count
@@ -25,87 +26,88 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
          return 0
          }
          */
-        //  if tableView == tableOfProfiles {
-        // switch section
         
-        // } else if
-        if tableView == tableOfProfiles {
+        if tableView == profilesTableView {
             numberOfRows = profiles.count
         }
-        if tableView == tableBluetooth {
-            print("Row") // S'imprime
+        if tableView == bluetoothAvailableTableView {
             numberOfRows = peripheralsDetected.count
         }
         return numberOfRows
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height:CGFloat = 10.0
-        
-        if tableView == tableBluetooth {
-            print("Height")
-            height = 40.0
-        }
-        
-        if tableView == tableOfProfiles {
-            print("Hauteur")
-            height = 40.0
-        }
         
         
-        /*
          let section = indexPath.section
          switch section {
          case 0:
-         return 60.0
+         return 40.0
          case 1:
-         return 32.0
+         return 40.0
          default:
          return 0.0
          }
-         */
-        return height
+         
+        
+        /*
+        var height:CGFloat = 10.0
+        
+        if tableView == bluetoothAvailableTableView {
+            height = 40.0
+        }
+        
+        if tableView == profilesTableView {
+            height = 40.0
+        }
+         
+         return height
+        */
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
-        print(section)
+        //let section = indexPath.section
+        //print(section)
         
         /*
          if tableView == tableBluetooth
-         let cell = tableView.dequeueReusableCell(withIdentifier: "cell_Profile", for: indexPath as IndexPath)
+         let cell = tableOfProfiles.dequeueReusableCell(withIdentifier: "cell_Profile", for: indexPath as IndexPath)
          cell.textLabel?.text = "\(profiles[indexPath.row].name)"
          return cell
          */
+        
         /*
          switch section {
          case 0:
-         let cell = tableView.dequeueReusableCell(withIdentifier: "cell_Profile", for: indexPath as IndexPath)
+         let cell = profilesTableView.dequeueReusableCell(withIdentifier: "cell_Profile", for: indexPath as IndexPath)
          cell.textLabel?.text = "\(profiles[indexPath.row].name)"
          return cell
          case 1:
-         let cell = tableView.dequeueReusableCell(withIdentifier: "cell_ModuleBT", for: indexPath as IndexPath)
+         let cell = bluetoothAvailableTableView.dequeueReusableCell(withIdentifier: "cell_ModuleBT", for: indexPath as IndexPath)
          cell.textLabel?.text = "\(peripheralsDetected[indexPath.row].name)"
          return cell
          default:
          return UITableViewCell()
          }
          */
-        if tableView == tableOfProfiles {
-            print("TableProfile")
+        
+        
+        if tableView == profilesTableView {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell_Profile", for: indexPath as IndexPath)
             cell.textLabel?.text = "\(profiles[indexPath.row].name)"
             return cell
-        } else if tableView == tableBluetooth {
-            print("TableBluetooth")
+            
+        } else if tableView == bluetoothAvailableTableView {
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell_ModuleBT", for: indexPath as IndexPath)
             cell.textLabel?.text = "\(peripheralsDetected[indexPath.row].name)"
             return cell
+            
         } else {
+            
             return UITableViewCell()
         }
-        
-        
         
     }
     
@@ -126,6 +128,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
          case 0:
          print("touch \(indexPath.row)")
          configurationButtons(rank:indexPath.row)
+         profileLoaded = profiles[indexPath.row]
          AlternateTableLoadButton(tableShown:false)
          tableView.deselectRow(at: indexPath, animated: true)
          case 1:
@@ -133,47 +136,50 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
          default:
          print("Oups !")
          }
+        */
+        
+        /*
          print("touch \(indexPath.row)")
          configurationButtons(rank:indexPath.row)
          AlternateTableLoadButton(tableShown:false)
          tableView.deselectRow(at: indexPath, animated: true)
          */
-        if tableView == tableOfProfiles {
+        
+        
+        if tableView == profilesTableView {
             
-            print("touch0 \(indexPath.row)")
             configurationButtons(rank:indexPath.row)
             profileLoaded = profiles[indexPath.row]
             AlternateTableLoadButton(tableShown:false)
             tableView.deselectRow(at: indexPath, animated: true)
+        }
+        
+        if tableView == bluetoothAvailableTableView {
             
-        } else { //if tableView == tableBluetooth {
-            print("touch1 \(indexPath.row)")
             connectBT(peripheral: peripheralsDetected[indexPath.row].peripheral)
-            //configurationButtons(rank:indexPath.row)
-            //AlternateTableLoadButton(tableShown:false)
             tableView.deselectRow(at: indexPath, animated: true)
         }
+        
     }
     
     internal func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? { // Swipe action
-        print("swipeFR \(indexPath.row)")
+        //let section = indexPath.section
         
-        // delete
-        let delete = UIContextualAction(style: .normal, title: "Efface") { (action, view, completionHandler) in
-            print("Efface \(indexPath.row)")
+        if tableView == profilesTableView {// delete
+        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
             
             let profileToDelete = self.profiles[indexPath.row]
             
             do {
-                print("On efface")
+                // Let's delete
                 try self.profileStorageManager.deleteProfile(profileToDelete: profileToDelete)
                 DispatchQueue.main.async {
                     self.getProfilesFromDatabase()
-                    tableView.reloadData()
+                    //tableView.reloadData()
                 }
                 completionHandler(true)
             } catch {
-                print("Error while deleting")
+                // Error while deleting
                 completionHandler(false)
                 let error = AppError.errorDelete
                 if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
@@ -186,8 +192,18 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         delete.image = UIImage(systemName: "trash")
         
         delete.backgroundColor = .red
+       
+        // swipe action
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        return swipe
+    }
+        return UISwipeActionsConfiguration()
         
-        // edit
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        if tableView == profilesTableView {
         let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
             print("Edit \(indexPath.row)")
             // First : send the profile to edit
@@ -197,18 +213,16 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
             
             // Let's delete the profile to edit from Storage
             do {
-                print("On efface")
                 try self.profileStorageManager.deleteProfile(profileToDelete: self.profiles[indexPath.row])
-                
             } catch {
-                print("Error while deleting")
+                // Error while deleting
                 let error = AppError.errorDelete
                 if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
                     self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
                 }
             }
             // Reload the TableView of Profiles
-            self.tableOfProfiles.reloadData()
+            self.profilesTableView.reloadData()
             
             completionHandler(true)
             self.tabBarController?.selectedIndex = 1
@@ -217,105 +231,11 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         
         edit.backgroundColor = .green
         
-        // delete
-        let share = UIContextualAction(style: .normal, title: "Share") { (action, view, completionHandler) in
-            print("Efface \(indexPath.row)")
-            completionHandler(true)
-        }
-        share.image = UIImage(systemName: "square.and.arrow.up")
-        
-        share.backgroundColor = .orange
-        
         // swipe action
-        let swipe = UISwipeActionsConfiguration(actions: [delete,edit,share])
+        let swipe = UISwipeActionsConfiguration(actions: [edit])
         return swipe
-        
-        
-        
-        /*
-         let editingAction = UIContextualAction(style: .normal, title: "Edit") { _, _, completionHandler in
-         let profileToEdit = self.profiles[indexPath.row]
-         
-         do {
-         try self.profileStorageManager.deleteProfile(profileToDelete: profileToEdit)
-         DispatchQueue.main.async {
-         self.getProfilesFromDatabase()
-         }
-         completionHandler(true)
-         } catch {
-         print("Error while deleting")
-         completionHandler(false)
-         let error = AppError.errorDelete
-         if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
-         self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
-         }
-         }
-         }
-         
-         let deleteAction = UIContextualAction(
-         style: .destructive, title: "Delete") { _, _, completionHandler in
-         let profileToDelete = self.profiles[indexPath.row]
-         
-         do {
-         print("On efface")
-         try self.profileStorageManager.deleteProfile(profileToDelete: profileToDelete)
-         DispatchQueue.main.async {
-         self.getProfilesFromDatabase()
-         }
-         completionHandler(true)
-         } catch {
-         print("Error while deleting")
-         completionHandler(false)
-         let error = AppError.errorDelete
-         if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
-         self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
-         }
-         }
-         }
-         let configuration = UISwipeActionsConfiguration(actions: [editingAction,deleteAction])
-         return configuration
-         */
-    }
-    
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        print("swipeFL \(indexPath.row)")
-        /*
-         guard recipeMode == .database else {
-         return nil
-         }
-         */
-        // delete
-        let delete = UIContextualAction(style: .normal, title: "Efface") { (action, view, completionHandler) in
-            print("Efface \(indexPath.row)")
-            completionHandler(true)
         }
-        delete.image = UIImage(systemName: "trash")
-        
-        delete.backgroundColor = .red
-        
-        // edit
-        let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
-            print("Edit \(indexPath.row)")
-            
-            completionHandler(true)
-        }
-        edit.image = UIImage(systemName: "book")
-        
-        edit.backgroundColor = .green
-        
-        // delete
-        let share = UIContextualAction(style: .normal, title: "Share") { (action, view, completionHandler) in
-            print("Efface \(indexPath.row)")
-            completionHandler(true)
-        }
-        share.image = UIImage(systemName: "square.and.arrow.up")
-        
-        share.backgroundColor = .orange
-        
-        // swipe action
-        let swipe = UISwipeActionsConfiguration(actions: [delete,edit,share])
-        return swipe
-        
+        return UISwipeActionsConfiguration()
     }
     
     

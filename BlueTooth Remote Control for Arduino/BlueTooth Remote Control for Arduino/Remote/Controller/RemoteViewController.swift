@@ -10,7 +10,7 @@ import CoreData
 import CoreBluetooth
 
 class RemoteViewController: UIViewController {
-    let appColors = AppColors.shared
+    //let appColors = AppColors.shared
     let profileStorageManager = ProfileStorageManager.shared
     
     var saveTitle = UILabel()
@@ -31,14 +31,16 @@ class RemoteViewController: UIViewController {
     var titleData02 = UILabel()
     var contentData02 = UILabel()
     
-    var infosButtons = InfoButtons()
+    var infosButtons = InfoButtons() // Contains names, order, seen or not
     
-    let tableOfProfiles = UITableView()
-    let tableBluetooth = UITableView()
+    let profilesTableView = UITableView()
+    let bluetoothAvailableTableView = UITableView()
     
     var profiles : [Profile] = []
     var profileLoaded = Profile(name: "", datas: "")
-    let loadButton = UIButton()
+    let loadButton = UIButton() // Button to show the tableView with profiles
+    
+    var autoadjust = false // Buttons not used will be hidden or just enabled
     
     // BlueTooth part
     let targetCBUUID = CBUUID(string: "0xFFE0")
@@ -49,7 +51,6 @@ class RemoteViewController: UIViewController {
     var targetPeripheral02: CBPeripheral!
     var writeCharacteristic: CBCharacteristic!
     var peripherals = [CBPeripheral]()
-    var peripheralsName = [String]()
     var peripheralsDetected = [PeripheralDetected]()
     
     var heightSVConnected:CGFloat = 60.0
@@ -64,7 +65,7 @@ class RemoteViewController: UIViewController {
                 activityIndicator.startAnimating()
                 actualizeButton.isHidden = true
                 disconnectButton.isHidden = true
-                tableBluetooth.isHidden = true
+                bluetoothAvailableTableView.isHidden = true
                 heightSVConnected = 60.0
                 setupView()
                 
@@ -78,7 +79,7 @@ class RemoteViewController: UIViewController {
                 activityIndicator.stopAnimating()
                 actualizeButton.isHidden = false
                 disconnectButton.isHidden = true
-                tableBluetooth.isHidden = false
+                bluetoothAvailableTableView.isHidden = false
                 heightSVConnected = 120.0
                 setupView()
                 
@@ -86,22 +87,14 @@ class RemoteViewController: UIViewController {
                 activityIndicator.stopAnimating()
                 actualizeButton.isHidden = true
                 disconnectButton.isHidden = false
-                tableBluetooth.isHidden = true
+                bluetoothAvailableTableView.isHidden = true
                 heightSVConnected = 60.0
                 setupView()
             }
         }
     }
-    private func resetViewState() {
-        activityIndicator.stopAnimating()
-        actualizeButton.isHidden = true
-        disconnectButton.isHidden = true
-        tableBluetooth.isHidden = false
-        heightSVConnected = 120.0
-    }
-    // End of Bluetooth part
     
-    var autoadjust = false
+    // End of Bluetooth part
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,35 +113,37 @@ class RemoteViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
+        titleData01.text = "Data01 :"
+        titleData02.text = "Data02 :"
         
     }
     
     func setupView() {
         //UIFont.preferredFont(forTextStyle: UIFont.systemFont(ofSize: 20.0)) ???
-        view.backgroundColor = appColors.backgroundColor
+        view.backgroundColor = AppColors.backgroundColorArduino
         // Setting Title
         saveTitle.adjustsFontForContentSizeCategory = true
-        saveTitle.backgroundColor = appColors.backgroundColor
+        saveTitle.backgroundColor = AppColors.backgroundColorArduino
         saveTitle.contentMode = .scaleAspectFit
         saveTitle.textAlignment = .center
         saveTitle.font = UIFont.boldSystemFont(ofSize: 20.0)
         saveTitle.translatesAutoresizingMaskIntoConstraints = false
         
         // Connection Module
-        tableBluetooth.layer.cornerRadius = 24
-        tableBluetooth.layer.masksToBounds = true
-        tableBluetooth.translatesAutoresizingMaskIntoConstraints = false
-
+        bluetoothAvailableTableView.layer.cornerRadius = 24
+        bluetoothAvailableTableView.layer.masksToBounds = true
+        bluetoothAvailableTableView.translatesAutoresizingMaskIntoConstraints = false
+        
         actualizeButton.layer.cornerRadius = 24
         actualizeButton.layer.masksToBounds = true
         actualizeButton.setTitle("Actualize", for: .normal)
-        actualizeButton.backgroundColor = appColors.buttonColor
+        actualizeButton.backgroundColor = AppColors.buttonColor
         actualizeButton.translatesAutoresizingMaskIntoConstraints = false
         
         disconnectButton.layer.cornerRadius = 24
         disconnectButton.layer.masksToBounds = true
         disconnectButton.setTitle("Disconnect", for: .normal)
-        disconnectButton.backgroundColor = appColors.buttonColor
+        disconnectButton.backgroundColor = AppColors.buttonColor
         disconnectButton.translatesAutoresizingMaskIntoConstraints = false
         
         actualizeButton.contentMode = .scaleAspectFit
@@ -163,8 +158,7 @@ class RemoteViewController: UIViewController {
         contentData01.adjustsFontForContentSizeCategory = true
         contentData02.adjustsFontForContentSizeCategory = true
         
-        titleData01.text = "Data01 :"
-        titleData02.text = "Data02 :"
+        
         contentData01.text = ""
         contentData02.text = ""
         titleData01.contentMode = .scaleAspectFit
@@ -173,17 +167,17 @@ class RemoteViewController: UIViewController {
         contentData02.contentMode = .scaleAspectFit
         
         //Button Load / TableView with profiles available
-        loadButton.backgroundColor = appColors.buttonColor
+        loadButton.backgroundColor = AppColors.buttonColor
         loadButton.layer.cornerRadius = 24
         loadButton.layer.masksToBounds = true
         loadButton.setTitle("Load Profile", for: .normal)
         loadButton.setTitleColor(.white, for: .normal)
         loadButton.addTarget(self, action: #selector(loadProfile), for: .touchUpInside)
         
-        tableOfProfiles.layer.cornerRadius = 24
-        tableOfProfiles.layer.masksToBounds = true
-        view.addSubview(tableOfProfiles)
-        tableOfProfiles.translatesAutoresizingMaskIntoConstraints = false
+        profilesTableView.layer.cornerRadius = 24
+        profilesTableView.layer.masksToBounds = true
+        view.addSubview(profilesTableView)
+        profilesTableView.translatesAutoresizingMaskIntoConstraints = false
         
         // MARK: - Constraints
         
@@ -198,7 +192,7 @@ class RemoteViewController: UIViewController {
         view.addSubview(titleStackView)
         
         //connectionModule
-        let connectionStackView = UIStackView(arrangedSubviews: [tableBluetooth,actualizeButton,disconnectButton,activityIndicator])
+        let connectionStackView = UIStackView(arrangedSubviews: [bluetoothAvailableTableView,actualizeButton,disconnectButton,activityIndicator])
         connectionStackView.axis = .horizontal
         connectionStackView.alignment = .fill
         connectionStackView.distribution = .fill
@@ -225,7 +219,7 @@ class RemoteViewController: UIViewController {
         view.addSubview(dataReceivedStackView)
         
         // Stackview with alternatively loadButton and TableView with profiles
-        let loadButtonProfileTVStackView = UIStackView(arrangedSubviews: [tableOfProfiles,loadButton])
+        let loadButtonProfileTVStackView = UIStackView(arrangedSubviews: [profilesTableView,loadButton])
         loadButtonProfileTVStackView.axis = .horizontal
         loadButtonProfileTVStackView.alignment = .fill
         loadButtonProfileTVStackView.spacing = 5
@@ -261,13 +255,13 @@ class RemoteViewController: UIViewController {
     }
     
     func setupTableView() {
-        tableOfProfiles.register(UITableViewCell.self,forCellReuseIdentifier: "cell_Profile")
-        tableOfProfiles.dataSource = self
-        tableOfProfiles.delegate = self
+        profilesTableView.register(UITableViewCell.self,forCellReuseIdentifier: "cell_Profile")
+        profilesTableView.dataSource = self
+        profilesTableView.delegate = self
         
-        tableBluetooth.register(UITableViewCell.self, forCellReuseIdentifier: "cell_ModuleBT")
-        tableBluetooth.dataSource = self
-        tableBluetooth.delegate = self
+        bluetoothAvailableTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell_ModuleBT")
+        bluetoothAvailableTableView.dataSource = self
+        bluetoothAvailableTableView.delegate = self
     }
     
     func configurationButtons(rank:Int) {
@@ -320,12 +314,12 @@ class RemoteViewController: UIViewController {
                     buttons[index].isHidden = true
                 } else {
                     buttons[index].isEnabled = false
-                    buttons[index].backgroundColor = appColors.buttonNotEnableColor
-                    buttons[index].setTitleColor(appColors.backgroundColor, for: .normal)
+                    buttons[index].backgroundColor = AppColors.buttonNotEnableColor
+                    //buttons[index].setTitleColor(appColors.backgroundColor, for: .normal)
                 }
             } else {
                 buttons[index].isHidden = false
-                buttons[index].backgroundColor = appColors.buttonColor
+                buttons[index].backgroundColor = AppColors.buttonColor
                 buttons[index].setTitleColor(.white, for: .normal)
             }
         }
@@ -337,9 +331,10 @@ class RemoteViewController: UIViewController {
         let order = infosButtons.order[buttonTag]
         sendOrder(message: order)
     }
+    
     @objc func actualize() {
         peripheralsDetected = []
-        tableBluetooth.reloadData()
+        bluetoothAvailableTableView.reloadData()
         centralManager.scanForPeripherals(withServices: [targetCBUUID])
     }
     
@@ -349,6 +344,10 @@ class RemoteViewController: UIViewController {
             return
         }
         centralManager.cancelPeripheralConnection(peripheral)
+    }
+    
+    @objc func loadProfile() {
+        AlternateTableLoadButton(tableShown: true)
     }
     
     func getProfilesFromDatabase() {
@@ -362,6 +361,7 @@ class RemoteViewController: UIViewController {
                     print("\(profile.name)")
                 }
             }
+            profilesTableView.reloadData()
         } catch let error {
             print("Error loading recipes from database \(error.localizedDescription)")
         }
@@ -369,7 +369,7 @@ class RemoteViewController: UIViewController {
     
     func AlternateTableLoadButton(tableShown: Bool) {
         loadButton.isHidden = tableShown
-        tableOfProfiles.isHidden = !tableShown
+        profilesTableView.isHidden = !tableShown
         
         if tableShown == true {
             heightSVLoadProfile = 120
@@ -380,16 +380,20 @@ class RemoteViewController: UIViewController {
         
     }
     
-    @objc func loadProfile() {
-        AlternateTableLoadButton(tableShown: true)
+    private func resetViewState() {
+        activityIndicator.stopAnimating()
+        actualizeButton.isHidden = true
+        disconnectButton.isHidden = true
+        bluetoothAvailableTableView.isHidden = false
+        heightSVConnected = 120.0
     }
     
     func receivedMessage(messageReceived: String) {
         // On sépare le String aux : pour faire un tableau
         let messageReceivedInArray = messageReceived.components(separatedBy: ":")
         if messageReceivedInArray.count > 1 {
-        let data01 = "\(messageReceivedInArray[0])"
-        let data02 = "\(messageReceivedInArray[1])"
+            let data01 = "\(messageReceivedInArray[0])"
+            let data02 = "\(messageReceivedInArray[1])"
             contentData01.text = data01
             contentData02.text = data02
         }
@@ -398,8 +402,19 @@ class RemoteViewController: UIViewController {
     func sendOrder (message:String) {
         if status == .connected {
             if let dataA = message.data(using: .utf8) {
-            targetPeripheral.writeValue(dataA, for: writeCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
-        }
+                guard targetPeripheral.state != .disconnected else {
+                    
+                    let error = AppError.peripheralDisconnected
+                    if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+                        allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+                    }
+                    status = .disconnected
+                    actualize()
+                    return
+                }
+                
+                targetPeripheral.writeValue(dataA, for: writeCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+            }
         }
     }
     
@@ -408,7 +423,6 @@ class RemoteViewController: UIViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC,animated: true,completion: nil)
     }
-    
 }
 
 extension UIApplication {

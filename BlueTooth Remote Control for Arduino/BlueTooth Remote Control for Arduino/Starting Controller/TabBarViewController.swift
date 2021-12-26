@@ -38,7 +38,7 @@ class TabBarViewController: UITabBarController {
             viewControllers = [
                 createNavController(for: RemoteViewController(), title: NSLocalizedString("Remote Control", comment: ""), image: UIImage(systemName: "keyboard")!),
                 createNavController(for: ConfigurationViewController(), title: NSLocalizedString("Configuration", comment: ""), image: UIImage(systemName: "gear")!),
-                createNavController(for: InstructionsViewController(), title: NSLocalizedString("Instructions", comment: ""), image: UIImage(systemName: "book")!),
+                createNavController(for: ViewController(), title: NSLocalizedString("Instructions", comment: ""), image: UIImage(systemName: "book")!),
             ]
         }
 }

@@ -7,15 +7,16 @@
 
 import UIKit
 
-class AppColors {// Enum et static let
-    static let shared = AppColors()
-    let backgroundColor = UIColor.systemBlue//UIColor.systemGreen
-    let buttonColor = UIColor.systemGray3
-    let buttonNotEnableColor = UIColor.systemGray//UIColor(displayP3Red: 128/255, green: 128/255, blue: 128/255, alpha: 1)
-    let selectedButtonColor = UIColor.red
-    let fontColor = UIColor.systemGray4
-    let backGroudTextField = UIColor.systemGray2
-    var colorBackGround: UIColor = .systemBlue
+enum AppColors {
+    
+    static let backgroundColor = UIColor.systemBlue//UIColor.systemGreen
+    static let backgroundColorArduino = UIColor(displayP3Red: 44/255, green: 147/255, blue: 158/255, alpha: 1)
+    static let buttonColor = UIColor.systemGray3
+    static let buttonNotEnableColor = UIColor.systemGray
+    static let selectedButtonColor = UIColor.red
+    static let fontColor = UIColor.systemGray4
+    static let backGroudTextField = UIColor.systemGray2
+    static let colorBackGround: UIColor = .systemBlue
         
     
 }

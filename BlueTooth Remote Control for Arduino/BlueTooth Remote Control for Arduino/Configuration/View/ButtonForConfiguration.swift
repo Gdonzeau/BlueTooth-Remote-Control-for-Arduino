@@ -12,7 +12,7 @@ class ButtonForConfiguration: UIView, UITextFieldDelegate {
     let button = UIButton()
     var orderTextField = UITextField()
     var nameTextField = UITextField()
-    let appColors = AppColors.shared
+    //let appColors = AppColors.shared
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,26 +27,26 @@ class ButtonForConfiguration: UIView, UITextFieldDelegate {
     
     func setupView() {
         
-        button.backgroundColor = appColors.buttonColor
+        button.backgroundColor = AppColors.buttonColor
         button.setTitle("X", for: .normal)
         button.contentMode = .scaleAspectFit
         button.layer.cornerRadius = 24
         button.layer.masksToBounds = true
         //button.setTitleColor(.white, for: .normal)
         
-        nameTextField.backgroundColor = appColors.backGroudTextField//.lightGray
+        nameTextField.backgroundColor = AppColors.backGroudTextField//.lightGray
         nameTextField.layer.cornerRadius = 2
         nameTextField.layer.masksToBounds = true
         nameTextField.placeholder = "Button's name"
         nameTextField.delegate = self
-        nameTextField.tintColor = appColors.fontColor
+        nameTextField.tintColor = AppColors.fontColor
         
-        orderTextField.backgroundColor = appColors.backGroudTextField
+        orderTextField.backgroundColor = AppColors.backGroudTextField
         orderTextField.layer.cornerRadius = 2
         orderTextField.layer.masksToBounds = true
         orderTextField.placeholder = "Button's order"
         orderTextField.delegate = self
-        orderTextField.tintColor = appColors.fontColor
+        orderTextField.tintColor = AppColors.fontColor
         
         
     }

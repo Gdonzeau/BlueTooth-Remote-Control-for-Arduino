@@ -8,7 +8,7 @@
 import UIKit
 
 class ThreeButtonsLine: UIView {
-    let appColors = AppColors.shared
+    //let appColors = AppColors.shared
     
     var remoteButton01 = UIButton()
     var remoteButton02 = UIButton()
@@ -25,12 +25,12 @@ class ThreeButtonsLine: UIView {
     }
     
     func setupView() {
-        backgroundColor = appColors.backgroundColor
+        backgroundColor = AppColors.backgroundColorArduino
         
         let buttons = [remoteButton01,remoteButton02,remoteButton03]
         
         for button in buttons {
-            button.backgroundColor = appColors.buttonColor
+            button.backgroundColor = AppColors.buttonColor
             button.contentMode = .scaleAspectFit
             button.layer.cornerRadius = 24
             button.layer.masksToBounds = true
