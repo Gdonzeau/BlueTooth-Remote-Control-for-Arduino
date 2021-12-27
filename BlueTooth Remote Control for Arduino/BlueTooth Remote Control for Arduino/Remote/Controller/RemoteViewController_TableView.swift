@@ -38,7 +38,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        
+        /*
          let section = indexPath.section
          switch section {
          case 0:
@@ -48,9 +48,9 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
          default:
          return 0.0
          }
-         
+         */
         
-        /*
+        
         var height:CGFloat = 10.0
         
         if tableView == bluetoothAvailableTableView {
@@ -60,9 +60,9 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView == profilesTableView {
             height = 40.0
         }
-         
-         return height
-        */
+        
+        return height
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -136,7 +136,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
          default:
          print("Oups !")
          }
-        */
+         */
         
         /*
          print("touch \(indexPath.row)")
@@ -166,74 +166,74 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         //let section = indexPath.section
         
         if tableView == profilesTableView {// delete
-        let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
-            
-            let profileToDelete = self.profiles[indexPath.row]
-            
-            do {
-                // Let's delete
-                try self.profileStorageManager.deleteProfile(profileToDelete: profileToDelete)
-                DispatchQueue.main.async {
-                    self.getProfilesFromDatabase()
-                    //tableView.reloadData()
+            let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
+                
+                let profileToDelete = self.profiles[indexPath.row]
+                
+                do {
+                    // Let's delete
+                    try self.profileStorageManager.deleteProfile(profileToDelete: profileToDelete)
+                    DispatchQueue.main.async {
+                        self.getProfilesFromDatabase()
+                        //tableView.reloadData()
+                    }
+                    completionHandler(true)
+                } catch {
+                    // Error while deleting
+                    completionHandler(false)
+                    let error = AppError.errorDelete
+                    if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+                        self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+                    }
                 }
+                
                 completionHandler(true)
-            } catch {
-                // Error while deleting
-                completionHandler(false)
-                let error = AppError.errorDelete
-                if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
-                    self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
-                }
             }
+            delete.image = UIImage(systemName: "trash")
             
-            completionHandler(true)
+            delete.backgroundColor = .red
+            
+            // swipe action
+            let swipe = UISwipeActionsConfiguration(actions: [delete])
+            return swipe
         }
-        delete.image = UIImage(systemName: "trash")
-        
-        delete.backgroundColor = .red
-       
-        // swipe action
-        let swipe = UISwipeActionsConfiguration(actions: [delete])
-        return swipe
-    }
         return UISwipeActionsConfiguration()
         
     }
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    internal func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         if tableView == profilesTableView {
-        let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
-            print("Edit \(indexPath.row)")
-            // First : send the profile to edit
-            let navVC = self.tabBarController?.viewControllers![1] as! UINavigationController
-            let configurationVC = navVC.topViewController as! ConfigurationViewController
-            configurationVC.profileReceivedToBeLoaded = self.profiles[indexPath.row]
-            
-            // Let's delete the profile to edit from Storage
-            do {
-                try self.profileStorageManager.deleteProfile(profileToDelete: self.profiles[indexPath.row])
-            } catch {
-                // Error while deleting
-                let error = AppError.errorDelete
-                if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
-                    self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+            let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
+                print("Edit \(indexPath.row)")
+                // First : send the profile to edit
+                let navVC = self.tabBarController?.viewControllers![1] as! UINavigationController
+                let configurationVC = navVC.topViewController as! ConfigurationViewController
+                configurationVC.profileReceivedToBeLoaded = self.profiles[indexPath.row]
+                
+                // Let's delete the profile to edit from Storage
+                do {
+                    try self.profileStorageManager.deleteProfile(profileToDelete: self.profiles[indexPath.row])
+                } catch {
+                    // Error while deleting
+                    let error = AppError.errorDelete
+                    if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
+                        self.allErrors(errorMessage: errorMessage, errorTitle: errorTitle)
+                    }
                 }
+                // Reload the TableView of Profiles
+                self.profilesTableView.reloadData()
+                
+                completionHandler(true)
+                self.tabBarController?.selectedIndex = 1
             }
-            // Reload the TableView of Profiles
-            self.profilesTableView.reloadData()
+            edit.image = UIImage(systemName: "book")
             
-            completionHandler(true)
-            self.tabBarController?.selectedIndex = 1
-        }
-        edit.image = UIImage(systemName: "book")
-        
-        edit.backgroundColor = .green
-        
-        // swipe action
-        let swipe = UISwipeActionsConfiguration(actions: [edit])
-        return swipe
+            edit.backgroundColor = .green
+            
+            // swipe action
+            let swipe = UISwipeActionsConfiguration(actions: [edit])
+            return swipe
         }
         return UISwipeActionsConfiguration()
     }

@@ -31,7 +31,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         setup()
         setView()
-        setConstraints()
         configuration()
     }
     
@@ -43,7 +42,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         }
         
     }
-    func setup() {
+    private func setup() {
         for index in 0 ..< buttonsForConfiguration.count {
             buttonsForConfiguration[index].nameTextField.delegate = self
             buttonsForConfiguration[index].orderTextField.delegate = self
@@ -53,7 +52,9 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         dataName01.delegate = self
     }
     
-    func setView() {
+    // MARK: - Setup View
+    
+    private func setView() {
         
         view.backgroundColor = AppColors.backgroundColorArduino
         
@@ -88,13 +89,9 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         
         activityIndicator.stopAnimating()
-        
-    }
     
     // MARK: - Constraints
     
-    func setConstraints() {
-        
         let margins = view.layoutMarginsGuide
         // First buttons line
         let firstRankButtonsStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[0],buttonsForConfiguration[1],buttonsForConfiguration[2]])
@@ -184,10 +181,12 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         ])
     }
     
-    func configuration() {
+    
+    
+    private func configuration() {
         saveButton.addTarget(self, action: #selector(save), for: .touchUpInside) // action is assign to saveButton
     }
-    
+    /*
     func setting() { // If the button as no order to transmit, no need to see it
         for index in 0 ..< buttonsForConfiguration.count {
             if infosButtons.order[index] == "" {
@@ -195,7 +194,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    
+    */
     func updateButtons() { // Button's name appear on the button
         for index in 0 ..< buttonsForConfiguration.count {
             let name = buttonsForConfiguration[index].nameTextField.text
@@ -203,7 +202,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @objc func save(sender: UIButton!) {
+    @objc func save(sender: UIButton) {
         var profileSaving = Profile(name: "", datas: "")
         
         for button in buttonsForConfiguration { // First of all, let's check there are no ":"
@@ -231,6 +230,8 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
                 return
             }
             
+            // All is checked. Let's save the profile
+            
             do {
                 let profilesAlreadySaved = try profileStorageManager.loadProfiles()
                     for profile in profilesAlreadySaved {
@@ -253,15 +254,12 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         saveButton.isHidden = true
         activityIndicator.startAnimating()
         
-        // Starting timer, for user sensation
+        // Starting timer, for Your Eyes Only
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
         
         profileSaving.datas = groupDatasInArray()
         
-        //let profileToSave = profileSaving
-        
         do {
-            print("Try to save")
             try profileStorageManager.saveProfile(profile: profileSaving)
         } catch {
             print("Error while saving")
@@ -269,7 +267,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func fireTimer() {
-        print("Timer fired!")
+        
         nameProfile.isHidden = false
         saveButton.isHidden = false
         activityIndicator.stopAnimating()
@@ -278,7 +276,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
  
     }
     
-    func loadingProfile(profileToLoad: Profile) {
+    private func loadingProfile(profileToLoad: Profile) {
             nameProfile.text = profileToLoad.name
             let datasArray = profileToLoad.datas.components(separatedBy: ":")
             print("Array : \(datasArray)")
@@ -287,6 +285,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
                 buttonsForConfiguration[index].nameTextField.text = datasArray[index]
                 buttonsForConfiguration[index].orderTextField.text = datasArray[index+9]
             }
+        
         dataName01.text = datasArray[18]
         dataName02.text = datasArray[19]
             
@@ -294,7 +293,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
             print("\(infosButtons.name)")
     }
     
-    func groupDatasInArray() -> String {
+    private func groupDatasInArray() -> String {
         var dataProfile = ""
         var nameButtons = ""
         var orderButtons = ""
@@ -312,21 +311,17 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         return dataProfile
     }
     
-    func initializeDatasButtons() {
+    private func initializeDatasButtons() {
         for button in buttonsForConfiguration {
             button.nameTextField.text = ""
             button.orderTextField.text = ""
             button.button.setTitle("", for: .normal)
+            dataName01.text = ""
+            dataName02.text = ""
             nameProfile.text = ""
         }
     }
     
-    func initializeButtons() {
-        for index in 0 ..< buttonsForConfiguration.count {
-            buttonsForConfiguration[index].button.backgroundColor = AppColors.buttonColor
-        }
-        
-    }
     func resigningFirstResponder() {
         UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil);
     }

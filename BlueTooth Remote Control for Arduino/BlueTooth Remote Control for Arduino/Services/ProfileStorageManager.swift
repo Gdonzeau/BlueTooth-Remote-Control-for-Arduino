@@ -27,6 +27,7 @@ class ProfileStorageManager {
         
         return profilesStored.map { Profile(from: $0) }
     }
+    
     func saveProfile(profile: Profile) throws { // ajouter throws
         print("Saving")
         

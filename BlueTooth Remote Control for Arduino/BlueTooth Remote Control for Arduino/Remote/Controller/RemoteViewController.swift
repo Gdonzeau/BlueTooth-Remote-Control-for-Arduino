@@ -10,37 +10,35 @@ import CoreData
 import CoreBluetooth
 
 class RemoteViewController: UIViewController {
-    //let appColors = AppColors.shared
+    
     let profileStorageManager = ProfileStorageManager.shared
     
-    var saveTitle = UILabel()
+    private var saveTitle = UILabel()
     
-    var actualizeButton = UIButton() // Press this button to connect to BT
-    var disconnectButton = UIButton() // Press this button to disconnect from BT
-    var activityIndicator = UIActivityIndicatorView()
-    //var btNames: [String] = []
-    //var nameBTModule = UITableView()
+    private var actualizeButton = UIButton() // Press this button to connect to BT
+    private var disconnectButton = UIButton() // Press this button to disconnect from BT
+    private var activityIndicator = UIActivityIndicatorView()
     
-    //var mainView = MainView()
-    var firstThreeButtons = ThreeButtonsLine()
-    var secondThreeButtons = ThreeButtonsLine()
-    var thirdThreeButtons = ThreeButtonsLine()
+    private var firstThreeButtons = ThreeButtonsLine()
+    private var secondThreeButtons = ThreeButtonsLine()
+    private var thirdThreeButtons = ThreeButtonsLine()
     
-    var titleData01 = UILabel()
-    var contentData01 = UILabel()
-    var titleData02 = UILabel()
-    var contentData02 = UILabel()
+    private var titleData01 = UILabel()
+    private var contentData01 = UILabel()
+    private var titleData02 = UILabel()
+    private var contentData02 = UILabel()
     
-    var infosButtons = InfoButtons() // Contains names, order, seen or not
+    private var infosButtons = InfoButtons() // Contains names, order, seen or not
     
     let profilesTableView = UITableView()
     let bluetoothAvailableTableView = UITableView()
     
     var profiles : [Profile] = []
     var profileLoaded = Profile(name: "", datas: "")
-    let loadButton = UIButton() // Button to show the tableView with profiles
     
-    var autoadjust = false // Buttons not used will be hidden or just enabled
+    private let loadButton = UIButton() // Button to show the tableView with profiles
+    
+    private var autoadjust = false // Buttons not used will be hidden or just enabled
     
     // BlueTooth part
     let targetCBUUID = CBUUID(string: "0xFFE0")
@@ -53,8 +51,10 @@ class RemoteViewController: UIViewController {
     var peripherals = [CBPeripheral]()
     var peripheralsDetected = [PeripheralDetected]()
     
-    var heightSVConnected:CGFloat = 60.0
-    var heightSVLoadProfile:CGFloat = 60.0
+    private var heightSVConnected:CGFloat = 60.0
+    private var heightSVLoadProfile:CGFloat = 60.0
+    
+    // MARK: - Status
     
     var status:Status = .disconnected {
         didSet {
@@ -118,7 +118,9 @@ class RemoteViewController: UIViewController {
         
     }
     
-    func setupView() {
+    // MARK: - SetupView
+    
+    private func setupView() {
         //UIFont.preferredFont(forTextStyle: UIFont.systemFont(ofSize: 20.0)) ???
         view.backgroundColor = AppColors.backgroundColorArduino
         // Setting Title
@@ -254,7 +256,9 @@ class RemoteViewController: UIViewController {
         
     }
     
-    func setupTableView() {
+    // MARK: - TableViews
+    
+    private func setupTableView() {
         profilesTableView.register(UITableViewCell.self,forCellReuseIdentifier: "cell_Profile")
         profilesTableView.dataSource = self
         profilesTableView.delegate = self
@@ -264,7 +268,9 @@ class RemoteViewController: UIViewController {
         bluetoothAvailableTableView.delegate = self
     }
     
-    func configurationButtons(rank:Int) {
+    // MARK: - Buttons Configuration
+    
+    func configurationButtons(rank:Int) { // To configure buttons and datas from profile selected
         
         let buttons = [firstThreeButtons.remoteButton01,
                        firstThreeButtons.remoteButton02,
@@ -325,7 +331,7 @@ class RemoteViewController: UIViewController {
         }
     }
     
-    @objc func buttonAction(sender: UIButton!) {
+    @objc func buttonAction(sender: UIButton) {
         
         let buttonTag = sender.tag
         let order = infosButtons.order[buttonTag]
@@ -388,6 +394,8 @@ class RemoteViewController: UIViewController {
         heightSVConnected = 120.0
     }
     
+    // MARK: - Communication Bluetooth
+    
     func receivedMessage(messageReceived: String) {
         // On sépare le String aux : pour faire un tableau
         let messageReceivedInArray = messageReceived.components(separatedBy: ":")
@@ -418,6 +426,8 @@ class RemoteViewController: UIViewController {
         }
     }
     
+    // MARK: - Errors
+    
     func allErrors(errorMessage: String, errorTitle: String) {
         let alertVC = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -427,6 +437,7 @@ class RemoteViewController: UIViewController {
 
 extension UIApplication {
     /*function will return reference to tabbarcontroller */
+    /*
     func tabbarController() -> UIViewController? {
         guard let vcs = self.keyWindow?.rootViewController?.children else { return nil }
         
@@ -437,4 +448,5 @@ extension UIApplication {
         }
         return nil
     }
+    */
 }

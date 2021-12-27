@@ -21,7 +21,7 @@ class TabBarViewController: UITabBarController {
     }
     
     
-    fileprivate func createNavController(for rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
+    fileprivate func createNavController(for rootViewController: UIViewController, title: String, image: UIImage?) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
@@ -36,9 +36,9 @@ class TabBarViewController: UITabBarController {
     
     func setupVCs() {
             viewControllers = [
-                createNavController(for: RemoteViewController(), title: NSLocalizedString("Remote Control", comment: ""), image: UIImage(systemName: "keyboard")!),
-                createNavController(for: ConfigurationViewController(), title: NSLocalizedString("Configuration", comment: ""), image: UIImage(systemName: "gear")!),
-                createNavController(for: ViewController(), title: NSLocalizedString("Instructions", comment: ""), image: UIImage(systemName: "book")!),
+                createNavController(for: RemoteViewController(), title: NSLocalizedString("Remote Control", comment: ""), image: UIImage(systemName: "keyboard")),
+                createNavController(for: ConfigurationViewController(), title: NSLocalizedString("Configuration", comment: ""), image: UIImage(systemName: "gear")),
+                createNavController(for: DemoViewController(), title: NSLocalizedString("Instructions", comment: ""), image: UIImage(systemName: "book"))
             ]
         }
 }

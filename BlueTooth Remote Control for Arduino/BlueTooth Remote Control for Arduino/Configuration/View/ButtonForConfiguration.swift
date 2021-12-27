@@ -18,14 +18,13 @@ class ButtonForConfiguration: UIView, UITextFieldDelegate {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         setupView()
-        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    func setupView() {
+    private func setupView() {
         
         button.backgroundColor = AppColors.buttonColor
         button.setTitle("X", for: .normal)
@@ -48,9 +47,8 @@ class ButtonForConfiguration: UIView, UITextFieldDelegate {
         orderTextField.delegate = self
         orderTextField.tintColor = AppColors.fontColor
         
+        // MARK: - Constraints
         
-    }
-    func setupConstraints() {
         let verticalStackView = UIStackView(arrangedSubviews: [button,nameTextField,orderTextField])
         verticalStackView.axis = .vertical
         verticalStackView.alignment = .fill

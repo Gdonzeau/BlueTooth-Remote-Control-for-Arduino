@@ -29,6 +29,8 @@ extension RemoteViewController: CBCentralManagerDelegate {
         }
     }
     
+    // MARK: - Bluetooth Central
+    
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         if let nameTarget = peripheral.name {
@@ -61,6 +63,8 @@ extension RemoteViewController: CBCentralManagerDelegate {
         status = .disconnected
     }
 }
+
+// MARK: - Bluetooth Peripherals
 
 extension RemoteViewController: CBPeripheralDelegate {
     

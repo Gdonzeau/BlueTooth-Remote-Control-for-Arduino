@@ -41,7 +41,7 @@ class BlueTooth_Remote_Control_for_ArduinoTests: XCTestCase {
     }
     
     // Premier test fonctionne
-    func testLoadRecipes() {
+    func testLoadProfiles() {
         var loadedProfiles: [Profile] = []
         XCTAssertTrue(loadedProfiles.isEmpty)
         

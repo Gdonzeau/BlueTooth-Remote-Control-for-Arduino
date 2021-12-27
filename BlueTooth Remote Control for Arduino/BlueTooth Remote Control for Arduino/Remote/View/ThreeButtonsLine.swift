@@ -24,7 +24,7 @@ class ThreeButtonsLine: UIView {
         super.init(coder: coder)
     }
     
-    func setupView() {
+    private func setupView() {
         backgroundColor = AppColors.backgroundColorArduino
         
         let buttons = [remoteButton01,remoteButton02,remoteButton03]

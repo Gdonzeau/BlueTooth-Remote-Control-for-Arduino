@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keyboard when returnKey
+extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keyboard when returnKey or move up/down the View
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -19,7 +19,7 @@ extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keybo
    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if  textField == dataName01 ||
-            textField ==  dataName02 ||
+            textField == dataName02 ||
             textField == nameProfile ||
                 
             textField == buttonsForConfiguration[6].nameTextField ||
@@ -37,7 +37,7 @@ extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keybo
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if  textField == dataName01 ||
-            textField ==  dataName02 ||
+            textField == dataName02 ||
             textField == nameProfile ||
                 
             textField == buttonsForConfiguration[6].nameTextField ||
@@ -52,7 +52,7 @@ extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keybo
         }
     }
 
-    func animateViewMoving (up:Bool, moveValue :CGFloat){
+    private func animateViewMoving (up:Bool, moveValue :CGFloat){
         let movementDuration:TimeInterval = 0.3
         let movement:CGFloat = ( up ? -moveValue : moveValue)
 

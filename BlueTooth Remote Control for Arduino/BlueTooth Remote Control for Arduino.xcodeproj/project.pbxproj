@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0439DB25277A277200834B2A /* SendingFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439DB24277A277200834B2A /* SendingFileViewController.swift */; };
+		0439DB30277A629400834B2A /* Arduino.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0439DB2F277A629400834B2A /* Arduino.ino */; };
+		0439DB35277A62A900834B2A /* Arduino.zip in Resources */ = {isa = PBXBuildFile; fileRef = 0439DB34277A62A900834B2A /* Arduino.zip */; };
+		048AD8162779275B00A64C48 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AD8152779275B00A64C48 /* DemoViewController.swift */; };
+		048AD81B2779278400A64C48 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AD81A2779278400A64C48 /* OnBoardingViewController.swift */; };
+		048AD820277927E700A64C48 /* OnBoardingImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AD81F277927E700A64C48 /* OnBoardingImageViewController.swift */; };
 		048E0535276CF8DE003A1CD0 /* ButtonForConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */; };
-		048E053A276D0186003A1CD0 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0539276D0186003A1CD0 /* InstructionsViewController.swift */; };
 		048E0541276E2775003A1CD0 /* ProfileStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0540276E2775003A1CD0 /* ProfileStorageManager.swift */; };
 		048E0546276E2899003A1CD0 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E0545276E2899003A1CD0 /* Profile.swift */; };
 		04921B5727709CD500431F40 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B5627709CD500431F40 /* Errors.swift */; };
@@ -53,8 +58,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0439DB24277A277200834B2A /* SendingFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingFileViewController.swift; sourceTree = "<group>"; };
+		0439DB2F277A629400834B2A /* Arduino.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Arduino.ino; sourceTree = "<group>"; };
+		0439DB34277A62A900834B2A /* Arduino.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Arduino.zip; sourceTree = "<group>"; };
+		048AD8152779275B00A64C48 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
+		048AD81A2779278400A64C48 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		048AD81F277927E700A64C48 /* OnBoardingImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingImageViewController.swift; sourceTree = "<group>"; };
 		048E0534276CF8DE003A1CD0 /* ButtonForConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonForConfiguration.swift; sourceTree = "<group>"; };
-		048E0539276D0186003A1CD0 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
 		048E0540276E2775003A1CD0 /* ProfileStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorageManager.swift; sourceTree = "<group>"; };
 		048E0545276E2899003A1CD0 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		04921B5627709CD500431F40 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -136,7 +146,10 @@
 		046B7FB3276EA44E006718E0 /* Instruction */ = {
 			isa = PBXGroup;
 			children = (
-				048E0539276D0186003A1CD0 /* InstructionsViewController.swift */,
+				048AD8152779275B00A64C48 /* DemoViewController.swift */,
+				048AD81F277927E700A64C48 /* OnBoardingImageViewController.swift */,
+				048AD81A2779278400A64C48 /* OnBoardingViewController.swift */,
+				0439DB24277A277200834B2A /* SendingFileViewController.swift */,
 			);
 			path = Instruction;
 			sourceTree = "<group>";
@@ -218,12 +231,12 @@
 			isa = PBXGroup;
 			children = (
 				04D75B07276672AB0025F84A /* Services */,
+				04D75B032766721E0025F84A /* General Models */,
+				04D75B04276672250025F84A /* Starting Controller */,
 				046B7FAE276EA415006718E0 /* Remote */,
 				046B7FB2276EA440006718E0 /* Configuration */,
 				046B7FB3276EA44E006718E0 /* Instruction */,
 				04D75B062766724D0025F84A /* Other Files */,
-				04D75B032766721E0025F84A /* General Models */,
-				04D75B04276672250025F84A /* Starting Controller */,
 				04D75ADE276671E50025F84A /* Info.plist */,
 			);
 			path = "BlueTooth Remote Control for Arduino";
@@ -270,6 +283,8 @@
 			isa = PBXGroup;
 			children = (
 				04D75AD9276671E50025F84A /* Assets.xcassets */,
+				0439DB2F277A629400834B2A /* Arduino.ino */,
+				0439DB34277A62A900834B2A /* Arduino.zip */,
 				04D75ADB276671E50025F84A /* LaunchScreen.storyboard */,
 				04D75ACD276671D80025F84A /* AppDelegate.swift */,
 				04D75ACF276671D80025F84A /* SceneDelegate.swift */,
@@ -389,7 +404,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0439DB30277A629400834B2A /* Arduino.ino in Resources */,
 				04D75ADD276671E50025F84A /* LaunchScreen.storyboard in Resources */,
+				0439DB35277A62A900834B2A /* Arduino.zip in Resources */,
 				04D75ADA276671E50025F84A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,15 +434,17 @@
 			files = (
 				04921B712770DEFC00431F40 /* Peripherals.swift in Sources */,
 				04B56588276CA507006CEE37 /* Colors.swift in Sources */,
+				048AD81B2779278400A64C48 /* OnBoardingViewController.swift in Sources */,
 				04D75B262767F21D0025F84A /* ThreeButtonsLine.swift in Sources */,
 				048E0546276E2899003A1CD0 /* Profile.swift in Sources */,
 				048E0541276E2775003A1CD0 /* ProfileStorageManager.swift in Sources */,
-				048E053A276D0186003A1CD0 /* InstructionsViewController.swift in Sources */,
+				0439DB25277A277200834B2A /* SendingFileViewController.swift in Sources */,
 				04921B5727709CD500431F40 /* Errors.swift in Sources */,
 				04D75B4127680A620025F84A /* InfoButtons.swift in Sources */,
 				04D75AD2276671D80025F84A /* RemoteViewController.swift in Sources */,
 				04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */,
 				04921BA02773437E00431F40 /* ConfigurationActionKeyboardViewController.swift in Sources */,
+				048AD820277927E700A64C48 /* OnBoardingImageViewController.swift in Sources */,
 				04921BD92773908A00431F40 /* TabBarViewController.swift in Sources */,
 				04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */,
 				048E0535276CF8DE003A1CD0 /* ButtonForConfiguration.swift in Sources */,
@@ -433,6 +452,7 @@
 				04D75B80276953500025F84A /* Status.swift in Sources */,
 				04D75B0C2766A1670025F84A /* ConfigurationViewController.swift in Sources */,
 				04921B6C2770D5E700431F40 /* RemoteViewController_BlueTooth.swift in Sources */,
+				048AD8162779275B00A64C48 /* DemoViewController.swift in Sources */,
 				04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,6 +624,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8453MU78WA;
 				INFOPLIST_FILE = "BlueTooth Remote Control for Arduino/Info.plist";
@@ -614,6 +635,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.gdtr.BlueTooth-Remote-Control-for-Arduino";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -624,6 +646,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8453MU78WA;
 				INFOPLIST_FILE = "BlueTooth Remote Control for Arduino/Info.plist";
@@ -634,6 +657,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.gdtr.BlueTooth-Remote-Control-for-Arduino";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -687,6 +711,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8453MU78WA;
 				INFOPLIST_FILE = "BlueTooth Remote Control for ArduinoUITests/Info.plist";
@@ -697,6 +723,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fr.gdtr.BlueTooth-Remote-Control-for-ArduinoUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "BlueTooth Remote Control for Arduino";
@@ -707,6 +735,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8453MU78WA;
 				INFOPLIST_FILE = "BlueTooth Remote Control for ArduinoUITests/Info.plist";
