@@ -23,8 +23,6 @@
 		04921B6C2770D5E700431F40 /* RemoteViewController_BlueTooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B6B2770D5E700431F40 /* RemoteViewController_BlueTooth.swift */; };
 		04921B712770DEFC00431F40 /* Peripherals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B702770DEFC00431F40 /* Peripherals.swift */; };
 		04921B862771DBBB00431F40 /* FakeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B852771DBBB00431F40 /* FakeResponse.swift */; };
-		04921B8E2771E7C800431F40 /* CoreDataTestStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B8D2771E7C800431F40 /* CoreDataTestStack.swift */; };
-		04921B9B2771EFDB00431F40 /* FakeProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B9A2771EFDB00431F40 /* FakeProfiles.swift */; };
 		04921BA02773437E00431F40 /* ConfigurationActionKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921B9F2773437D00431F40 /* ConfigurationActionKeyboardViewController.swift */; };
 		04921BD92773908A00431F40 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04921BD82773908A00431F40 /* TabBarViewController.swift */; };
 		04B56588276CA507006CEE37 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B56587276CA507006CEE37 /* Colors.swift */; };
@@ -76,8 +74,6 @@
 		04921B6B2770D5E700431F40 /* RemoteViewController_BlueTooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteViewController_BlueTooth.swift; sourceTree = "<group>"; };
 		04921B702770DEFC00431F40 /* Peripherals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peripherals.swift; sourceTree = "<group>"; };
 		04921B852771DBBB00431F40 /* FakeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponse.swift; sourceTree = "<group>"; };
-		04921B8D2771E7C800431F40 /* CoreDataTestStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTestStack.swift; sourceTree = "<group>"; };
-		04921B9A2771EFDB00431F40 /* FakeProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeProfiles.swift; sourceTree = "<group>"; };
 		04921B9F2773437D00431F40 /* ConfigurationActionKeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationActionKeyboardViewController.swift; sourceTree = "<group>"; };
 		04921BD82773908A00431F40 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		04B56587276CA507006CEE37 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -212,8 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				04D75AE7276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift */,
-				04921B8D2771E7C800431F40 /* CoreDataTestStack.swift */,
-				04921B9A2771EFDB00431F40 /* FakeProfiles.swift */,
 			);
 			path = "Test Storage";
 			sourceTree = "<group>";
@@ -485,9 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04921B9B2771EFDB00431F40 /* FakeProfiles.swift in Sources */,
 				04D75AE8276671E60025F84A /* BlueTooth_Remote_Control_for_ArduinoTests.swift in Sources */,
-				04921B8E2771E7C800431F40 /* CoreDataTestStack.swift in Sources */,
 				04921B862771DBBB00431F40 /* FakeResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

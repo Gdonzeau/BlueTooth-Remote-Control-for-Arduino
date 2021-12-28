@@ -91,7 +91,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration()
     }
     
-    func deleteProfile(row: Int) -> UISwipeActionsConfiguration? {
+    private func deleteProfile(row: Int) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
             
             let profileToDelete = self.profiles[row]
@@ -123,7 +123,7 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         return swipe
     }
     
-    func editProfile(row: Int) -> UISwipeActionsConfiguration? {
+    private func editProfile(row: Int) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
             // First : send the profile to edit
             let navVC = self.tabBarController?.viewControllers?[1] as! UINavigationController

@@ -60,7 +60,7 @@ class BlueTooth_Remote_Control_for_ArduinoTests: XCTestCase {
     
     func testWhenDeletingOneProfileFromSixThenFiveLeft() {
         var loadedProfiles: [Profile] = []
-        print("Contenu = \(FakeResponse.profiles.count)")
+        
         // Saving recipes from FakeResponse
         for index in 0 ..< FakeResponse.profiles.count {
             let profile = FakeResponse.profiles[index]

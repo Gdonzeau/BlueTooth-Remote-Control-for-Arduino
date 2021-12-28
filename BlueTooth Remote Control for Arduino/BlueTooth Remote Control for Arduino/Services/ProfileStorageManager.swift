@@ -27,7 +27,7 @@ class ProfileStorageManager {
         return profilesStored.map { Profile(from: $0) }
     }
     
-    func saveProfile(profile: Profile) throws { // ajouter throws
+    func saveProfile(profile: Profile) throws {
         let profileToSave = ProfileEntity(context: viewContext)
         profileToSave.name = profile.name
         profileToSave.datas = profile.datas
@@ -37,7 +37,7 @@ class ProfileStorageManager {
         } catch { print("Error \(error)") ; throw error }
     }
     
-    func deleteProfile(profileToDelete: Profile) throws { // ajout throws
+    func deleteProfile(profileToDelete: Profile) throws {
         let request: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
         do {
             let response = try viewContext.fetch(request)
