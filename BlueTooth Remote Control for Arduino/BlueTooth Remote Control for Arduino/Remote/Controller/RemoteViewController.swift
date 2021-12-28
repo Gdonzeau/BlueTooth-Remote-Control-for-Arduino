@@ -44,10 +44,10 @@ class RemoteViewController: UIViewController {
     let targetCBUUID = CBUUID(string: "0xFFE0")
     let dialogCBUUID = CBUUID(string: "FFE1")
     
-    var centralManager: CBCentralManager!
-    var targetPeripheral: CBPeripheral!
-    var targetPeripheral02: CBPeripheral!
-    var writeCharacteristic: CBCharacteristic!
+    var centralManager: CBCentralManager?
+    var targetPeripheral: CBPeripheral?
+    var targetPeripheral02: CBPeripheral?
+    var writeCharacteristic: CBCharacteristic?
     var peripherals = [CBPeripheral]()
     var peripheralsDetected = [PeripheralDetected]()
     
@@ -99,7 +99,9 @@ class RemoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         status = .disconnected
-        centralManager = CBCentralManager(delegate: self, queue: nil)
+        guard centralManager == CBCentralManager(delegate: self, queue: nil) else {
+            return
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,33 +142,33 @@ class RemoteViewController: UIViewController {
         actualizeButton.layer.masksToBounds = true
         actualizeButton.setTitle("Actualize", for: .normal)
         actualizeButton.backgroundColor = AppColors.buttonColor
+        actualizeButton.contentMode = .scaleAspectFit
         actualizeButton.translatesAutoresizingMaskIntoConstraints = false
-        
+        actualizeButton.addTarget(self, action: #selector(actualize), for: .touchUpInside)
+
         disconnectButton.layer.cornerRadius = 24
         disconnectButton.layer.masksToBounds = true
         disconnectButton.setTitle("Disconnect", for: .normal)
         disconnectButton.backgroundColor = AppColors.buttonColor
-        disconnectButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        actualizeButton.contentMode = .scaleAspectFit
         disconnectButton.contentMode = .scaleAspectFit
-        
+        disconnectButton.translatesAutoresizingMaskIntoConstraints = false
         disconnectButton.addTarget(self, action: #selector(disconnect), for: .touchUpInside)
-        actualizeButton.addTarget(self, action: #selector(actualize), for: .touchUpInside)
         
         // Datas received from Arduino
         titleData01.adjustsFontForContentSizeCategory = true
-        titleData02.adjustsFontForContentSizeCategory = true
-        contentData01.adjustsFontForContentSizeCategory = true
-        contentData02.adjustsFontForContentSizeCategory = true
-        
-        
-        contentData01.text = ""
-        contentData02.text = ""
         titleData01.contentMode = .scaleAspectFit
+
+        contentData01.adjustsFontForContentSizeCategory = true
+        contentData01.text = ""
         contentData01.contentMode = .scaleAspectFit
+
+        titleData02.adjustsFontForContentSizeCategory = true
         titleData02.contentMode = .scaleAspectFit
+
+        contentData02.adjustsFontForContentSizeCategory = true
+        contentData02.text = ""
         contentData02.contentMode = .scaleAspectFit
+
         
         //Button Load / TableView with profiles available
         loadButton.backgroundColor = AppColors.buttonColor
@@ -178,8 +180,8 @@ class RemoteViewController: UIViewController {
         
         profilesTableView.layer.cornerRadius = 24
         profilesTableView.layer.masksToBounds = true
-        view.addSubview(profilesTableView)
         profilesTableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(profilesTableView)
         
         // MARK: - Constraints
         
@@ -288,18 +290,13 @@ class RemoteViewController: UIViewController {
             
             saveTitle.text = dataBase.name
             let datasArray = dataBase.datas.components(separatedBy: ":")
-            print("Array : \(datasArray)")
             
             for index in 0 ..< infosButtons.name.count {
                 infosButtons.name[index] = datasArray[index]
                 infosButtons.order[index] = datasArray[index+9]
             }
-            
             titleData01.text = datasArray[18]
             titleData02.text = datasArray[19]
-            
-            print("\(infosButtons.order)")
-            print("\(infosButtons.name)")
         }
         
         for index in 0 ... 8 {
@@ -341,7 +338,7 @@ class RemoteViewController: UIViewController {
     @objc func actualize() {
         peripheralsDetected = []
         bluetoothAvailableTableView.reloadData()
-        centralManager.scanForPeripherals(withServices: [targetCBUUID])
+        centralManager?.scanForPeripherals(withServices: [targetCBUUID])
     }
     
     @objc func disconnect() {
@@ -349,7 +346,7 @@ class RemoteViewController: UIViewController {
         guard let peripheral = targetPeripheral else {
             return
         }
-        centralManager.cancelPeripheralConnection(peripheral)
+        centralManager?.cancelPeripheralConnection(peripheral)
     }
     
     @objc func loadProfile() {
@@ -359,14 +356,7 @@ class RemoteViewController: UIViewController {
     func getProfilesFromDatabase() {
         do {
             profiles = try profileStorageManager.loadProfiles()
-            if profiles.isEmpty {
-                print("Vide")
-                //viewState = .empty
-            } else {
-                for profile in profiles {
-                    print("\(profile.name)")
-                }
-            }
+            
             profilesTableView.reloadData()
         } catch let error {
             print("Error loading recipes from database \(error.localizedDescription)")
@@ -410,7 +400,7 @@ class RemoteViewController: UIViewController {
     func sendOrder (message:String) {
         if status == .connected {
             if let dataA = message.data(using: .utf8) {
-                guard targetPeripheral.state != .disconnected else {
+                guard targetPeripheral?.state != .disconnected else {
                     
                     let error = AppError.peripheralDisconnected
                     if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
@@ -420,8 +410,10 @@ class RemoteViewController: UIViewController {
                     actualize()
                     return
                 }
-                
-                targetPeripheral.writeValue(dataA, for: writeCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
+                guard let writeCharacteristicToUse = writeCharacteristic else {
+                    return
+                }
+                targetPeripheral?.writeValue(dataA, for: writeCharacteristicToUse, type: CBCharacteristicWriteType.withoutResponse)
             }
         }
     }
@@ -433,20 +425,4 @@ class RemoteViewController: UIViewController {
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC,animated: true,completion: nil)
     }
-}
-
-extension UIApplication {
-    /*function will return reference to tabbarcontroller */
-    /*
-    func tabbarController() -> UIViewController? {
-        guard let vcs = self.keyWindow?.rootViewController?.children else { return nil }
-        
-        for vc in vcs {
-            if  let _ = vc as? TabBarViewController {
-                return vc
-            }
-        }
-        return nil
-    }
-    */
 }

@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0439DB25277A277200834B2A /* SendingFileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439DB24277A277200834B2A /* SendingFileViewController.swift */; };
-		0439DB30277A629400834B2A /* Arduino.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0439DB2F277A629400834B2A /* Arduino.ino */; };
-		0439DB35277A62A900834B2A /* Arduino.zip in Resources */ = {isa = PBXBuildFile; fileRef = 0439DB34277A62A900834B2A /* Arduino.zip */; };
+		0439DB3A277A69C600834B2A /* TabBarAspect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439DB39277A69C600834B2A /* TabBarAspect.swift */; };
+		0439DB53277B40CB00834B2A /* Arduino.ino in Resources */ = {isa = PBXBuildFile; fileRef = 0439DB52277B40CB00834B2A /* Arduino.ino */; };
+		0439DB58277B40DA00834B2A /* Arduino.zip in Resources */ = {isa = PBXBuildFile; fileRef = 0439DB57277B40DA00834B2A /* Arduino.zip */; };
+		0439DB60277B4E1400834B2A /* FilesInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0439DB5F277B4E1400834B2A /* FilesInformations.swift */; };
 		048AD8162779275B00A64C48 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AD8152779275B00A64C48 /* DemoViewController.swift */; };
 		048AD81B2779278400A64C48 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AD81A2779278400A64C48 /* OnBoardingViewController.swift */; };
 		048AD820277927E700A64C48 /* OnBoardingImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AD81F277927E700A64C48 /* OnBoardingImageViewController.swift */; };
@@ -59,8 +61,10 @@
 
 /* Begin PBXFileReference section */
 		0439DB24277A277200834B2A /* SendingFileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendingFileViewController.swift; sourceTree = "<group>"; };
-		0439DB2F277A629400834B2A /* Arduino.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Arduino.ino; sourceTree = "<group>"; };
-		0439DB34277A62A900834B2A /* Arduino.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Arduino.zip; sourceTree = "<group>"; };
+		0439DB39277A69C600834B2A /* TabBarAspect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAspect.swift; sourceTree = "<group>"; };
+		0439DB52277B40CB00834B2A /* Arduino.ino */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Arduino.ino; path = "BlueTooth Remote Control for Arduino/ArduinoPrograms/Arduino.ino"; sourceTree = SOURCE_ROOT; };
+		0439DB57277B40DA00834B2A /* Arduino.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Arduino.zip; sourceTree = "<group>"; };
+		0439DB5F277B4E1400834B2A /* FilesInformations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesInformations.swift; sourceTree = "<group>"; };
 		048AD8152779275B00A64C48 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		048AD81A2779278400A64C48 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		048AD81F277927E700A64C48 /* OnBoardingImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingImageViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +126,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0439DB41277A891600834B2A /* ArduinoPrograms */ = {
+			isa = PBXGroup;
+			children = (
+				0439DB57277B40DA00834B2A /* Arduino.zip */,
+				0439DB52277B40CB00834B2A /* Arduino.ino */,
+			);
+			path = ArduinoPrograms;
+			sourceTree = "<group>";
+		};
+		0439DB4B277B32D800834B2A /* FilesToDownLoad */ = {
+			isa = PBXGroup;
+			children = (
+				0439DB24277A277200834B2A /* SendingFileViewController.swift */,
+				0439DB5F277B4E1400834B2A /* FilesInformations.swift */,
+			);
+			path = FilesToDownLoad;
+			sourceTree = "<group>";
+		};
 		046B7FAE276EA415006718E0 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,7 +171,6 @@
 				048AD8152779275B00A64C48 /* DemoViewController.swift */,
 				048AD81F277927E700A64C48 /* OnBoardingImageViewController.swift */,
 				048AD81A2779278400A64C48 /* OnBoardingViewController.swift */,
-				0439DB24277A277200834B2A /* SendingFileViewController.swift */,
 			);
 			path = Instruction;
 			sourceTree = "<group>";
@@ -236,6 +257,8 @@
 				046B7FAE276EA415006718E0 /* Remote */,
 				046B7FB2276EA440006718E0 /* Configuration */,
 				046B7FB3276EA44E006718E0 /* Instruction */,
+				0439DB4B277B32D800834B2A /* FilesToDownLoad */,
+				0439DB41277A891600834B2A /* ArduinoPrograms */,
 				04D75B062766724D0025F84A /* Other Files */,
 				04D75ADE276671E50025F84A /* Info.plist */,
 			);
@@ -275,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				04921BD82773908A00431F40 /* TabBarViewController.swift */,
+				0439DB39277A69C600834B2A /* TabBarAspect.swift */,
 			);
 			path = "Starting Controller";
 			sourceTree = "<group>";
@@ -283,8 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				04D75AD9276671E50025F84A /* Assets.xcassets */,
-				0439DB2F277A629400834B2A /* Arduino.ino */,
-				0439DB34277A62A900834B2A /* Arduino.zip */,
 				04D75ADB276671E50025F84A /* LaunchScreen.storyboard */,
 				04D75ACD276671D80025F84A /* AppDelegate.swift */,
 				04D75ACF276671D80025F84A /* SceneDelegate.swift */,
@@ -404,9 +426,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0439DB30277A629400834B2A /* Arduino.ino in Resources */,
+				0439DB53277B40CB00834B2A /* Arduino.ino in Resources */,
 				04D75ADD276671E50025F84A /* LaunchScreen.storyboard in Resources */,
-				0439DB35277A62A900834B2A /* Arduino.zip in Resources */,
+				0439DB58277B40DA00834B2A /* Arduino.zip in Resources */,
 				04D75ADA276671E50025F84A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,6 +458,7 @@
 				04B56588276CA507006CEE37 /* Colors.swift in Sources */,
 				048AD81B2779278400A64C48 /* OnBoardingViewController.swift in Sources */,
 				04D75B262767F21D0025F84A /* ThreeButtonsLine.swift in Sources */,
+				0439DB3A277A69C600834B2A /* TabBarAspect.swift in Sources */,
 				048E0546276E2899003A1CD0 /* Profile.swift in Sources */,
 				048E0541276E2775003A1CD0 /* ProfileStorageManager.swift in Sources */,
 				0439DB25277A277200834B2A /* SendingFileViewController.swift in Sources */,
@@ -445,6 +468,7 @@
 				04D75AD8276671D80025F84A /* BlueTooth_Remote_Control_for_Arduino.xcdatamodeld in Sources */,
 				04921BA02773437E00431F40 /* ConfigurationActionKeyboardViewController.swift in Sources */,
 				048AD820277927E700A64C48 /* OnBoardingImageViewController.swift in Sources */,
+				0439DB60277B4E1400834B2A /* FilesInformations.swift in Sources */,
 				04921BD92773908A00431F40 /* TabBarViewController.swift in Sources */,
 				04D75ACE276671D80025F84A /* AppDelegate.swift in Sources */,
 				048E0535276CF8DE003A1CD0 /* ButtonForConfiguration.swift in Sources */,

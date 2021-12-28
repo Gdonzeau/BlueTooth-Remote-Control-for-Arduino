@@ -23,7 +23,7 @@ extension RemoteViewController: CBCentralManagerDelegate {
             print("central.state is .poweredOff")
         case .poweredOn:
             print("central.state is .poweredOn")
-            centralManager.scanForPeripherals(withServices: [targetCBUUID])
+            centralManager?.scanForPeripherals(withServices: [targetCBUUID])
         default:
             print("Oh ben zut alors.")
         }
@@ -47,15 +47,18 @@ extension RemoteViewController: CBCentralManagerDelegate {
     func connectBT(peripheral: CBPeripheral) {
         status = .connecting
         targetPeripheral = peripheral
-        targetPeripheral.delegate = self
-        centralManager.stopScan()
-        centralManager.connect(targetPeripheral)
+        targetPeripheral?.delegate = self
+        centralManager?.stopScan()
+        guard let peripheralToConnect = targetPeripheral else {
+        return
+        }
+        centralManager?.connect(peripheralToConnect)
         status = .connected
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         status = .connected
-        targetPeripheral.discoverServices([targetCBUUID])
+        targetPeripheral?.discoverServices([targetCBUUID])
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral) {
@@ -72,7 +75,6 @@ extension RemoteViewController: CBPeripheralDelegate {
         
         guard let services = peripheral.services else { return }
         for service in services {
-            print(service)
             peripheral.discoverCharacteristics(nil, for: service)
         }
     }
@@ -81,20 +83,16 @@ extension RemoteViewController: CBPeripheralDelegate {
         guard let characteristics = service.characteristics else { return }
         
         for characteristic in characteristics {
-            print(characteristic)
             
             if characteristic.properties.contains(.read) {
-                print("\(characteristic.uuid): properties contains .read")
                 peripheral.readValue(for: characteristic)
             }
             if characteristic.properties.contains(.notify) {
-                print("\(characteristic.uuid): properties contains .notify")
                 peripheral.setNotifyValue(true, for: characteristic)
             }
             for characteristic in service.characteristics!{
                 let aCharacteristic = characteristic as CBCharacteristic
                 if aCharacteristic.uuid == CBUUID(string: "FFE1"){
-                    print("We found our write Characteristic")
                     writeCharacteristic = aCharacteristic
                 }
             }

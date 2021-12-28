@@ -35,13 +35,13 @@ class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController {
     
-    func setup() {
+    private func setup() {
         view.backgroundColor = AppColors.backgroundColorArduino
         titleLabel.tintColor = .systemGray6
         subtitleLabel.tintColor = .systemGray6
     }
     
-    func style() {
+    private func style() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -57,7 +57,7 @@ extension OnboardingViewController {
         subtitleLabel.numberOfLines = 0
     }
         
-    func layout() {
+    private func layout() {
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(subtitleLabel)
         

@@ -8,7 +8,6 @@
 import UIKit
 
 class ThreeButtonsLine: UIView {
-    //let appColors = AppColors.shared
     
     var remoteButton01 = UIButton()
     var remoteButton02 = UIButton()

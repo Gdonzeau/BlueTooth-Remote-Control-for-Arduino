@@ -18,7 +18,6 @@ class ProfileStorageManager {
     }
     
     func loadProfiles() throws -> [Profile] {
-        print("Loading")
         let request: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
         var profilesStored: [ProfileEntity]
         do {
@@ -29,16 +28,12 @@ class ProfileStorageManager {
     }
     
     func saveProfile(profile: Profile) throws { // ajouter throws
-        print("Saving")
-        
         let profileToSave = ProfileEntity(context: viewContext)
         profileToSave.name = profile.name
         profileToSave.datas = profile.datas
         
         do {
             try viewContext.save()
-            print("Saved : \(String(describing: profileToSave.name))")
-            
         } catch { print("Error \(error)") ; throw error }
     }
     

@@ -70,7 +70,7 @@ extension DemoViewController {
         
         let page3 = OnboardingViewController(titleText: "Downloading Program",
                                              subtitleText: """
-                                            Download this program and open it with Arduino IDE.
+                                            Use the Download Tab to download this program, and open it with Arduino IDE.
                                             """)
         
         let page3bis = OnboardingImageViewController(imageName: "BoutonPrgm", titleText: "Program's order",
@@ -90,7 +90,12 @@ extension DemoViewController {
                                             - Give a name to your profile in "Save's name" and save it.
                                             """)
         
-        let page5 = OnboardingViewController(titleText: "Loading Profile",
+        let page4bis = OnboardingImageViewController(imageName: "Programmed", titleText: "Create a Profile",
+                                             subtitleText: """
+                                            It should look like that.
+                                            """)
+        
+        let page5 = OnboardingImageViewController(imageName: "RemoteOpened", titleText: "Loading Profile",
                                              subtitleText: """
                                             Let's use the remote control.
                                             - Open the Remmote Control Tab.
@@ -103,7 +108,8 @@ extension DemoViewController {
                                              subtitleText: "")
         
         let page7 = OnboardingViewController(titleText: "Evolution",
-                                             subtitleText: "You can change easy Arduino's program by commands you want to adapt it at your personnal use. I hope you will enjoy this programm as much as I enjoyed programming it.")
+                                             subtitleText: "You can change easily Arduino's program by commands you want to adapt for your personnal use. I hope you will enjoy this programm as much as I enjoyed programming it.")
+        
         
         pages.append(page1)
         pages.append(page2)
@@ -111,6 +117,7 @@ extension DemoViewController {
         pages.append(page3)
         pages.append(page3bis)
         pages.append(page4)
+        pages.append(page4bis)
         pages.append(page5)
         pages.append(page6)
         pages.append(page7)

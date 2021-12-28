@@ -1,11 +1,9 @@
 //
-//  LoginViewController.swift
+//  OnboardingImageViewController.swift
 //  BlueTooth Remote Control for Arduino
 //
 //  Created by Guillaume Donzeau on 26/12/2021.
 //
-
-import UIKit
 
 import UIKit
 
@@ -45,7 +43,7 @@ class OnboardingImageViewController: UIViewController {
 
 extension OnboardingImageViewController {
     
-    func setup() {
+    private func setup() {
         view.backgroundColor = AppColors.backgroundColorArduino
         titleLabel.tintColor = .systemGray6
         subtitleLabel.tintColor = .systemGray6
@@ -55,7 +53,7 @@ extension OnboardingImageViewController {
         imageView.addGestureRecognizer(singleTap)
     }
     
-    func style() {
+    private func style() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .center
@@ -74,7 +72,7 @@ extension OnboardingImageViewController {
         subtitleLabel.numberOfLines = 0
     }
         
-    func layout() {
+    private func layout() {
         stackView.addArrangedSubview(imageView)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(subtitleLabel)

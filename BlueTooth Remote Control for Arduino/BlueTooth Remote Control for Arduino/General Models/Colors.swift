@@ -9,7 +9,7 @@ import UIKit
 
 enum AppColors {
     
-    static let backgroundColor = UIColor.systemBlue//UIColor.systemGreen
+    static let backgroundColor = UIColor.systemBlue
     static let backgroundColorArduino = UIColor(displayP3Red: 44/255, green: 147/255, blue: 158/255, alpha: 1)
     static let buttonColor = UIColor.systemGray3
     static let buttonNotEnableColor = UIColor.systemGray

@@ -8,9 +8,7 @@
 import UIKit
 
 class ConfigurationViewController: UIViewController, UITextViewDelegate {
-    
-    //let appColors = AppColors.shared
-    
+        
     let profileStorageManager = ProfileStorageManager.shared
     
     var infosButtons = InfoButtons()
@@ -24,7 +22,6 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     let activityIndicator = UIActivityIndicatorView()
     
     var timer = Timer()
-    //var profileSaving = Profile(name: "", datas:"")
     var profileReceivedToBeLoaded = Profile(name: "", datas: "")
     
     override func viewDidLoad() {
@@ -42,6 +39,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         }
         
     }
+    
     private func setup() {
         for index in 0 ..< buttonsForConfiguration.count {
             buttonsForConfiguration[index].nameTextField.delegate = self
@@ -93,6 +91,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     // MARK: - Constraints
     
         let margins = view.layoutMarginsGuide
+        
         // First buttons line
         let firstRankButtonsStackView = UIStackView(arrangedSubviews: [buttonsForConfiguration[0],buttonsForConfiguration[1],buttonsForConfiguration[2]])
         firstRankButtonsStackView.axis = .horizontal
@@ -181,20 +180,10 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         ])
     }
     
-    
-    
     private func configuration() {
         saveButton.addTarget(self, action: #selector(save), for: .touchUpInside) // action is assign to saveButton
     }
-    /*
-    func setting() { // If the button as no order to transmit, no need to see it
-        for index in 0 ..< buttonsForConfiguration.count {
-            if infosButtons.order[index] == "" {
-                infosButtons.notSeen[index] = true
-            }
-        }
-    }
-    */
+    
     func updateButtons() { // Button's name appear on the button
         for index in 0 ..< buttonsForConfiguration.count {
             let name = buttonsForConfiguration[index].nameTextField.text
@@ -279,18 +268,13 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     private func loadingProfile(profileToLoad: Profile) {
             nameProfile.text = profileToLoad.name
             let datasArray = profileToLoad.datas.components(separatedBy: ":")
-            print("Array : \(datasArray)")
             
             for index in 0 ..< buttonsForConfiguration.count {
                 buttonsForConfiguration[index].nameTextField.text = datasArray[index]
                 buttonsForConfiguration[index].orderTextField.text = datasArray[index+9]
             }
-        
         dataName01.text = datasArray[18]
         dataName02.text = datasArray[19]
-            
-            print("\(infosButtons.order)")
-            print("\(infosButtons.name)")
     }
     
     private func groupDatasInArray() -> String {

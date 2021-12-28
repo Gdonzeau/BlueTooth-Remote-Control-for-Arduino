@@ -13,7 +13,6 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.window?.overrideUserInterfaceStyle = .dark
-        //overrideUserInterfaceStyle = .light
         view.backgroundColor = .systemBackground
            UITabBar.appearance().barTintColor = .systemBackground
            tabBar.tintColor = .label
@@ -25,10 +24,7 @@ class TabBarViewController: UITabBarController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
-        //navController.navigationBar.prefersLargeTitles = true
-        //navController.navigationBar.isHidden = true
         navController.navigationBar.prefersLargeTitles = false
-        //navController.navigationBar.backgroundColor = .systemGreen
         rootViewController.navigationItem.title = title
         
         return navController
@@ -36,9 +32,10 @@ class TabBarViewController: UITabBarController {
     
     func setupVCs() {
             viewControllers = [
-                createNavController(for: RemoteViewController(), title: NSLocalizedString("Remote Control", comment: ""), image: UIImage(systemName: "keyboard")),
-                createNavController(for: ConfigurationViewController(), title: NSLocalizedString("Configuration", comment: ""), image: UIImage(systemName: "gear")),
-                createNavController(for: DemoViewController(), title: NSLocalizedString("Instructions", comment: ""), image: UIImage(systemName: "book"))
+                createNavController(for: RemoteViewController(), title: NSLocalizedString(TabBarAspect.TabBarName[0], comment: ""), image: TabBarAspect.TabBarImage[0]),
+                createNavController(for: ConfigurationViewController(), title: NSLocalizedString(TabBarAspect.TabBarName[1], comment: ""), image: TabBarAspect.TabBarImage[1]),
+                createNavController(for: DemoViewController(), title: NSLocalizedString(TabBarAspect.TabBarName[2], comment: ""), image: TabBarAspect.TabBarImage[2]),
+                createNavController(for: SendingFileViewController(), title: NSLocalizedString(TabBarAspect.TabBarName[3], comment: ""), image: TabBarAspect.TabBarImage[3])
             ]
         }
 }

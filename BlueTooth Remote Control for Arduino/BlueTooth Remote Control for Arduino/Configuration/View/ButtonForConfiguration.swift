@@ -12,7 +12,6 @@ class ButtonForConfiguration: UIView, UITextFieldDelegate {
     let button = UIButton()
     var orderTextField = UITextField()
     var nameTextField = UITextField()
-    //let appColors = AppColors.shared
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +30,6 @@ class ButtonForConfiguration: UIView, UITextFieldDelegate {
         button.contentMode = .scaleAspectFit
         button.layer.cornerRadius = 24
         button.layer.masksToBounds = true
-        //button.setTitleColor(.white, for: .normal)
         
         nameTextField.backgroundColor = AppColors.backGroudTextField//.lightGray
         nameTextField.layer.cornerRadius = 2
