@@ -106,12 +106,11 @@ extension SendingFileViewController {
         ])
     }
     
-    @objc func gettingFile(sender: UIButton) {
+    @objc func gettingFile(sender: UIButton) { // Evolution possible when several programs will be availables
         
         var filesToShare = [Any]()
 
         if let fileURL = Bundle.main.url(forResource: FilesInformations.name[sender.tag], withExtension: FilesInformations.withEnd[sender.tag]) {
-            print("found")
             filesToShare.append(fileURL)
             shareTapped(files: filesToShare)
         }

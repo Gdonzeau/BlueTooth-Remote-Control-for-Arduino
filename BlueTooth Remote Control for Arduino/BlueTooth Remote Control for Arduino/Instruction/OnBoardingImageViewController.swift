@@ -90,7 +90,7 @@ extension OnboardingImageViewController {
         ])
     }
     
-    @objc func imageTapped(sender: UITapGestureRecognizer) {
+    @objc func imageTapped(sender: UITapGestureRecognizer) { // Inscrease image's size when tapped
         let imageView = sender.view as! UIImageView
         let newImageView = UIImageView(image: imageView.image)
         newImageView.frame = UIScreen.main.bounds
