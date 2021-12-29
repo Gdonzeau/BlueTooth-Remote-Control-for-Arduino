@@ -107,6 +107,17 @@ extension DemoViewController {
         let page6 = OnboardingViewController(titleText: "Have fun",
                                              subtitleText: "")
         
+        let page6bis = OnboardingImageViewController(imageName: "EditScreen", titleText: "Edit Profile",
+                                             subtitleText: """
+                                            You can edit profile by swiping from left.
+                                            """)
+        
+        let page6ter = OnboardingImageViewController(imageName: "DelScreen", titleText: "Delete Profile",
+                                             subtitleText: """
+                                            You can delete profile by swiping from right.
+                                            """)
+        
+        
         let page7 = OnboardingViewController(titleText: "Evolution",
                                              subtitleText: "You can change easily Arduino's program by commands you want to adapt for your personnal use. I hope you will enjoy this programm as much as I enjoyed programming it.")
         
@@ -120,6 +131,8 @@ extension DemoViewController {
         pages.append(page4bis)
         pages.append(page5)
         pages.append(page6)
+        pages.append(page6bis)
+        pages.append(page6ter)
         pages.append(page7)
         
         setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
@@ -265,7 +278,7 @@ extension DemoViewController {
     @objc func prevTapped(_ sender: UIButton) {
         pageControl.currentPage -= 1
         goToPreviousPage()
-        //animateControlsIfNeeded()
+        animateControlsIfNeeded()
     }
 }
 
