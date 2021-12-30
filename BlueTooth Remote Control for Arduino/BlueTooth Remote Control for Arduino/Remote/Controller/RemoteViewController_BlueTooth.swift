@@ -23,7 +23,7 @@ extension RemoteViewController: CBCentralManagerDelegate {
             print("central.state is .poweredOff")
         case .poweredOn:
             print("central.state is .poweredOn")
-            centralManager?.scanForPeripherals(withServices: [targetCBUUID])
+            centralManager.scanForPeripherals(withServices: [targetCBUUID])
         default:
             print("Oh ben zut alors.")
         }
@@ -47,18 +47,20 @@ extension RemoteViewController: CBCentralManagerDelegate {
     func connectBT(peripheral: CBPeripheral) {
         status = .connecting
         targetPeripheral = peripheral
-        targetPeripheral?.delegate = self
-        centralManager?.stopScan()
+        targetPeripheral.delegate = self
+        centralManager.stopScan()
+        /*
         guard let peripheralToConnect = targetPeripheral else {
         return
         }
-        centralManager?.connect(peripheralToConnect)
+        */
+        centralManager.connect(targetPeripheral)
         status = .connected
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         status = .connected
-        targetPeripheral?.discoverServices([targetCBUUID])
+        targetPeripheral.discoverServices([targetCBUUID])
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral) {

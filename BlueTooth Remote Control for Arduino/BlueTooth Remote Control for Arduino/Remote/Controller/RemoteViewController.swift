@@ -44,10 +44,10 @@ class RemoteViewController: UIViewController {
     let targetCBUUID = CBUUID(string: "0xFFE0")
     let dialogCBUUID = CBUUID(string: "FFE1")
     
-    var centralManager: CBCentralManager?
-    var targetPeripheral: CBPeripheral?
-    var targetPeripheral02: CBPeripheral?
-    var writeCharacteristic: CBCharacteristic?
+    var centralManager: CBCentralManager!
+    var targetPeripheral: CBPeripheral!
+    var targetPeripheral02: CBPeripheral!
+    var writeCharacteristic: CBCharacteristic!
     var peripherals = [CBPeripheral]()
     var peripheralsDetected = [PeripheralDetected]()
     
@@ -99,9 +99,7 @@ class RemoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         status = .disconnected
-        guard centralManager == CBCentralManager(delegate: self, queue: nil) else {
-            return
-        }
+        centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -338,7 +336,7 @@ class RemoteViewController: UIViewController {
     @objc func actualize() {
         peripheralsDetected = []
         bluetoothAvailableTableView.reloadData()
-        centralManager?.scanForPeripherals(withServices: [targetCBUUID])
+        centralManager.scanForPeripherals(withServices: [targetCBUUID])
     }
     
     @objc func disconnect() {
@@ -346,7 +344,7 @@ class RemoteViewController: UIViewController {
         guard let peripheral = targetPeripheral else {
             return
         }
-        centralManager?.cancelPeripheralConnection(peripheral)
+        centralManager.cancelPeripheralConnection(peripheral)
     }
     
     @objc func loadProfile() {
@@ -400,7 +398,7 @@ class RemoteViewController: UIViewController {
     func sendOrder (message:String) {
         if status == .connected {
             if let dataA = message.data(using: .utf8) {
-                guard targetPeripheral?.state != .disconnected else {
+                guard targetPeripheral.state != .disconnected else {
                     
                     let error = AppError.peripheralDisconnected
                     if let errorMessage = error.errorDescription, let errorTitle = error.failureReason {
@@ -410,10 +408,12 @@ class RemoteViewController: UIViewController {
                     actualize()
                     return
                 }
+                /*
                 guard let writeCharacteristicToUse = writeCharacteristic else {
                     return
                 }
-                targetPeripheral?.writeValue(dataA, for: writeCharacteristicToUse, type: CBCharacteristicWriteType.withoutResponse)
+                */
+                targetPeripheral?.writeValue(dataA, for: writeCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
             }
         }
     }
