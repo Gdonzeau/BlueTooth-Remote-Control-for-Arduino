@@ -73,11 +73,10 @@ class BlueTooth_Remote_Control_for_ArduinoTests: XCTestCase {
         } catch {
             XCTFail("Error loading recipes \(error.localizedDescription)")
         }
-        print(FakeResponse.profiles.count)
         
         XCTAssertTrue(FakeResponse.profiles.count == 6)
         XCTAssertTrue(loadedProfiles.count == 6)
-        print(loadedProfiles)
+        
         XCTAssertTrue(loadedProfiles[0].name == "Name02Test")
         
         XCTAssertTrue(loadedProfiles[1].name == "Name04Test")

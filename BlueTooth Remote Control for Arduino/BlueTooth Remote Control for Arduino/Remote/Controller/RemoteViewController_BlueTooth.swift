@@ -23,9 +23,9 @@ extension RemoteViewController: CBCentralManagerDelegate {
             print("central.state is .poweredOff")
         case .poweredOn:
             print("central.state is .poweredOn")
-            centralManager.scanForPeripherals(withServices: [targetCBUUID])
+            centralManager?.scanForPeripherals(withServices: [targetCBUUID])
         default:
-            print("Oh ben zut alors.")
+            print("Uncovered case.")
         }
     }
     
@@ -40,7 +40,7 @@ extension RemoteViewController: CBCentralManagerDelegate {
         }
     }
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        print("Erreur de connection")
+        print("Connect error")
     }
     
     
@@ -48,13 +48,8 @@ extension RemoteViewController: CBCentralManagerDelegate {
         status = .connecting
         targetPeripheral = peripheral
         targetPeripheral.delegate = self
-        centralManager.stopScan()
-        /*
-        guard let peripheralToConnect = targetPeripheral else {
-        return
-        }
-        */
-        centralManager.connect(targetPeripheral)
+        centralManager?.stopScan()
+        centralManager?.connect(targetPeripheral)
         status = .connected
     }
     

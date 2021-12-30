@@ -16,6 +16,8 @@ extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keybo
         updateButtons()
         return true
     }
+    
+    // textFields which will activate View up and down
    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if  textField == dataName01 ||
@@ -51,6 +53,8 @@ extension ConfigurationViewController: UITextFieldDelegate { // To dismiss keybo
             animateViewMoving(up: false, moveValue: 200)
         }
     }
+    
+    // View up or down
 
     private func animateViewMoving (up:Bool, moveValue :CGFloat){
         let movementDuration:TimeInterval = 0.3

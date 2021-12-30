@@ -15,18 +15,18 @@ class RemoteViewController: UIViewController {
     
     private var saveTitle = UILabel()
     
-    private var actualizeButton = UIButton() // Press this button to connect to BT
-    private var disconnectButton = UIButton() // Press this button to disconnect from BT
-    private var activityIndicator = UIActivityIndicatorView()
+    private let actualizeButton = UIButton() // Press this button to connect to BT
+    private let disconnectButton = UIButton() // Press this button to disconnect from BT
+    private let activityIndicator = UIActivityIndicatorView()
     
-    private var firstThreeButtons = ThreeButtonsLine()
-    private var secondThreeButtons = ThreeButtonsLine()
-    private var thirdThreeButtons = ThreeButtonsLine()
+    private let firstThreeButtons = ThreeButtonsLine()
+    private let secondThreeButtons = ThreeButtonsLine()
+    private let thirdThreeButtons = ThreeButtonsLine()
     
-    private var titleData01 = UILabel()
-    private var contentData01 = UILabel()
-    private var titleData02 = UILabel()
-    private var contentData02 = UILabel()
+    private let titleData01 = UILabel()
+    private let contentData01 = UILabel()
+    private let titleData02 = UILabel()
+    private let contentData02 = UILabel()
     
     private var infosButtons = InfoButtons() // Contains names, order, seen or not
     
@@ -44,9 +44,8 @@ class RemoteViewController: UIViewController {
     let targetCBUUID = CBUUID(string: "0xFFE0")
     let dialogCBUUID = CBUUID(string: "FFE1")
     
-    var centralManager: CBCentralManager!
+    var centralManager: CBCentralManager?
     var targetPeripheral: CBPeripheral!
-    var targetPeripheral02: CBPeripheral!
     var writeCharacteristic: CBCharacteristic!
     var peripherals = [CBPeripheral]()
     var peripheralsDetected = [PeripheralDetected]()
@@ -316,7 +315,6 @@ class RemoteViewController: UIViewController {
                 } else {
                     buttons[index].isEnabled = false
                     buttons[index].backgroundColor = AppColors.buttonNotEnableColor
-                    //buttons[index].setTitleColor(appColors.backgroundColor, for: .normal)
                 }
             } else {
                 buttons[index].isHidden = false
@@ -325,6 +323,8 @@ class RemoteViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Buttons
     
     @objc func buttonAction(sender: UIButton) {
         
@@ -336,7 +336,7 @@ class RemoteViewController: UIViewController {
     @objc func actualize() {
         peripheralsDetected = []
         bluetoothAvailableTableView.reloadData()
-        centralManager.scanForPeripherals(withServices: [targetCBUUID])
+        centralManager?.scanForPeripherals(withServices: [targetCBUUID])
     }
     
     @objc func disconnect() {
@@ -344,12 +344,14 @@ class RemoteViewController: UIViewController {
         guard let peripheral = targetPeripheral else {
             return
         }
-        centralManager.cancelPeripheralConnection(peripheral)
+        centralManager?.cancelPeripheralConnection(peripheral)
     }
     
     @objc func loadProfile() {
         AlternateTableLoadButton(tableShown: true)
     }
+    
+    // MARK: - Profiles Gestion
     
     func getProfilesFromDatabase() {
         do {
@@ -374,6 +376,8 @@ class RemoteViewController: UIViewController {
         
     }
     
+    // MARK: - Initializing State
+    
     private func resetViewState() {
         activityIndicator.stopAnimating()
         actualizeButton.isHidden = true
@@ -385,7 +389,7 @@ class RemoteViewController: UIViewController {
     // MARK: - Communication Bluetooth
     
     func receivedMessage(messageReceived: String) {
-        // On sépare le String aux : pour faire un tableau
+        // String is splited at ":"
         let messageReceivedInArray = messageReceived.components(separatedBy: ":")
         if messageReceivedInArray.count > 1 {
             let data01 = "\(messageReceivedInArray[0])"
@@ -408,11 +412,7 @@ class RemoteViewController: UIViewController {
                     actualize()
                     return
                 }
-                /*
-                guard let writeCharacteristicToUse = writeCharacteristic else {
-                    return
-                }
-                */
+                
                 targetPeripheral?.writeValue(dataA, for: writeCharacteristic, type: CBCharacteristicWriteType.withoutResponse)
             }
         }

@@ -6,8 +6,7 @@
 //
 
 import Foundation
-// Different potential errors
-//AppErrors
+
 enum AppError: String, LocalizedError {
     case loadingError = "Loading Error."
     case coreDataError = "CoreData Error."

@@ -8,6 +8,8 @@ import UIKit
 
 extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - TableViews
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var numberOfRows = 0
         
@@ -74,6 +76,8 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    // MARK: - Swipe
+    
     internal func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? { // Swipe action to delete
         
         if tableView == profilesTableView {
@@ -91,6 +95,8 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration()
     }
     
+    // MARK: - Delete and Edit
+    
     private func deleteProfile(row: Int) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
             
@@ -101,7 +107,6 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
                 try self.profileStorageManager.deleteProfile(profileToDelete: profileToDelete)
                 DispatchQueue.main.async {
                     self.getProfilesFromDatabase()
-                    //tableView.reloadData()
                 }
                 completionHandler(true)
             } catch {
@@ -126,9 +131,13 @@ extension RemoteViewController: UITableViewDelegate, UITableViewDataSource {
     private func editProfile(row: Int) -> UISwipeActionsConfiguration? {
         let edit = UIContextualAction(style: .normal, title: "Edit") { (action, view, completionHandler) in
             // First : send the profile to edit
-            let navVC = self.tabBarController?.viewControllers?[1] as! UINavigationController
-            let configurationVC = navVC.topViewController as! ConfigurationViewController
-            configurationVC.profileReceivedToBeLoaded = self.profiles[row]
+            guard let navigationViewController = self.tabBarController?.viewControllers?[1] as? UINavigationController else {
+                return
+            }
+            guard let configurationViewController = navigationViewController.topViewController as? ConfigurationViewController else {
+                return
+            }
+            configurationViewController.profileReceivedToBeLoaded = self.profiles[row]
             
             // Let's delete the profile to edit from Storage
             do {

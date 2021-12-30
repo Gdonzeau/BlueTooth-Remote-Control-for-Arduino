@@ -30,6 +30,8 @@ class DemoViewController: UIPageViewController {
     }
 }
 
+    // MARK: - Pages description
+
 extension DemoViewController {
     
     func setup() {
@@ -233,11 +235,6 @@ extension DemoViewController: UIPageViewControllerDelegate {
         } else {
             showControls()
         }
-        /*
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
- */
     }
     
     private func hideControls() {

@@ -91,7 +91,9 @@ extension OnboardingImageViewController {
     }
     
     @objc func imageTapped(sender: UITapGestureRecognizer) { // Inscrease image's size when tapped
-        let imageView = sender.view as! UIImageView
+        guard let imageView = sender.view as? UIImageView else {
+            return
+        }
         let newImageView = UIImageView(image: imageView.image)
         newImageView.frame = UIScreen.main.bounds
         newImageView.backgroundColor = AppColors.backgroundColorArduino

@@ -9,9 +9,9 @@ import UIKit
 
 class ThreeButtonsLine: UIView {
     
-    var remoteButton01 = UIButton()
-    var remoteButton02 = UIButton()
-    var remoteButton03 = UIButton()
+    let remoteButton01 = UIButton()
+    let remoteButton02 = UIButton()
+    let remoteButton03 = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

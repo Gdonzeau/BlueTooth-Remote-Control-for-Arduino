@@ -17,6 +17,8 @@ class ProfileStorageManager {
         self.viewContext = persistentContainer.viewContext
     }
     
+    // MARK: - Load
+    
     func loadProfiles() throws -> [Profile] {
         let request: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
         var profilesStored: [ProfileEntity]
@@ -27,6 +29,8 @@ class ProfileStorageManager {
         return profilesStored.map { Profile(from: $0) }
     }
     
+    // MARK: - Save
+
     func saveProfile(profile: Profile) throws {
         let profileToSave = ProfileEntity(context: viewContext)
         profileToSave.name = profile.name
@@ -34,9 +38,11 @@ class ProfileStorageManager {
         
         do {
             try viewContext.save()
-        } catch { print("Error \(error)") ; throw error }
+        } catch { throw error }
     }
     
+    // MARK: - Delete
+
     func deleteProfile(profileToDelete: Profile) throws {
         let request: NSFetchRequest<ProfileEntity> = ProfileEntity.fetchRequest()
         do {
@@ -47,7 +53,7 @@ class ProfileStorageManager {
                 }
             }
             try viewContext.save()
-        } catch { print("Error while deleting : \(error)") ; throw error }
+        } catch { throw error }
     }
     
     

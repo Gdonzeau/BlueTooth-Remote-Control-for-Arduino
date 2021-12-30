@@ -13,10 +13,10 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
     
     var infosButtons = InfoButtons()
     let buttonsForConfiguration = [ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration(),ButtonForConfiguration()]
-    var nameProfile = UITextField()
-    var dataName01 = UITextField()
-    var dataName02 = UITextField()
-    var line = UIView()
+    let nameProfile = UITextField()
+    let dataName01 = UITextField()
+    let dataName02 = UITextField()
+    let line = UIView()
     
     let saveButton = UIButton()
     let activityIndicator = UIActivityIndicatorView()
@@ -191,6 +191,8 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    // MARK: - Saving and Loading Proccess
+    
     @objc func save(sender: UIButton) {
         var profileSaving = Profile(name: "", datas: "")
         
@@ -243,7 +245,7 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
         saveButton.isHidden = true
         activityIndicator.startAnimating()
         
-        // Starting timer, for Your Eyes Only
+        // Starting timer
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
         
         profileSaving.datas = groupDatasInArray()
@@ -305,6 +307,8 @@ class ConfigurationViewController: UIViewController, UITextViewDelegate {
             nameProfile.text = ""
         }
     }
+    
+    // MARK: - KeyBoard
     
     func resigningFirstResponder() {
         UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil);

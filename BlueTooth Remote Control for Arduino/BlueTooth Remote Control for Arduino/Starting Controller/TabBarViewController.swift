@@ -16,7 +16,7 @@ class TabBarViewController: UITabBarController {
         view.backgroundColor = .systemBackground
            UITabBar.appearance().barTintColor = .systemBackground
            tabBar.tintColor = .label
-           setupVCs()
+           setupViewControllers()
     }
     
     
@@ -30,7 +30,7 @@ class TabBarViewController: UITabBarController {
         return navController
     }
     
-    func setupVCs() {
+    func setupViewControllers() {
             viewControllers = [
                 createNavController(for: RemoteViewController(), title: NSLocalizedString(TabBarAspect.TabBarName[0], comment: ""), image: TabBarAspect.TabBarImage[0]),
                 createNavController(for: ConfigurationViewController(), title: NSLocalizedString(TabBarAspect.TabBarName[1], comment: ""), image: TabBarAspect.TabBarImage[1]),

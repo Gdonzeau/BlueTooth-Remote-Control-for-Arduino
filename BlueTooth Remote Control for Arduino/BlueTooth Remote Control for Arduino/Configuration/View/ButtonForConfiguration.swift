@@ -23,6 +23,8 @@ class ButtonForConfiguration: UIView, UITextFieldDelegate {
         super.init(coder: coder)
     }
     
+    // MARK: - SetupView
+    
     private func setupView() {
         
         button.backgroundColor = AppColors.buttonColor
