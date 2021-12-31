@@ -30,7 +30,7 @@ class DemoViewController: UIPageViewController {
     }
 }
 
-    // MARK: - Pages description
+// MARK: - Pages description
 
 extension DemoViewController {
     
@@ -54,6 +54,11 @@ extension DemoViewController {
                                                 - a 10kOhms resistor
                                                 """)
         
+        let page1bis = OnboardingImageViewController(imageName: "HM10face", titleText: "Material",
+                                             subtitleText: """
+                                                Here a photo of the module
+                                                """)
+        
         let page2 = OnboardingViewController(titleText: "Wiring",
                                              subtitleText: """
                                                 1 - Connect 5v and ground from Arduino to the bread-board.
@@ -64,8 +69,8 @@ extension DemoViewController {
                                                 """)
         
         let page2bis = OnboardingImageViewController(imageName: "Wiring",
-                                             titleText: "Wiring",
-                                             subtitleText: """
+                                                     titleText: "Wiring",
+                                                     subtitleText: """
                                                 6 - Connect the photo resist : one pin to 5V and the other one to A0.
                                                 7 - Use 10KOhms resistor to connect A0 to the ground.
                                                 """)
@@ -76,7 +81,7 @@ extension DemoViewController {
                                             """)
         
         let page3bis = OnboardingImageViewController(imageName: "BoutonPrgm", titleText: "Program's order",
-                                             subtitleText: """
+                                                     subtitleText: """
                                             "LED_OFF" is the order to send to switch the led off.
                                             Other orders are :
                                             - "LED_ON" to switch the led on
@@ -84,7 +89,7 @@ extension DemoViewController {
                                             - "Servo-" and "Servo+" to decrease or increase the angle by 5 degrees.
                                             """)
         let page4 = OnboardingImageViewController(imageName: "ButtonConfig", titleText: "Create a Profile",
-                                             subtitleText: """
+                                                  subtitleText: """
                                             Let's create a profile.
                                             - Open the Configuration Tab.
                                             - Then enter orders you want to send in Button's order and button's name in Button's name.
@@ -93,12 +98,12 @@ extension DemoViewController {
                                             """)
         
         let page4bis = OnboardingImageViewController(imageName: "Programmed", titleText: "Create a Profile",
-                                             subtitleText: """
+                                                     subtitleText: """
                                             It should look like that.
                                             """)
         
         let page5 = OnboardingImageViewController(imageName: "RemoteOpened", titleText: "Loading Profile",
-                                             subtitleText: """
+                                                  subtitleText: """
                                             Let's use the remote control.
                                             - Open the Remmote Control Tab.
                                             - Clic on Load Profile and choose the profile you want.
@@ -110,12 +115,12 @@ extension DemoViewController {
                                              subtitleText: "")
         
         let page6bis = OnboardingImageViewController(imageName: "EditScreen", titleText: "Edit Profile",
-                                             subtitleText: """
+                                                     subtitleText: """
                                             You can edit profile by swiping from left.
                                             """)
         
         let page6ter = OnboardingImageViewController(imageName: "DelScreen", titleText: "Delete Profile",
-                                             subtitleText: """
+                                                     subtitleText: """
                                             You can delete profile by swiping from right.
                                             """)
         
@@ -125,6 +130,7 @@ extension DemoViewController {
         
         
         pages.append(page1)
+        pages.append(page1bis)
         pages.append(page2)
         pages.append(page2bis)
         pages.append(page3)
@@ -165,7 +171,8 @@ extension DemoViewController {
         
         NSLayoutConstraint.activate([
             pageControl.widthAnchor.constraint(equalTo: view.widthAnchor),
-            pageControl.heightAnchor.constraint(equalToConstant: 120),
+            pageControl.heightAnchor.constraint(equalToConstant: 160),
+            
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             
