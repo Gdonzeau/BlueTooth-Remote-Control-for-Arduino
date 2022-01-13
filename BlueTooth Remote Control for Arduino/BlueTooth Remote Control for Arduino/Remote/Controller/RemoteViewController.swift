@@ -336,7 +336,7 @@ class RemoteViewController: UIViewController {
     @objc func actualize() {
         peripheralsDetected = []
         bluetoothAvailableTableView.reloadData()
-        centralManager?.scanForPeripherals(withServices: [targetCBUUID])
+        centralManager?.scanForPeripherals(withServices: [targetCBUUID]) // replace by nil if you want to scan any peripheral
     }
     
     @objc func disconnect() {
