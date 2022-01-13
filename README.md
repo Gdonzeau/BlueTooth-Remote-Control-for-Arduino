@@ -3,7 +3,7 @@
 ## Présentation
 Le projet final, après des mois de travail, d'études, de déconvenues et de succès...
 
-<img src="https://github.com/Gdonzeau/P12_BlueTooth-Remote-Control-for-Arduino/blob/main/imageP12_01.png" width="200" title= "image01" hspace="20"> <img src="https://github.com/Gdonzeau/P12_BlueTooth-Remote-Control-for-Arduino/blob/main/imageP12_02.png" width="200" title= "image02" hspace="20"> <img src="https://github.com/Gdonzeau/P12_BlueTooth-Remote-Control-for-Arduino/blob/main/imageP12_03.png" width="200" title= "image03" hspace="20"> <img src="https://github.com/Gdonzeau/P12_BlueTooth-Remote-Control-for-Arduino/blob/main/imageP12_04.png" width="200" title= "image04" hspace="20">
+<img src="https://github.com/Gdonzeau/BlueTooth-Remote-Control-for-Arduino/blob/main/imageP12_01.png" width="200" title= "image01" hspace="20"> <img src="https://github.com/Gdonzeau/BlueTooth-Remote-Control-for-Arduino/blob/main/imageP12_02.png" width="200" title= "image02" hspace="20"> <img src="https://github.com/Gdonzeau/BlueTooth-Remote-Control-for-Arduino/blob/main/imageP12_03.png" width="200" title= "image03" hspace="20"> <img src="https://github.com/Gdonzeau/BlueTooth-Remote-Control-for-Arduino/blob/main/imageP12_04.png" width="200" title= "image04" hspace="20">
 
 ## Réalisez un projet libre à impact social
 Le principe est simple : vous êtes libre de faire le programme que vous voulez, du moment qu'il apporte une aide.
