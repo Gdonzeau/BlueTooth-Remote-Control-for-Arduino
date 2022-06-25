@@ -55,6 +55,4 @@ class ProfileStorageManager {
             try viewContext.save()
         } catch { throw error }
     }
-    
-    
 }
