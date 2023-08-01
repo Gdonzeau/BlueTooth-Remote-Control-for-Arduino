@@ -38,6 +38,7 @@
 		04D75B262767F21D0025F84A /* ThreeButtonsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B252767F21D0025F84A /* ThreeButtonsLine.swift */; };
 		04D75B4127680A620025F84A /* InfoButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B4027680A620025F84A /* InfoButtons.swift */; };
 		04D75B80276953500025F84A /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D75B7F276953500025F84A /* Status.swift */; };
+		F04839662A5965B7007E0ADE /* extensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04839652A5965B7007E0ADE /* extensionUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		04D75B252767F21D0025F84A /* ThreeButtonsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeButtonsLine.swift; sourceTree = "<group>"; };
 		04D75B4027680A620025F84A /* InfoButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoButtons.swift; sourceTree = "<group>"; };
 		04D75B7F276953500025F84A /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		F04839652A5965B7007E0ADE /* extensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 		04D75ACC276671D80025F84A /* BlueTooth Remote Control for Arduino */ = {
 			isa = PBXGroup;
 			children = (
+				F04839642A596597007E0ADE /* Extensions */,
 				04D75B07276672AB0025F84A /* Services */,
 				04D75B032766721E0025F84A /* General Models */,
 				04D75B04276672250025F84A /* Starting Controller */,
@@ -307,6 +310,14 @@
 				048E0540276E2775003A1CD0 /* ProfileStorageManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		F04839642A596597007E0ADE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F04839652A5965B7007E0ADE /* extensionUIView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -462,6 +473,7 @@
 				04D75B80276953500025F84A /* Status.swift in Sources */,
 				04D75B0C2766A1670025F84A /* ConfigurationViewController.swift in Sources */,
 				04921B6C2770D5E700431F40 /* RemoteViewController_BlueTooth.swift in Sources */,
+				F04839662A5965B7007E0ADE /* extensionUIView.swift in Sources */,
 				048AD8162779275B00A64C48 /* DemoViewController.swift in Sources */,
 				04D75AD0276671D80025F84A /* SceneDelegate.swift in Sources */,
 			);
@@ -634,7 +646,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8453MU78WA;
+				DEVELOPMENT_TEAM = S47Y9QMPN2;
 				INFOPLIST_FILE = "BlueTooth Remote Control for Arduino/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -656,7 +668,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8453MU78WA;
+				DEVELOPMENT_TEAM = S47Y9QMPN2;
 				INFOPLIST_FILE = "BlueTooth Remote Control for Arduino/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (

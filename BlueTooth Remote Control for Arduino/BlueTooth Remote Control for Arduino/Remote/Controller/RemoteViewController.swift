@@ -139,6 +139,7 @@ class RemoteViewController: UIViewController {
         actualizeButton.layer.masksToBounds = true
         actualizeButton.setTitle("Actualize", for: .normal)
         actualizeButton.backgroundColor = AppColors.buttonColor
+        actualizeButton.addShadow()
         actualizeButton.contentMode = .scaleAspectFit
         actualizeButton.translatesAutoresizingMaskIntoConstraints = false
         actualizeButton.addTarget(self, action: #selector(actualize), for: .touchUpInside)
